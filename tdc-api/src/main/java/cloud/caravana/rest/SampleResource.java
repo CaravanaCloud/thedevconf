@@ -1,4 +1,4 @@
-package cloud.caravana;
+package cloud.caravana.rest;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -11,6 +11,6 @@ public class SampleResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
-        return "Aloha RESTEasy";
+        return "Queima RESTEasy";
     }
 }

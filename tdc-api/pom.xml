@@ -53,6 +53,11 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.23</version>
     </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-resteasy-jackson</artifactId>
+      <version>0.24.0</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

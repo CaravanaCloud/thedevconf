@@ -3,6 +3,7 @@ package com.example.application.views.thedevelopersconference;
 import com.example.application.data.entity.SamplePerson;
 import com.example.application.data.service.SamplePersonService;
 
+import com.example.application.views.main.OrigMainView;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
@@ -32,12 +33,12 @@ import com.vaadin.flow.component.checkbox.Checkbox;
  * Designer will add and remove fields with @Id mappings but does not overwrite
  * or otherwise change this file.
  */
-@JsModule("./views/thedevelopersconference/the-developers-conference-view.js")
-@CssImport("./views/thedevelopersconference/the-developers-conference-view.css")
-@Tag("the-developers-conference-view")
-@Route(value = "thedevconf.com", layout = MainView.class)
-@RouteAlias(value = "", layout = MainView.class)
-@PageTitle("The Developers Conference")
+// @JsModule("./views/thedevelopersconference/the-developers-conference-view.js")
+// @CssImport("./views/thedevelopersconference/the-developers-conference-view.css")
+// @Tag("the-developers-conference-view")
+// @Route(value = "thedevconf.com", layout = OrigMainView.class)
+// @RouteAlias(value = "tdcview", layout = OrigMainView.class)
+// @PageTitle("The Developers Conference")
 public class TheDevelopersConferenceView extends PolymerTemplate<TemplateModel> {
 
     @Id("firstName")

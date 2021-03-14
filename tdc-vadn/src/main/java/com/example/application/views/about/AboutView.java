@@ -1,5 +1,6 @@
 package com.example.application.views.about;
 
+import com.example.application.views.main.OrigMainView;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -13,7 +14,7 @@ import com.example.application.views.main.MainView;
 @JsModule("./views/about/about-view.js")
 @CssImport("./views/about/about-view.css")
 @Tag("about-view")
-@Route(value = "about", layout = MainView.class)
+@Route(value = "about", layout = OrigMainView.class)
 @PageTitle("About")
 public class AboutView extends PolymerTemplate<AboutViewModel> {
 

@@ -1,6 +1,8 @@
 import redis
 import json
 import sys
+import os
+
 
 ingest_limit = sys.maxsize
 
@@ -32,7 +34,7 @@ def print_csv(prop, speakers):
     status = prop.get("state",{}).get("code")
     #print("===")
     #print(prop)
-    print(f"{prop_id},{event},{lang},{title},{status},{name},{email}")
+    print(f"\"{prop_id}\",\"{event}\",\"{lang}\",\"{title}\",\"{status}\",\"{name}\",\"{email}\"")
 
 def ingest_speakers(rconn):
     result = {}
@@ -40,7 +42,7 @@ def ingest_speakers(rconn):
     for key, value in all_speakers.items():
         speak = json.loads(value)
         uuid = speak.get("uuid")
-        name = speak.get("name")
+        name = speak.get("firstName") + " " + speak.get("name")
         email = speak.get("email")
         result[uuid] =  (name,email)
     return result
@@ -48,7 +50,11 @@ def ingest_speakers(rconn):
 def cfp2csv():
     #print("Exporting CFP data to CSV")
     # Conectar no Redis
-    rconn = redis.Redis(host='localhost', port=6379, db=0)
+    redis_host = os.getenv("REDIS_HOST", "localhost")
+    redis_port = int(os.getenv("REDIS_HOST", 6379))
+    redis_db = int(os.getenv("REDIS_DB", 0))
+    redis_auth = os.getenv("REDIS_AUTH", "")
+    rconn = redis.StrictRedis(host=redis_host, port=redis_port, db=redis_db, password = redis_auth)
     result = None
     speakers = ingest_speakers(rconn)
     ingest_proposals(rconn,result,speakers)

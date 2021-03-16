@@ -29,3 +29,8 @@ __pycache__/
 
 tdc-vadn/package-lock.json
 tdc-api/tdc-api.iml
+
+.project
+.classpath
+.setings/
+

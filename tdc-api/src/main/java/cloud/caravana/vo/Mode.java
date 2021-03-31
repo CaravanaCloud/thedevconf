@@ -5,6 +5,11 @@ import java.util.*;
 public class Mode {
     private String name;
     private List<Edition> editions;
+    private String outraCoisa = "CARAVANA CLOUD";
+
+    public String getOutraCoisa() {
+        return outraCoisa;
+    }
 
     public Mode(String name){
         this(name, new ArrayList<>());

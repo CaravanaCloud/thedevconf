@@ -1,4 +1,4 @@
-package com.example.application.views.main;
+    package com.example.application.views.main;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +28,7 @@ public class MainView extends VerticalLayout {
         H1 hTitle = new H1();
         
         
-        hTitle.setText("TheDevConf PoC");
+        hTitle.setText("TheDevConf PoC + Caravana Cloud");
         add(hTitle);
         addCoupon();
         addTabs();

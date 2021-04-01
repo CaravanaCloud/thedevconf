@@ -7,10 +7,9 @@ public class Track {
   DayOfWeek day;
   String category;
 
-  public Track (String name, DayOfWeek day, String category){
+  public Track (String name, DayOfWeek day){
     this.name = name;
     this.day = day;
-    this.category = category;
   }
 
   public String getName() {
@@ -19,9 +18,5 @@ public class Track {
 
   public DayOfWeek getDay() {
     return day;
-  }
-
-  public String getCategory() {
-    return category;
   }
 }

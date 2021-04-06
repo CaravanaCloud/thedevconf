@@ -10,7 +10,7 @@ public class Alternatives {
 
 
     public void addAll(Mode... modes){
-        this.modes = Arrays.asList(modes);
+        this.modes = asList(modes);
     }
 
     public List<Mode> getModes(){

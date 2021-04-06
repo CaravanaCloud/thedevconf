@@ -5,18 +5,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import static cloud.caravana.vo.EditionStatus.*;
 import static javax.ws.rs.core.MediaType.*;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import cloud.caravana.vo.*;
-import static cloud.caravana.vo.EditionStatus.*;
 
 
 @Path("/mode")

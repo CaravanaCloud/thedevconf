@@ -4,7 +4,7 @@ public class Edition {
     String name;
     EditionStatus status;
 
-    public Edition(String name,EditionStatus status){
+    public Edition(String name, EditionStatus status){
         this.name = name;
         this.status = status;
     }

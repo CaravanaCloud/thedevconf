@@ -1,13 +1,11 @@
 package com.example.application.views.main;
 
 import com.vaadin.flow.component.ClickEvent;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.ThemableLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 @SuppressWarnings("serial")

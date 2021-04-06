@@ -1,12 +1,12 @@
 package cloud.caravana.vo;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Track {
   private String name;
-  private Date date;
+  private LocalDate date;
 
-  public Track (String name, Date date){
+  public Track (String name, LocalDate date){
     this.name = name;
     this.date = date;
   }
@@ -15,7 +15,7 @@ public class Track {
     return name;
   }
 
-  public Date getDate() {
+  public LocalDate getDate() {
     return date;
   }
 }

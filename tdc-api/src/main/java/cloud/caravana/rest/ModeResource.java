@@ -63,7 +63,8 @@ public class ModeResource {
     }
 
     public List<Track> createTracks() {
-        Date firstDay = new Date(23-03-2021);
+        LocalDate firstDay = LocalDate.of(2021, Month.MARCH, 23);
+
         Track agile = new Track("Agile", firstDay);
         Track analise = new Track("Análise", firstDay);
         Track api = new Track("API", firstDay);

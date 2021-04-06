@@ -1,22 +1,21 @@
 package cloud.caravana.vo;
 
-import java.time.DayOfWeek;
+import java.util.Date;
 
 public class Track {
-  String name;
-  DayOfWeek day;
-  String category;
+  private String name;
+  private Date date;
 
-  public Track (String name, DayOfWeek day){
+  public Track (String name, Date date){
     this.name = name;
-    this.day = day;
+    this.date = date;
   }
 
   public String getName() {
     return name;
   }
 
-  public DayOfWeek getDay() {
-    return day;
+  public Date getDate() {
+    return date;
   }
 }

@@ -60,6 +60,8 @@ public class ModeResource {
 
     public List<Track> createTracks() {
         LocalDate firstDay = LocalDate.of(2021, Month.MARCH, 23);
+        LocalDate secondDay = LocalDate.of(2021, Month.MARCH, 24);
+        LocalDate thirdDay = LocalDate.of(2021, Month.MARCH, 25);
 
         Track agile = new Track("Agile", firstDay);
         Track analise = new Track("Análise", firstDay);
@@ -72,6 +74,31 @@ public class ModeResource {
         Track net = new Track(".NET", firstDay);
         Track phyton = new Track("Phyton", firstDay);
 
-        return List.of(agile, analise, api, js, ai, ux, devtest, devops, net, phyton);
+        Track coaching = new Track("Coaching", secondDay);
+        Track management = new Track("Management", secondDay);
+        Track microservices = new Track("Microservices", secondDay);
+        Track dataScience = new Track("Data Science", secondDay);
+        Track services = new Track("Services", secondDay);
+        Track testes = new Track("Testes", secondDay);
+        Track lgpd = new Track("LGPD", secondDay);
+        Track java = new Track("Java", secondDay);
+        Track web = new Track("Web", secondDay);
+
+        Track kanban = new Track("Kanban", thirdDay);
+        Track agility = new Track("Agility", thirdDay);
+        Track xp = new Track("XP", thirdDay);
+        Track mobile = new Track("Mobile", thirdDay);
+        Track dados = new Track("Dados", thirdDay);
+        Track transformation = new Track("Transformation", thirdDay);
+        Track security = new Track("Security", thirdDay);
+        Track cloud = new Track("Cloud", thirdDay);
+        Track architecture = new Track("Architecture", thirdDay);
+        Track go = new Track("Go", thirdDay);
+
+        return List.of(
+                agile, analise, api, js, ai, ux, devtest, devops, net, phyton,
+                coaching, management, microservices, dataScience, services, testes, lgpd, java, web,
+                kanban, agility, xp, mobile, dados, transformation, security, cloud, architecture, go
+        );
     }
 }

@@ -8,8 +8,11 @@ import javax.ws.rs.core.MediaType;
 import static cloud.caravana.vo.EditionStatus.*;
 import static javax.ws.rs.core.MediaType.*;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import cloud.caravana.vo.*;
@@ -59,9 +62,11 @@ public class ModeResource {
     }
 
     public List<Track> createTracks() {
-        LocalDate firstDay = LocalDate.of(2021, Month.MARCH, 23);
-        LocalDate secondDay = LocalDate.of(2021, Month.MARCH, 24);
-        LocalDate thirdDay = LocalDate.of(2021, Month.MARCH, 25);
+        String firstDay = "23-03-2021";
+        String secondDay = "24-03-2021";
+        String thirdDay = "25-03-2021";
+
+
 
         Track agile = new Track("Agile", firstDay);
         Track analise = new Track("Análise", firstDay);

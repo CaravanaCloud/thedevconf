@@ -5,21 +5,24 @@ import java.util.*;
 public class Mode {
     private String name;
     private List<Edition> editions;
-    private List<Track> tracks;
+
+
     private String outraCoisa = "CARAVANA CLOUD";
 
     public String getOutraCoisa() {
         return outraCoisa;
     }
 
+    public Mode(){
+        this("");
+    }
     public Mode(String name){
-        this(name, new ArrayList<>(), new ArrayList<>());
+        this(name, new ArrayList<>());
     }
     
-    public Mode(String name, List<Edition> editions, List<Track> tracks){
+    public Mode(String name, List<Edition> editions){
         this.name = name;
         this.editions = editions;
-        this.tracks = tracks;
     }
 
     public String getName(){
@@ -30,5 +33,4 @@ public class Mode {
         return editions;
     }
 
-    public List<Track> getTracks() { return tracks; }
 }

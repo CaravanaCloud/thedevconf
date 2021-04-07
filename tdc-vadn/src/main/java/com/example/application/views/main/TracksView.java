@@ -41,8 +41,8 @@ public class TracksView  extends VerticalLayout {
 
     private void mkTracks() {
         HorizontalLayout days = new HorizontalLayout();
+        tracksService.getAlternatives();
         List<Track> tracks = tracksService.getTracks();
-
 
         List<Track> tracksFirstDay = tracks
                 .stream()

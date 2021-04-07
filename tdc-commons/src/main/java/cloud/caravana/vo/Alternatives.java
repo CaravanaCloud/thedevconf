@@ -8,6 +8,11 @@ import static java.util.stream.Collectors.*;
 public class Alternatives {
     List<Mode> modes = new ArrayList<>();
 
+    public static Alternatives of(Mode... modes) {
+        Alternatives alt = new Alternatives();
+        alt.addAll(modes);
+        return alt;
+    }
 
     public void addAll(Mode... modes){
         this.modes = asList(modes);

@@ -1,12 +1,10 @@
 package com.example.application.data.entity;
 
-import java.time.LocalDate;
-
 public class Track {
   public String name;
-  public LocalDate date;
+  public String date;
 
-  public Track (String name, LocalDate date){
+  public Track (String name, String date){
     this.name = name;
     this.date = date;
   }
@@ -17,6 +15,10 @@ public class Track {
 
   public String getName() {
     return name;
+  }
+
+  public String getDate() {
+    return date;
   }
 
 }

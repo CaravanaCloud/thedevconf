@@ -1,5 +1,7 @@
 package com.example.application.views.main;
 
+import com.example.application.data.entity.Track;
+import com.example.application.data.service.TracksService;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.HasComponents;
@@ -8,6 +10,9 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @SuppressWarnings("serial")
 public class TracksView  extends VerticalLayout {
     private static final String BTN_ED_SIZE = "10em";
@@ -15,8 +20,11 @@ public class TracksView  extends VerticalLayout {
 
     final HorizontalLayout lytEditions = new HorizontalLayout();
     final ComponentEventListener<ClickEvent<Button>> listener = event -> event.getSource().setText("OK!!");
+    private TracksService tracksService;
 
-    public TracksView(){        
+    public TracksView(TracksService tracksService){
+        this.tracksService = tracksService;
+
         mkDiv("Personalize sua experiencia");
         mkEditions();
         mkTracks();
@@ -33,6 +41,15 @@ public class TracksView  extends VerticalLayout {
 
     private void mkTracks() {
         HorizontalLayout days = new HorizontalLayout();
+        List<Track> tracks = tracksService.getTracks();
+
+
+        List<Track> tracksFirstDay = tracks
+                .stream()
+                .filter(track -> track.getDate().equalsIgnoreCase("23-03-2021"))
+                .collect(Collectors.toList());
+
+        System.out.println(tracksFirstDay);
 
         mkDay(days, "Terça,  23/03/2021", "Agile", "Análise", "APIs", "JS", "AI", "UX", "DEVTEST", "DevOps", ".NET", "Python");
         mkDay(days, "Quarta, 24/03/2021", "Coaching", "Management", "Microservices", "Gestão", "Data Science", "Services", "Testes", "LGPD", "Java", "Web");

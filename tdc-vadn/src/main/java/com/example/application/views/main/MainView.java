@@ -1,21 +1,21 @@
-    package com.example.application.views.main;
+package com.example.application.views.main;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-
+import com.example.application.data.service.TracksService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.tabs.*;
+import com.vaadin.flow.component.tabs.Tab;
+import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.PWA;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Route
 // @CssImport("./views/main/main-view.css")
@@ -23,11 +23,12 @@ import com.vaadin.flow.router.Route;
 // @JsModule("./styles/shared-styles.js")
 public class MainView extends VerticalLayout {
     private static final long serialVersionUID = 1L;
+    private TracksService tracksService;
 
-    public MainView() {
+    public MainView(@Autowired TracksService tracksService) {
+        this.tracksService = tracksService;
+
         H1 hTitle = new H1();
-        
-        
         hTitle.setText("TheDevConf PoC + Caravana Cloud");
         add(hTitle);
         addCoupon();
@@ -63,7 +64,7 @@ public class MainView extends VerticalLayout {
         page3.setText("Page#3");
         page3.setVisible(false);
         
-        TracksView tracksView = new TracksView();
+        TracksView tracksView = new TracksView(this.tracksService);
         Map<Tab, Component> tabsToPages = new HashMap<>();
         tabsToPages.put(tab1, tracksView);
         tabsToPages.put(tab2, page2);

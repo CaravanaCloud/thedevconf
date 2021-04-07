@@ -5,7 +5,6 @@ import com.example.application.data.entity.SamplePerson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.vaadin.artur.helpers.CrudService;
-import java.time.LocalDate;
 
 @Service
 public class SamplePersonService extends CrudService<SamplePerson, Integer> {

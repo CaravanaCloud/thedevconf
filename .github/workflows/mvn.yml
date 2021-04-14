@@ -47,7 +47,7 @@ jobs:
       - run: sam --version
       - uses: r0zar/sam-deploy-action@v1.4
         env:
-          TEMPLATE: './target/sam.jvm.yaml'
+          TEMPLATE: './tdc-api/target/sam.jvm.yaml'
           AWS_STACK_NAME: tdc-poc-${{ github.actor }}
           AWS_REGION: 'us-west-2'
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}

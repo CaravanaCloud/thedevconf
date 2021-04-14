@@ -1,0 +1,41 @@
+name: Maven-Build
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up GraalVM
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'zulu'
+      - name: Cache Maven packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build with Maven
+        run: mvn --batch-mode --update-snapshots verify
+      - name: Generate JaCoCo Badge
+        id: jacoco
+        uses: cicirello/jacoco-badge-generator@v2.0.1
+        if: hashFiles('./target/jacoco-report/jacoco.csv') != ''
+        with:
+          jacoco-csv-file: ./target/jacoco-report/jacoco.csv
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+      - name: Copy jacoco reports
+        run: |
+          echo aws s3 sync ./target/jacoco-report/ s3://anonymouse.caravana.cloud/jacoco/
+      - name: Copy jacoco badge
+        run: |
+          echo aws s3 sync ./.github/badges/ s3://anonymouse.caravana.cloud/badges/

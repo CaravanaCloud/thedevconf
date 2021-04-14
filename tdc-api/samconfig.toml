@@ -1,0 +1,9 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "tdc-poc-api"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-165j4dnzcpgr0"
+s3_prefix = "tdc-poc-api"
+region = "us-west-2"
+capabilities = "CAPABILITY_IAM"

@@ -44,9 +44,7 @@ jobs:
           echo aws s3 sync ./.github/badges/ s3://anonymouse.caravana.cloud/badges/
 
       - uses: aws-actions/setup-sam@v0
-      - run: which sam
-      - run: find .
-        working-directory: tdc-api
+      - run: sam --version
       - run: sam deploy -t ./target/sam.jvm.yaml --config-file ./samconfig.toml
         working-directory: tdc-api
 

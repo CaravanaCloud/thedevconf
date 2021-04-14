@@ -46,6 +46,8 @@ jobs:
       - uses: aws-actions/setup-sam@v0
       - run: sam --version
       - run: aws sts get-caller-identity
-      - run: sam deploy -t ./target/sam.jvm.yaml --stack-name tdc-poc-api
+      - run: sam deploy -t ./target/sam.jvm.yaml --stack-name tdc-poc-api --s3-bucket aws-sam-cli-managed-default-samclisourcebucket-165j4dnzcpgr0
         working-directory: ./tdc-api
+        env:
+          SAM_CLI_TELEMETRY: 0
       - run: echo DONE!

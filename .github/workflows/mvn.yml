@@ -47,5 +47,7 @@ jobs:
       - run: sam --version
       - run: sam deploy -t ./target/sam.jvm.yaml --config-file ./samconfig.toml
         working-directory: tdc-api
+        env:
+          SAM_CLI_TELEMETRY: 0
 
       - run: echo DONE!

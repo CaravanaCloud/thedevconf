@@ -1,0 +1,2 @@
+web: java -jar tdc-api-1.0.0-SNAPSHOT-runner.zip -Xms256m
+zip -j ./target/target.zip ./target/tdc-api-1.0.0-SNAPSHOT-runner.jar ./src/main/eb/Procfile

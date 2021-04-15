@@ -55,7 +55,7 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: tdc-poc-api
           environment_name: tdc-poc-api-env
-          version_label: api_v${{ github.ACTION }}
+          version_label: api_v${{ github.SHA }}
           region: us-west-2
           deployment_package: ./tdc-api/target/tdc-api-1.0.0-SNAPSHOT-runner.jar
 #      - uses: aws-actions/setup-sam@v0

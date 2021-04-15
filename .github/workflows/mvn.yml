@@ -58,7 +58,7 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: tdc-poc-api
           environment_name: tdc-poc-api-env
-          version_label: api_v${{ github.SHA }}
+          version_label: tdc-api_${{ github.SHA }}
           region: us-west-2
           deployment_package: ./tdc-api/target/eb.zip
 
@@ -72,7 +72,7 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: tdc-poc-vadn
           environment_name: tdc-poc-vadn-env
-          version_label: api_v${{ github.SHA }}
+          version_label: tdc-vadn__${{ github.SHA }}
           region: us-west-2
           deployment_package: ./tdc-vadn/target/eb.zip
 #      - uses: aws-actions/setup-sam@v0

@@ -23,7 +23,7 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
       - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots verify
+        run: mvn --batch-mode --update-snapshots verify -Pproduction
         env:
           MAVEN_OPTS: "-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
 
@@ -72,7 +72,7 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: tdc-poc-vadn
           environment_name: tdc-poc-vadn-env
-          version_label: tdc-vadn__${{ github.SHA }}
+          version_label: tdc-vadn_pwd${{ github.SHA }}
           region: us-west-2
           deployment_package: ./tdc-vadn/target/eb.zip
 #      - uses: aws-actions/setup-sam@v0

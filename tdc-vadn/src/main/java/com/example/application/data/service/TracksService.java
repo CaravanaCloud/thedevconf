@@ -14,11 +14,16 @@ import java.util.*;
 
 @Service
 public class TracksService {
-
+  private static final String DEFAULT_API_URL = "http://localhost:8181";
   private final WebClient webClient;
 
   public TracksService(@Autowired WebClient.Builder webClientBuilder) {
-    this.webClient = webClientBuilder.baseUrl("http://localhost:8181").build();
+    this.webClient = webClientBuilder.baseUrl(getAPIUrl()).build();
+  }
+
+  private String getAPIUrl() {
+    Map<String, String> env = System.getenv();
+    return env.getOrDefault("TDC_API_URL",DEFAULT_API_URL);
   }
 
   public Alternatives getAlternatives(){

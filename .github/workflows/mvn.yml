@@ -8,11 +8,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up GraalVM
-        uses: actions/setup-java@v2
+
+      - uses: DeLaGuardo/setup-graalvm@4.0
         with:
-          java-version: '11'
-          distribution: 'zulu'
+          graalvm: '21.0.0.2'
+          java: 'java11'
+          arch: 'amd64'
+      - run: java -version
+
       - name: Cache Maven packages
         uses: actions/cache@v2
         with:
@@ -42,12 +45,13 @@ jobs:
       - name: Copy jacoco badge
         run: |
           echo aws s3 sync ./.github/badges/ s3://anonymouse.caravana.cloud/badges/
-
-      - uses: aws-actions/setup-sam@v0
-      - run: sam --version
       - run: aws sts get-caller-identity
-      - run: sam deploy -t ./target/sam.jvm.yaml --stack-name tdc-poc-api --s3-bucket "tdc-poc-artifacts.caravana.cloud"
-        working-directory: ./tdc-api
-        env:
-          SAM_CLI_TELEMETRY: 0
-      - run: echo DONE!
+
+#      - uses: aws-actions/setup-sam@v0
+#      - run: sam --version
+#      - run: aws sts get-caller-identity
+#      - run: sam deploy -t ./target/sam.jvm.yaml --stack-name tdc-poc-api --s3-bucket "tdc-poc-artifacts.caravana.cloud"
+#        working-directory: ./tdc-api
+#        env:
+#          SAM_CLI_TELEMETRY: 0
+#      - run: echo DONE!

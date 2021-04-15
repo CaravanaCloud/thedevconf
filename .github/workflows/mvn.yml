@@ -48,10 +48,10 @@ jobs:
           aws-region: us-west-2
       - run: aws sts get-caller-identity
 
-      - name: Generate EB package
+      - name: Generate API EB package
         run: zip -j ./target/eb.zip ./target/tdc-api-1.0.0-SNAPSHOT-runner.jar ./src/main/eb/Procfile
         working-directory: tdc-api
-      - name: Deploy to EB
+      - name: Deploy API to EB
         uses: einaregilsson/beanstalk-deploy@v16
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -61,6 +61,7 @@ jobs:
           version_label: api_v${{ github.SHA }}
           region: us-west-2
           deployment_package: ./tdc-api/target/eb.zip
+
 #      - uses: aws-actions/setup-sam@v0
 #      - run: sam --version
 #      - run: aws sts get-caller-identity

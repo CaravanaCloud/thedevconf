@@ -1,1 +1,1 @@
-web: java -jar tdc-api-1.0.0-SNAPSHOT-runner.zip -Xms256m
+web: java -jar tdc-api-1.0.0-SNAPSHOT-runner.jar

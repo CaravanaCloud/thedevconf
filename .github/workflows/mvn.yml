@@ -62,6 +62,10 @@ jobs:
           region: us-west-2
           deployment_package: ./tdc-api/target/eb.zip
           wait_for_deployment: false
+      - uses: actions/upload-artifact@v2
+        with:
+          name: tdc-api-eb.zip
+          path: ./tdc-api/target/eb.zip
 
       - name: Generate VADN EB package
         run: zip -j ./target/eb.zip ./target/thedevconf-1.0-SNAPSHOT.jar ./src/main/eb/Procfile
@@ -77,6 +81,10 @@ jobs:
           region: us-west-2
           deployment_package: ./tdc-vadn/target/eb.zip
           wait_for_deployment: false
+      - uses: actions/upload-artifact@v2
+        with:
+          name: tdc-vadn-eb.zip
+          path: ./tdc-vadn/target/eb.zip
 #      - uses: aws-actions/setup-sam@v0
 #      - run: sam --version
 #      - run: aws sts get-caller-identity

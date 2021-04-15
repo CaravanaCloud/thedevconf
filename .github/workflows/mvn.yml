@@ -33,20 +33,31 @@ jobs:
         if: hashFiles('./target/jacoco-report/jacoco.csv') != ''
         with:
           jacoco-csv-file: ./target/jacoco-report/jacoco.csv
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-west-2
       - name: Copy jacoco reports
         run: |
           echo aws s3 sync ./target/jacoco-report/ s3://anonymouse.caravana.cloud/jacoco/
       - name: Copy jacoco badge
         run: |
           echo aws s3 sync ./.github/badges/ s3://anonymouse.caravana.cloud/badges/
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
       - run: aws sts get-caller-identity
 
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v16
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: tdc-poc-api
+          environment_name: Tdcpocapi-env
+          version_label: api_latest
+          region: us-west-2
+          deployment_package: ./tdc-api/target/tdc-api-1.0.0-SNAPSHOT-runner.jar
 #      - uses: aws-actions/setup-sam@v0
 #      - run: sam --version
 #      - run: aws sts get-caller-identity

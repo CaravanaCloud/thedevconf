@@ -61,6 +61,7 @@ jobs:
           version_label: tdc-api_${{ github.SHA }}
           region: us-west-2
           deployment_package: ./tdc-api/target/eb.zip
+          wait_for_deployment: false
 
       - name: Generate VADN EB package
         run: zip -j ./target/eb.zip ./target/thedevconf-1.0-SNAPSHOT.jar ./src/main/eb/Procfile
@@ -75,6 +76,7 @@ jobs:
           version_label: tdc-vadn_pwd${{ github.SHA }}
           region: us-west-2
           deployment_package: ./tdc-vadn/target/eb.zip
+          wait_for_deployment: false
 #      - uses: aws-actions/setup-sam@v0
 #      - run: sam --version
 #      - run: aws sts get-caller-identity

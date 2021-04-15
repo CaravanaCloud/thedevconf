@@ -62,6 +62,19 @@ jobs:
           region: us-west-2
           deployment_package: ./tdc-api/target/eb.zip
 
+      - name: Generate VADN EB package
+        run: zip -j ./target/eb.zip ./target/thedevconf-1.0-SNAPSHOT.jar ./src/main/eb/Procfile
+        working-directory: tdc-vadn
+      - name: Deploy VADN to EB
+        uses: einaregilsson/beanstalk-deploy@v16
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: tdc-poc-vadn
+          environment_name: tdc-poc-vadn-env
+          version_label: api_v${{ github.SHA }}
+          region: us-west-2
+          deployment_package: ./tdc-vadn/target/eb.zip
 #      - uses: aws-actions/setup-sam@v0
 #      - run: sam --version
 #      - run: aws sts get-caller-identity

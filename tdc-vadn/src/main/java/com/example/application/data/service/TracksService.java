@@ -14,7 +14,7 @@ import java.util.*;
 
 @Service
 public class TracksService {
-  private static final String DEFAULT_API_URL = "http://localhost:8181";
+  private static final String DEFAULT_API_URL = "http://localhost:8181/api/";
   private final WebClient webClient;
 
   public TracksService(@Autowired WebClient.Builder webClientBuilder) {
@@ -27,13 +27,18 @@ public class TracksService {
   }
 
   public Alternatives getAlternatives(){
-    Alternatives alt = this.webClient.get()
-                                      .uri("/mode")
-                                      .retrieve()
-                                      .toEntity(Alternatives.class)
-                                      .block()
-                                      .getBody();
-    return alt;
+    try {
+      Alternatives alt = this.webClient.get()
+                                       .uri("/mode")
+                                       .retrieve()
+                                       .toEntity(Alternatives.class)
+                                       .block()
+                                       .getBody();
+      return alt;
+    }catch (Exception ex){
+      ex.printStackTrace();
+      return null;
+    }
   }
   public List<Track> getTracks() {
     JsonNode body = this.webClient.get().uri("/mode").retrieve().toEntity(JsonNode.class).block().getBody();

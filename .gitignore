@@ -37,3 +37,5 @@ tdc-api/tdc-api.iml
 target/
 /tdc.iml
 /tdc-commons/tdc-commons.iml
+.DS_Store
+tdc-cfp/package-lock.json

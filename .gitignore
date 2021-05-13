@@ -35,3 +35,5 @@ tdc-api/tdc-api.iml
 .setings/
 
 target/
+/tdc.iml
+/tdc-commons/tdc-commons.iml

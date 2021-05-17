@@ -39,3 +39,4 @@ target/
 /tdc-commons/tdc-commons.iml
 .DS_Store
 tdc-cfp/package-lock.json
+tdc-cfp/package.json

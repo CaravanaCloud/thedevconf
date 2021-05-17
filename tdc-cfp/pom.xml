@@ -28,6 +28,7 @@
         <junit.jupiter.version>5.7.0</junit.jupiter.version>
         <kotlin.version>1.4.31</kotlin.version>
         <quarkus.package.type>uber-jar</quarkus.package.type>
+        <debug>5006</debug>
     </properties>
 
     <repositories>
@@ -182,7 +183,9 @@
             <version>3.0.2</version>
         </dependency>
     </dependencies>
+
     <build>
+        <defaultGoal>clean compile quarkus:dev</defaultGoal>
         <plugins>
             <plugin>
                 <groupId>com.vaadin</groupId>

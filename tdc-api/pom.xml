@@ -84,8 +84,8 @@
     </dependency>
   </dependencies>
   <build>
+    <defaultGoal>clean compile quarkus:dev</defaultGoal>
     <plugins>
-
       <plugin>
         <groupId>io.quarkus</groupId>
         <artifactId>quarkus-maven-plugin</artifactId>

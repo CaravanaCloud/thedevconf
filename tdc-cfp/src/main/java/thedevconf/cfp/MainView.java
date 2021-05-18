@@ -2,15 +2,19 @@ package thedevconf.cfp;
 
 import cloud.caravana.vo.Alternatives;
 import com.vaadin.flow.component.ClickEvent;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.page.Page;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.server.InitialPageSettings;
 import com.vaadin.flow.server.PWA;
+import com.vaadin.flow.server.PageConfigurator;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -23,9 +27,21 @@ import java.util.Date;
 @PWA(name = "TheDevConf CFP", shortName = "tdc-cfp", enableInstallPrompt = false)
 @CssImport("./styles/shared-styles.css")
 @CssImport(value = "./styles/vaadin-text-field-styles.css", themeFor = "vaadin-text-field")
-public class MainView extends VerticalLayout {
+public class MainView extends VerticalLayout implements PageConfigurator {
     String VERSION = "#7";
+
     public MainView(){
+        addDependencies();
+        addComponents();
+    }
+
+    private void addDependencies() {
+        UI ui = UI.getCurrent();
+        Page page = ui.getPage();
+        page.addJsModule("https://apis.google.com/js/platform.js");
+    }
+
+    private void addComponents() {
         Button button = new Button("TheDevConf CFP "+VERSION);
         button.addClickListener(e -> onClick(e));
         add(button);
@@ -70,5 +86,18 @@ public class MainView extends VerticalLayout {
             apiURL = "http://localhost:8181";
         }
         return apiURL;
+    }
+
+    @Override
+    public void configurePage(InitialPageSettings settings) {
+        settings.addMetaTag("google-signin-client_id",getGoogleClientId());
+    }
+
+    private String getGoogleClientId() {
+        return getEnv("GOOGLE_CLIENT_ID");
+    }
+
+    private String getEnv(String key) {
+
     }
 }

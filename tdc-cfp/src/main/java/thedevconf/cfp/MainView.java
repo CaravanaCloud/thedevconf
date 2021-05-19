@@ -98,6 +98,6 @@ public class MainView extends VerticalLayout implements PageConfigurator {
     }
 
     private String getEnv(String key) {
-
+        return System.getenv().get(key);
     }
 }

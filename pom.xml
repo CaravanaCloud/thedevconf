@@ -16,4 +16,8 @@
     <module>tdc-cfp</module>
   </modules>
 
+  <build>
+    <defaultGoal>clean compile</defaultGoal>
+  </build>
+
 </project>

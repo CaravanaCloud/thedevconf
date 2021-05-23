@@ -40,3 +40,6 @@ target/
 .DS_Store
 tdc-cfp/package-lock.json
 tdc-cfp/package.json
+
+.envrc
+

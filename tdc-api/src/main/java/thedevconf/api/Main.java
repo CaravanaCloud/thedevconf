@@ -1,4 +1,4 @@
-package cloud.caravana.rest;
+package thedevconf.api;
 
 import io.quarkus.runtime.annotations.QuarkusMain;
 import io.quarkus.runtime.Quarkus;

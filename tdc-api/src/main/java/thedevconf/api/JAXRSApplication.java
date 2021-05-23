@@ -1,4 +1,4 @@
-package cloud.caravana.rest;
+package thedevconf.api;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

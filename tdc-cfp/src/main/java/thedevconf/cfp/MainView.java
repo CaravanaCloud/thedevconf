@@ -7,6 +7,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.Page;
 import com.vaadin.flow.component.textfield.TextField;
@@ -45,6 +46,31 @@ public class MainView extends VerticalLayout implements PageConfigurator {
         Button button = new Button("TheDevConf CFP "+VERSION);
         button.addClickListener(e -> onClick(e));
         add(button);
+
+        HorizontalLayout hl1 = new HorizontalLayout();
+
+        VerticalLayout vl1 = new VerticalLayout();
+        vl1.add(new Button("Dia 1"));
+        vl1.add(new Button("Talk 1 A"));
+        vl1.add(new Button("Talk 1 B"));
+        vl1.add(new Button("Talk 1 C"));
+        hl1.add(vl1);
+
+        VerticalLayout vl2 = new VerticalLayout();
+        vl2.add(new Button("Dia 2"));
+        vl2.add(new Button("Talk 2 A"));
+        vl2.add(new Button("Talk 2 B"));
+        vl2.add(new Button("Talk 2 C"));
+        hl1.add(vl2);
+
+        VerticalLayout vl3 = new VerticalLayout();
+        vl3.add(new Button("Dia 3"));
+        vl3.add(new Button("Talk 3 A"));
+        vl3.add(new Button("Talk 3 B"));
+        vl3.add(new Button("Talk 3 C"));
+        hl1.add(vl3);
+
+        add(hl1);
 
         Div menu = new Div();
         menu.add(new RouterLink("home", HomeView.class));

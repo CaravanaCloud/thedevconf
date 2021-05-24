@@ -76,7 +76,6 @@ mvn
 ## Start the API Module
 Set the API environment variables (JDBC):
 ```
-export QUARKUS_DATASOURCE_JDBC="true"
 export QUARKUS_DATASOURCE_JDBC_URL="jdbc:mysql://$MYSQL_HOST:$MYSQL_PORT/$MYSQL_DB"
 export QUARKUS_DATASOURCE_DB_KIND="mysql"
 export QUARKUS_DATASOURCE_USERNAME="root"

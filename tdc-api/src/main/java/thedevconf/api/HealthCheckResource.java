@@ -34,7 +34,8 @@ public class HealthCheckResource {
     public Heartbeat ready() {
         try{
             Heartbeat hb = Heartbeat.of();
-            return em.get().merge(hb);
+            EntityManager em = this.em.get();
+            return em.merge(hb);
         }catch (Exception e){
             throw new RuntimeException(e);
         }

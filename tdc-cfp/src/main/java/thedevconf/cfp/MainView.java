@@ -2,10 +2,12 @@ package thedevconf.cfp;
 
 import cloud.caravana.vo.Alternatives;
 import com.vaadin.flow.component.ClickEvent;
+import com.vaadin.flow.component.ClientCallable;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -75,6 +77,18 @@ public class MainView extends VerticalLayout implements PageConfigurator {
         Div menu = new Div();
         menu.add(new RouterLink("home", HomeView.class));
         add(menu);
+
+        Div gsignin = new Div();
+        gsignin.setClassName("g-signin2");
+        gsignin.getElement().setAttribute("data-onsuccess","onSignIn");
+        gsignin.add(new Label("G Sign in"));
+        add(gsignin);
+    }
+
+    @ClientCallable
+    public void onSignIn() {
+        System.out.println("Google Sign-In");
+        return;
     }
 
     private Notification onClick(ClickEvent<Button> e) {
@@ -117,10 +131,11 @@ public class MainView extends VerticalLayout implements PageConfigurator {
     @Override
     public void configurePage(InitialPageSettings settings) {
         settings.addMetaTag("google-signin-client_id",getGoogleClientId());
+
     }
 
     private String getGoogleClientId() {
-        return getEnv("GOOGLE_CLIENT_ID");
+        return getEnv("TDC_GOOGLE_CLIENT_ID");
     }
 
     private String getEnv(String key) {

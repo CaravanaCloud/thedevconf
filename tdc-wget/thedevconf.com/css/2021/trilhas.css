@@ -1,0 +1,323 @@
+
+section .line-event {
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+section.bg-gray-10 .line-event {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+section .line-event:last-of-type {
+    border-bottom: none !important;
+}
+
+section:nth-child(even) {
+    background-color: #F8F8F8;
+}
+
+.line-event {
+    padding-bottom: 15px;  
+}
+
+.line-event .btn-lg {
+    font-size: 22px;
+    line-height: 1.2;
+    font-weight: bold;
+    padding-left: 55px;
+    margin-bottom: 15px;
+    border-bottom-width: 6px;
+}
+
+.line-event .btn-track {
+    padding-top: 25px;
+    padding-bottom: 22px;
+}
+
+.line-event .btn-workshop {
+    padding-top: 11px;
+    padding-bottom: 10px;
+}
+
+.img-avatar {
+    float: left;
+    width: 80px !important;
+    height: 80px !important;
+    margin: 4px 15px 10px 0px !important;
+    border: 4px solid rgba(0,0,0,0.10);
+    box-shadow: 1px 1px 1px #aaa;
+}
+
+.btn-incolor {
+    color: #666;
+    background-color: transparent;
+    border-bottom: none !important;
+}
+
+.btn-incolor:hover,
+.btn-incolor:focus,
+.btn-incolor:active{
+    color: #1c1c1c;
+    text-decoration: underline;
+}
+
+@media(min-width: 768px) {
+    .edicao {
+        background-size: 100% !important;
+    }
+}
+@media(max-width: 767px) {
+    .edicao {
+        background-attachment: initial !important;
+    }
+}
+
+/* grade de trilhas e workshops */
+#grade-florianopolis a.btn-block,
+#grade-saopaulo a.btn-block,
+#grade-portoalegre a.btn-block,
+#grade-online a.btn-block {
+    font-size: 12px;
+}
+a.btn-block.meio {
+    width: 48%;
+    float: left;
+    margin-bottom: 5px;
+}
+a.btn-block.meio.esquerda {
+    margin-right: 2%;
+}
+a.btn-block.meio.direita {
+    margin-left: 2%;
+}
+a.btn-block.corrigido {
+    clear: both;
+}
+a.btn-maior {
+    display: block;
+    height: 50px;
+}
+a.btn-maior.alinhado {
+    line-height: 35px;
+}
+a.btn-maior.varios-dias.visible-lg {
+    margin-top: 5px;
+    padding-top: 45px;
+}
+#grade-florianopolis .label,
+#grade-saopaulo .label,
+#grade-portoalegre .label {
+    margin-right: 4px;
+}
+
+.titulo-trilha small {
+    display: block;
+    margin-top: 5px;            
+}
+.change {
+    -moz-transition: .3s;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+}
+.breaks {
+    color: #888;
+}
+.breaks:hover {
+    color: #444;
+}          
+.btn-xl {
+    padding-top: 17px;
+    padding-bottom: 16px;
+}
+.coordenador-foto img {
+    height: 73px;
+    margin-bottom: 5px;
+}
+.coordenador-foto:hover img {
+    opacity: 0.75;
+}
+.fa-stack-coordenador {
+    font-size: 40px;
+}
+footer a {
+    color: #AAA !important;
+}
+footer a:hover {
+    color: #CCC !important;
+}
+.bg-cover-trilha {
+    background-size: cover;
+    box-shadow: 0px -5px 7px 0px rgba(0,0,0,0.25) inset;
+}
+.bg-cover-trilha h1 {
+    color: #FFF;
+    text-shadow: -1px 1px 5px #333;
+    margin: 50px 0px;
+    padding: 0px;
+    font-size: 45px;
+    line-height: 50px;
+}
+.bg-cover-trilha small {
+    color: #FFF;
+    font-size: 50%;
+    line-height: 35px;
+    text-transform: uppercase;            
+}
+#picTrilha {
+    background-image: url('http://www.globalcode.com.br/images/cover-path.svg');
+    background-size: cover;
+}
+.btn-block .btn-normal {
+    width: 85%;
+}
+
+.btn-block .dropdown-toggle {
+    width: 15%;
+    border-left: 1px solid rgba(0,0,0,0.15);
+}
+
+
+#accordion table.table th {
+    background-color: #EEE;
+    font-weight: bold;
+    padding: 12px;
+    vertical-align: middle;
+}
+#accordion table.table td {
+    padding: 12px;
+    vertical-align: middle;
+}
+#accordion table.table .horario {
+    color: #444;
+    font-size: 80%;
+    text-align: center;
+    width: 8%;
+}
+#accordion table.table .conteudo {
+    width: 92%;
+}
+
+#accordion table.table td.todos a.breaks {
+    color: #888;
+}
+
+#accordion table.table h4.palestra,
+#accordion table.table a.palestra {
+    color: #555555;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#accordion table.table a.palestrante {
+    color: #555555;
+    font-style: italic;
+}
+
+#accordion table.table div.descricao {
+    color: #444;
+}
+
+div.palestrantes div.palestrante, div.coordenadores div.coordenador {
+    height: 96px; 
+    margin-bottom: 16px;
+}
+
+div.palestrantes div.palestrante .event-palest, div.coordenadores div.coordenador .event-coord {
+    padding: 4px 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div.palestrantes div.palestrante .event-palest-name, div.coordenadores div.coordenador .event-coord-name {
+    padding-bottom: 4px;
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div.palestrantes div.palestrante .event-palest-links, div.coordenadores div.coordenador .event-coord-links {
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+div.palestrantes div.palestrante a.nome, div.coordenadores div.coordenador a.nome {
+    color: #000;
+    font-style: normal;
+    font-weight: normal;
+}
+
+div.palestrantes div.palestrante span.empresa, div.coordenadores div.coordenador span.empresa {
+    color: #000;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 80%;
+}
+
+/* online */
+
+div.palestrantes div.palestranteOnline {
+    height: 136px; 
+    margin-bottom: 16px;
+}
+
+div.palestrantes div.palestranteOnline .event-palest-name {
+    padding-bottom: 4px;
+    font-size: 20px;
+    white-space: wrapping;
+    word-wrap: normal;
+}
+
+div.palestrantes div.palestranteOnline a.nome, div.coordenadores div.coordenador a.nome {
+    color: #000;
+    font-style: normal;
+    font-weight: normal;
+}
+
+div.palestrantes div.palestranteOnline span.empresa, div.coordenadores div.coordenador span.empresa {
+    color: #000;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 80%;
+}
+
+
+.calendario {
+    padding: 40px 0 0;
+}
+
+.box-calendario {
+    padding: 15px 50px;
+    /*padding: 15px 50px 30px;*/
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 1px 5px 45px rgba(0,0,0,0.1);
+    background-image: url(https://cdn.thedevconf.com.br/2019/img/icons/icon-calendar.png);
+    background-position: bottom right;
+}
+
+.box-calendario h3 {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 21px;
+    color: #444;
+}
+
+#coordenadores-areas .line-event h2 {
+    font-size: 21px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 35px;
+}
+
+
+/* para usar no plugin jquery shorten */
+a.morelink {
+    text-decoration: none;
+    outline: none;
+    font-size: larger;
+}
+.morecontent span {
+    display: none;
+}

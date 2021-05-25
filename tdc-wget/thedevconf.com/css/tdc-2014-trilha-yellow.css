@@ -1,0 +1,23 @@
+/* 
+    Created on : 23/05/2014, 16:15:23
+    Author     : jSilverize
+*/
+
+a {
+    color: #FFB71B;
+    font-weight: bold;
+    text-decoration: none;
+}
+a:hover, a:focus {
+    color: #D39815;
+    text-decoration: underline;
+}
+a:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+
+a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
+    border-color: #FFB71B;
+}

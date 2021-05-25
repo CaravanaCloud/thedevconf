@@ -4,6 +4,7 @@ import thedevconf.jaxrs.api.entity.Heartbeat;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -13,6 +14,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import java.util.logging.Logger;
 
+@ApplicationScoped
 public class HealthCheckResource {
     Logger log = Logger.getLogger("HealthCheck");
 

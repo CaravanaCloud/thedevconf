@@ -1,4 +1,4 @@
-package thedevconf.cfp;
+package thedevconf.jaxrs.cfp;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.router.BeforeEnterEvent;

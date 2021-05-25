@@ -1,4 +1,4 @@
-package thedevconf.cfp;
+package thedevconf.jaxrs.cfp;
 
 public class GreetService {
 

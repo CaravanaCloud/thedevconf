@@ -1,4 +1,4 @@
-package thedevconf.cfp;
+package thedevconf.jaxrs.cfp;
 
 import cloud.caravana.vo.Alternatives;
 import com.vaadin.flow.component.ClickEvent;
@@ -7,12 +7,11 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.Page;
-import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.InitialPageSettings;
@@ -23,7 +22,6 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-import java.util.Date;
 
 
 @Route("")
@@ -78,11 +76,14 @@ public class MainView extends VerticalLayout implements PageConfigurator {
         menu.add(new RouterLink("home", HomeView.class));
         add(menu);
 
-        Div gsignin = new Div();
-        gsignin.setClassName("g-signin2");
-        gsignin.getElement().setAttribute("data-onsuccess","onSignIn");
-        gsignin.add(new Label("G Sign in"));
-        add(gsignin);
+        GoogleLogin googleLogin = new GoogleLogin();
+        add(googleLogin);
+        googleLogin.setLoggedInListener(token -> onLogin(token));
+    }
+
+    private void onLogin(String token) {
+        System.out.println("Logged in with "+token);
+        add(new Paragraph("User logged in token logged in: " + token));
     }
 
     @ClientCallable

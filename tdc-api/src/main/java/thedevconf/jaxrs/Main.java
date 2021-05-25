@@ -1,4 +1,4 @@
-package thedevconf.api;
+package thedevconf.jaxrs;
 
 import io.quarkus.runtime.annotations.QuarkusMain;
 import io.quarkus.runtime.Quarkus;

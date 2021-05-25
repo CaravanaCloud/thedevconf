@@ -1,4 +1,4 @@
-package thedevconf.servlet;
+package thedevconf.jaxrs.servlet;
 
 import javax.websocket.Endpoint;
 import javax.websocket.server.ServerApplicationConfig;

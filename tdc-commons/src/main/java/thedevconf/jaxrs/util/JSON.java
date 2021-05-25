@@ -1,4 +1,4 @@
-package thedevconf.util;
+package thedevconf.jaxrs.util;
 
 import static com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT;
 

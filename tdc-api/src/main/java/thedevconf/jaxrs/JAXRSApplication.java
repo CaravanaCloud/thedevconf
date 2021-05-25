@@ -1,9 +1,9 @@
-package thedevconf.api;
+package thedevconf.jaxrs;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-@ApplicationPath("api")
+@ApplicationPath("")
 public class JAXRSApplication extends Application {
 
 }

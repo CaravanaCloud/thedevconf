@@ -1,6 +1,6 @@
-package thedevconf.api;
+package thedevconf.jaxrs.api;
 
-import thedevconf.api.entity.Heartbeat;
+import thedevconf.jaxrs.api.entity.Heartbeat;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
@@ -13,7 +13,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import java.util.logging.Logger;
 
-@Path("_hc")
 public class HealthCheckResource {
     Logger log = Logger.getLogger("HealthCheck");
 

@@ -1,3 +1,6 @@
+.debug {
+    border: 2px dashed purple;
+}
 .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;
@@ -10,4 +13,12 @@
     .bd-placeholder-img-lg {
         font-size: 3.5rem;
     }
+}
+
+body {
+    padding-top: 70px;
+}
+
+h2 {
+    font-size: 1.3em;
 }

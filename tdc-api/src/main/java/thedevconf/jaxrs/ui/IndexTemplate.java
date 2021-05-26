@@ -13,9 +13,8 @@ import javax.ws.rs.core.MediaType;
 import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
 
 @Path("")
-public class IndexResource {
-    @Inject
-    Configuration cfg;
+public class IndexTemplate extends BaseResource {
+
 
     @Inject
     Template index;
@@ -26,15 +25,14 @@ public class IndexResource {
     @GET
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance get() {
-        TemplateInstance template = index.data("cfg",cfg);
-        return template;
+        return instanceOf(index);
     }
+
 
     @GET
     @Path("login")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getLogin() {
-        TemplateInstance template = login.data("cfg",cfg);
-        return template;
+        return instanceOf(login);
     }
 }

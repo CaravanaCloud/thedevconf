@@ -30,8 +30,6 @@
   <modules>
     <module>tdc-commons</module>
     <module>tdc-api</module>
-    <!-- <module>tdc-vadn</module> -->
-    <module>tdc-cfp</module>
   </modules>
 
   <build>

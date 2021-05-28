@@ -31,6 +31,7 @@ h2 {
     background-color: #C4C4C4;
     color: #525252;
     border: none;
+    padding: 3em;
 }
 
 .couponCode {
@@ -38,8 +39,11 @@ h2 {
 }
 
 .couponCode span {
-    font-size: 2.5em;
-    color: #525252;
+    font-size: 1.6em;
+}
+
+.couponCode strong {
+    font-size: 2.2em;
 }
 
 .couponCode input {

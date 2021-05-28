@@ -72,8 +72,10 @@ img {
 }
 
 .stripe {
+    position: absolute;
     width: 100%;
-    min-height: 4px
+    min-height: 4px;
+    bottom: 0;
 }
 
 .stripe-colors {

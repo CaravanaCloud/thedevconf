@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,700);
+
 .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;
@@ -14,6 +16,7 @@
 
 body {
     padding-top: 4.4em;
+    font-family: 'Titillium Web', Helvetica Neue, Ubuntu, Segoe UI, sans-serif;
 }
 
 h1 {

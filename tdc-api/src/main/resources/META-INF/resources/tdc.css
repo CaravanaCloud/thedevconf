@@ -1,6 +1,3 @@
-.debug {
-    border: 2px dashed purple;
-}
 .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;
@@ -16,9 +13,49 @@
 }
 
 body {
-    padding-top: 70px;
+    padding-top: 4.4em;
+}
+
+h1 {
+    font-size: 2.5em;
 }
 
 h2 {
-    font-size: 1.3em;
+    font-size: 2.5em;
+}
+
+.summary, .value {
+    background-color: #C4C4C4;
+    color: #525252;
+    border: none;
+}
+
+.couponCode {
+    background-color: #ECECEC;
+}
+
+.couponCode span {
+    font-size: 2.5em;
+    color: #525252;
+}
+
+.couponCode input {
+    background-color: transparent;
+    padding: 0.5em;
+    border:none;
+    border-bottom: 4px solid #000000;
+    font-size: 20px;
+}
+
+.couponCode input:focus {
+    border-color: #CCC;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.primaryButton {
+    background-color: #525252;
+    color: #FFF;
+    border: none;
 }

@@ -62,3 +62,7 @@ h2 {
     color: #FFF;
     border: none;
 }
+
+section {
+    padding: 3rem !important;
+}

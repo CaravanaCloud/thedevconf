@@ -19,15 +19,11 @@ body {
     font-family: 'Titillium Web', Helvetica Neue, Ubuntu, Segoe UI, sans-serif;
 }
 
-h1 {
+h1, h2, .couponCode span, .confirmationMessage strong{
     font-size: 2.5em;
 }
 
-h2 {
-    font-size: 2.5em;
-}
-
-.summary, .value {
+.summary, .value, .confirmationMessage {
     background-color: #C4C4C4;
     color: #525252;
     border: none;
@@ -36,14 +32,6 @@ h2 {
 
 .couponCode {
     background-color: #ECECEC;
-}
-
-.couponCode span {
-    font-size: 1.6em;
-}
-
-.couponCode strong {
-    font-size: 2.2em;
 }
 
 .couponCode input {
@@ -59,6 +47,10 @@ h2 {
     -webkit-box-shadow: none;
     box-shadow: none;
     background-color: transparent;
+}
+
+.confirmationMessage {
+    text-align: center;
 }
 
 .primaryButton {

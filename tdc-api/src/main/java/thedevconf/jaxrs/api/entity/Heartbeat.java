@@ -25,7 +25,6 @@ public class Heartbeat implements Serializable {
     String payload;
 
 
-
     @Override
     public String toString() {
         return JSON.stringify(this);

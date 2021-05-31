@@ -6,14 +6,25 @@ import thedevconf.jaxrs.ui.SummaryTemplate;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
+import javax.persistence.EntityManager;
+import javax.sql.DataSource;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @ApplicationScoped
 public class UserResource extends BaseResource {
     @Inject
-    private SummaryResource summary;
+    SummaryResource summary;
+
+    //hibernate
+    @Inject
+    EntityManager em;
+
+    //jdbc
+    @Inject
+    DataSource ds;
 
     @Path("summary")
     public SummaryResource getSummary(){
@@ -22,7 +33,21 @@ public class UserResource extends BaseResource {
 
     @Path("registration")
     @GET
+    @Produces(APPLICATION_JSON)
     public RegistrationVO getRegistrationVO(@QueryParam("clientId") String clientId){
         return RegistrationVO.of(clientId);
+    }
+
+    @Path("registration")
+    @POST
+    @Produces(APPLICATION_JSON)
+    @Consumes(APPLICATION_JSON)
+    public RegistrationVO getRegistrationVO(
+            @QueryParam("clientId") String clientId,
+            RegistrationVO vo){
+        System.out.println(vo);
+        //em.merge()...
+        //ds.getConnection().createStatement()
+        return vo;
     }
 }

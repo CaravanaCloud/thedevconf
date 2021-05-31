@@ -1,0 +1,29 @@
+####
+# Before building the container image run:
+# ./mvnw package
+#
+# Then, build the image with:
+# docker build -f src/main/docker/Dockerfile.jvm -t quarkus/tdc-api-jvm .
+#
+# Then run the container using:
+#
+docker run -it --rm \
+    -e QUARKUS_DATASOURCE_JDBC \
+    -e   QUARKUS_DATASOURCE_JDBC_URL \
+    -e   QUARKUS_DATASOURCE_DB_KIND \
+    -e   QUARKUS_DATASOURCE_USERNAME \
+    -e   QUARKUS_DATASOURCE_PASSWORD \
+    -e   QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION \
+    -e  GOOGLE_CLIENT_ID \
+    -p 0.0.0.0:8080:8080 \
+    jfaerman/tdc-api:latest
+
+
+#
+# If you want to include the debug port into your docker image
+# you will have to expose the debug port (default 5005) like this :  EXPOSE 8080 5050
+#
+# Then run the container using :
+# docker run -i --rm -p 8080:8080 -p 5005:5005 -e JAVA_ENABLE_DEBUG="true" quarkus/tdc-api-jvm
+#
+###

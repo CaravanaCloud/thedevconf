@@ -3,3 +3,8 @@
 !target/*-runner.jar
 !target/lib/*
 !target/quarkus-app/*
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+.git
+.gitignore

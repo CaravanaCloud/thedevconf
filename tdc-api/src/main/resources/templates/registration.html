@@ -1,0 +1,34 @@
+{#include main}
+
+{#body}
+<div class="container">
+    <div class="row" >
+        <div class="col-12 debug">
+            <h2>Registration Example</h2>
+            <p>Client ID: <span class="tdc_client_id"></span></p>
+            <p class="tdc_debug"></p>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col12">
+            <p>Created At: <span class="createTime"></span></p>
+            <form>
+                <div class="form-group">
+                    <label for="txtData">Data</label>
+                    <input type="text" class="form-control"
+                           id="txtData" placeholder="Any data">
+                </div>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{/body}
+
+{#scripts}
+<script src="/tdc/registration.js"></script>
+{/scripts}
+
+{/include}

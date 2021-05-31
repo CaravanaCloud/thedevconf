@@ -1,38 +1,42 @@
 <?xml version="1.0"?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
   <modelVersion>4.0.0</modelVersion>
-  <groupId>thedevconf</groupId>
-  <artifactId>tdc-api</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
-
   <parent>
     <groupId>thedevconf</groupId>
     <artifactId>tdc</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-
-
+  <groupId>thedevconf</groupId>
+  <artifactId>tdc-api</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
   <properties>
     <compiler-plugin.version>3.8.1</compiler-plugin.version>
+    <java.version>16</java.version>
     <maven.compiler.parameters>true</maven.compiler.parameters>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.source>16</maven.compiler.source>
+    <maven.compiler.target>16</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <quarkus-plugin.version>1.12.1.Final</quarkus-plugin.version>
+    <quarkus.platform.version>1.13.6.Final</quarkus.platform.version>
+    <quarkus-plugin.version>1.13.6.Final</quarkus-plugin.version>
+    <quarkus.package.type>fast-jar</quarkus.package.type>
     <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-    <quarkus.platform.version>1.12.1.Final</quarkus.platform.version>
-    <quarkus.package.type>uber-jar</quarkus.package.type>
-    <quarkus-profile>dev</quarkus-profile>
-    <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
     <skipTests>true</skipTests>
+    <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
   </properties>
-
-
-
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>io.quarkus</groupId>
+        <artifactId>quarkus-universe-bom</artifactId>
+        <version>${quarkus.platform.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -42,7 +46,6 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-resteasy</artifactId>
     </dependency>
-
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-junit5</artifactId>
@@ -83,17 +86,14 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-resteasy-qute</artifactId>
     </dependency>
-    <!--
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-amazon-lambda-http</artifactId>
-    </dependency>
-    -->
-
     <dependency>
       <groupId>thedevconf</groupId>
       <artifactId>tdc-commons</artifactId>
       <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-container-image-docker</artifactId>
     </dependency>
   </dependencies>
   <build>
@@ -118,14 +118,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>${compiler-plugin.version}</version>
       </plugin>
-
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
-        <configuration>
-          <descriptor>src/assembly/bin.xml</descriptor>
-          <finalName>tdc-api</finalName>
-        </configuration>
         <executions>
           <execution>
             <phase>package</phase>
@@ -134,8 +128,11 @@
             </goals>
           </execution>
         </executions>
+        <configuration>
+          <descriptor>src/assembly/bin.xml</descriptor>
+          <finalName>tdc-api</finalName>
+        </configuration>
       </plugin>
-
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${surefire-plugin.version}</version>

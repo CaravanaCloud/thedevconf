@@ -9,7 +9,7 @@ import javax.enterprise.inject.Default;
 @Default
 public class Configuration {
 
-    @ConfigProperty(name = "google_client_id")
+    @ConfigProperty(name = "google_client_id", defaultValue = "")
     String googleClientId;
 
     public String getGoogleClientId() {

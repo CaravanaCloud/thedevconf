@@ -19,8 +19,6 @@ public class SummaryTemplate extends BaseResource{
     @Inject
     Template summary;
 
-
-
     @GET
     @Produces(TEXT_HTML)
     public TemplateInstance get() {

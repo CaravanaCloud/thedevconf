@@ -25,6 +25,9 @@ public class IndexTemplate extends BaseResource {
     @Inject
     Template confirmation;
 
+    @Inject
+    Template userProfile;
+
     @GET
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance get() {
@@ -44,5 +47,12 @@ public class IndexTemplate extends BaseResource {
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getConfirmation() {
         return instanceOf(confirmation);
+    }
+
+    @GET
+    @Path("user-profile")
+    @Produces(MediaType.TEXT_HTML)
+    public TemplateInstance getUserProfile() {
+        return instanceOf(userProfile);
     }
 }

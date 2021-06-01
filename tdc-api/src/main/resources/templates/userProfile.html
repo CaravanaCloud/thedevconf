@@ -1,70 +1,53 @@
 {#include main}
 
 {#body}
+
+
 <!-- Pills navs -->
 <section class="container">
-    <ul class="nav nav-pills mb-3" id="ex1" role="tablist">
+  <div class="row">
+    <div class="col-12">
+      <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
-            <a
-                    class="nav-link active"
-                    id="ex1-tab-1"
-                    data-mdb-toggle="pill"
-                    href="#ex1-pills-1"
-                    role="tab"
-                    aria-controls="ex1-pills-1"
-                    aria-selected="true"
-            >Perfil</a>
+          <button class="nav-link active" id="profile" data-bs-toggle="pill" data-bs-target="#pills-home" type="button"
+            role="tab" aria-controls="pills-home" aria-selected="true">Profile</button>
         </li>
         <li class="nav-item" role="presentation">
-            <a
-                    class="nav-link"
-                    id="ex1-tab-2"
-                    data-mdb-toggle="pill"
-                    href="#ex1-pills-2"
-                    role="tab"
-                    aria-controls="ex1-pills-2"
-                    aria-selected="false"
-            >Configurações</a>
+          <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+            type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Configurações</button>
         </li>
         <li class="nav-item" role="presentation">
-            <a class="nav-link">Sair</a>
+          <a class="nav-link" href="/sair">Sair</a>
         </li>
-    </ul>
-    <!-- Pills navs -->
+      </ul>
+    </div>
 
-    <!-- Pills content -->
-    <div class="tab-content" id="ex1-content">
-        <div class="tab-pane fade show active" id="ex1-pills-1" role="tabpanel" aria-labelledby="ex1-tab-1">
-            <div class="card card-body text-center">
-                <div class="col-lg">
-                    <svg class="bd-placeholder-img rounded-circle mb-3" width="140" height="140"
-                         xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
-                         preserveAspectRatio="xMidYMid slice" focusable="false"><title>Foto do perfil</title>
-                        <rect width="100%" height="100%" fill="#777"/>
-                        <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
-                    </svg>
-                    <h2>Ana Carolina</h2>
-                </div>
-            </div>
+    <div class="col-12">
+      <div class="tab-content card card-body text-center p-5" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="profile">
+          <div class="col-lg">
+            <svg class="bd-placeholder-img rounded-circle mb-3" width="140" height="140"
+              xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
+              preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Foto do perfil</title>
+              <rect width="100%" height="100%" fill="#777" />
+              <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+            </svg>
+            <h2>Ana Carolina</h2>
+          </div>
         </div>
-        <div class="tab-pane fade" id="ex1-pills-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
             <h2>Entenda como seus dados estão sendo usados</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. A, id nam consequat consectetur cras. Placerat
-                sed in viverra turpis amet tellus. Nulla at orci, morbi purus tortor sodales. Dui sed scelerisque etiam
-                donec sed rhoncus. Sit a, non amet, ultrices. Semper risus phasellus curabitur interdum. Vitae, in
-                mauris lobortis tortor sed nisl lectus lobortis auctor. Nibh et diam quam nisl, odio purus enim. Mi in
-                elit varius id aliquam consectetur. Faucibus vitae nunc vestibulum, aliquet quis sed ac volutpat est.
-                Turpis adipiscing posuere etiam ut tortor accumsan diam at.</p>
-            <div class="input-group mb-3">
-                <div class="input-group-text">
-                    <input class="form-check-input mt-0" type="checkbox" value=""
-                           aria-label="Checkbox for following text input">
-                </div>
-                <input type="text" class="form-control" aria-label="Text input with checkbox">
-            </div>
-        </div>
+              sed in viverra turpis amet tellus. Nulla at orci, morbi purus tortor sodales. Dui sed scelerisque etiam
+              donec sed rhoncus. Sit a, non amet, ultrices. Semper risus phasellus curabitur interdum. Vitae, in
+              mauris lobortis tortor sed nisl lectus lobortis auctor. Nibh et diam quam nisl, odio purus enim. Mi in
+              elit varius id aliquam consectetur. Faucibus vitae nunc vestibulum, aliquet quis sed ac volutpat est.
+              Turpis adipiscing posuere etiam ut tortor accumsan diam at.</p>
+          </div>
+      </div>
     </div>
-    <!-- Pills content -->
+  </div>
 </section>
 {/body}
 

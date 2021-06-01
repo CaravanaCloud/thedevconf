@@ -1,38 +1,38 @@
 {#include main}
 
 {#body}
-<div class="container">
+<section class="container">
     <div class="row">
-        <div class="navbar navbar-expand-md bg-light">
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <nav class="navbar navbar-expand-lg navbar-light navbarUserProfile">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link active" aria-current="page" href="#">Perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
+                        <a class="nav-link active" aria-current="page" href="#">Configurações</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/api/_hc/ready" target="_blank">Health</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/user/registration">ClientId [<span class="tdc_client_id"></span>]</a>
+                        <a class="nav-link active" aria-current="page" href="#">Sair</a>
                     </li>
                 </ul>
             </div>
-        </div>
-        <div class="row">
-            <div class="card card-body">
-                <div class="col-lg-4">
-                    <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
-                    <h2>Ana Carolina</h2>
-                </div>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="card card-body text-center">
+            <div class="col-lg">
+                <svg class="bd-placeholder-img rounded-circle mb-3" width="140" height="140"
+                     xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
+                     preserveAspectRatio="xMidYMid slice" focusable="false"><title>Foto do perfil</title>
+                    <rect width="100%" height="100%" fill="#777"/>
+                    <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                </svg>
+                <h2>Ana Carolina</h2>
             </div>
         </div>
     </div>
-</div>
-</div>
+</section>
 {/body}
 
 {/include}

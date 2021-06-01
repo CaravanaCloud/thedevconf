@@ -40,7 +40,7 @@ h1, h2, .couponCode span, .confirmationMessage strong{
     padding: 3em;
 }
 
-.couponCode {
+.couponCode, .navbarUserProfile li {
     background-color: #ECECEC;
 }
 
@@ -61,6 +61,15 @@ h1, h2, .couponCode span, .confirmationMessage strong{
 
 .confirmationMessage {
     text-align: center;
+}
+
+.navbarUserProfile li {
+    padding: 0.2em 1em;
+    margin-left: 0.5em;
+}
+
+.navbarUserProfile li:focus {
+    background-color: #525252;
 }
 
 .primaryButton {

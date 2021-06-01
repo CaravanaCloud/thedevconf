@@ -1,5 +1,15 @@
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,700);
 
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.Site-Container {
+  flex: 1;
+}
+
 .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;

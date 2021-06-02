@@ -1,6 +1,15 @@
-.debug {
-    border: 2px dashed purple;
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,700);
+
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
+
+.Site-Container {
+  flex: 1;
+}
+
 .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;
@@ -16,9 +25,50 @@
 }
 
 body {
-    padding-top: 70px;
+    padding-top: 4.4em;
+    font-family: 'Titillium Web', Helvetica Neue, Ubuntu, Segoe UI, sans-serif;
 }
 
-h2 {
-    font-size: 1.3em;
+h1, h2, .couponCode span, .confirmationMessage strong{
+    font-size: 2.5em;
+}
+
+.summary, .value, .confirmationMessage {
+    background-color: #C4C4C4;
+    color: #525252;
+    border: none;
+    padding: 3em;
+}
+
+.couponCode {
+    background-color: #ECECEC;
+}
+
+.couponCode input {
+    background-color: transparent;
+    padding: 0.5em;
+    border:none;
+    border-bottom: 4px solid #000000;
+    font-size: 20px;
+}
+
+.couponCode input:focus {
+    border-color: #CCC;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.confirmationMessage {
+    text-align: center;
+}
+
+.primaryButton {
+    background-color: #525252;
+    color: #FFF;
+    border: none;
+}
+
+section {
+    padding: 3rem;
 }

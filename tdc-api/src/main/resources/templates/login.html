@@ -2,26 +2,27 @@
 
 {#body}
 <div class="container">
-    <div class="row">
+    <div class="row mb-5">
         <h1>LOGIN</h1>
-        <div class="form-signin text-center">
-            <form>
-                <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInput">
-                    <label for="floatingInput">Email</label>
-                </div>
-                <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword">
-                    <label for="floatingPassword">Senha</label>
-                </div>
-                <div class="d-flex justify-content-between mt-3">
-                    <button class="btn btn-lg btn-primary primaryButton" type="submit">ENTRAR</button>
-                    <button class="btn btn-lg btn-primary secondaryButton" type="submit">REGISTRAR</button>
-                </div>
-            </form>
-
+        <div class="container text-center col-sm-12 col-md-6">
+            <div class="form-signin mt-3 mb-3">
+                <form>
+                    <div class="form-floating mb-2">
+                        <input type="email" class="form-control" id="userEmailLogin">
+                        <label for="userEmailLogin">Email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="userPasswordLogin">
+                        <label for="userPasswordLogin">Senha</label>
+                    </div>
+                    <div class="d-flex justify-content-between mb-5">
+                        <button class="w-50 btn btn-lg btn-primary primaryButton" type="submit">ENTRAR</button>
+                        <button class="w-50 btn btn-lg btn-primary secondaryButton" type="submit">REGISTRAR</button>
+                    </div>
+                </form>
+            </div>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
         </div>
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
     </div>
 </div>
 {/body}

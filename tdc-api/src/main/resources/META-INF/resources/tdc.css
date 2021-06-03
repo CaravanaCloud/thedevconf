@@ -29,7 +29,7 @@ body {
     font-family: 'Titillium Web', Helvetica Neue, Ubuntu, Segoe UI, sans-serif;
 }
 
-h1, h2, .couponCode span, .confirmationMessage strong{
+h1, h2, .couponCode span, .confirmationMessage p {
     font-size: 2.5em;
 }
 

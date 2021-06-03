@@ -82,6 +82,16 @@ h1, h2, .couponCode span, .confirmationMessage strong{
     border: none;
 }
 
+.primaryButton, .secondaryButton {
+    font-size: 1.5em;
+}
+
+.secondaryButton {
+    border: 2px solid #1C1C1C;
+    background-color: transparent;
+    color: #525252;
+}
+
 section {
     padding: 3rem;
 }

@@ -29,7 +29,7 @@ body {
     font-family: 'Titillium Web', Helvetica Neue, Ubuntu, Segoe UI, sans-serif;
 }
 
-h1, h2, .couponCode span, .confirmationMessage strong{
+h1, h2, .couponCode span, .confirmationMessage p {
     font-size: 2.5em;
 }
 
@@ -40,7 +40,7 @@ h1, h2, .couponCode span, .confirmationMessage strong{
     padding: 3em;
 }
 
-.couponCode {
+.couponCode, .navbarUserProfile li {
     background-color: #ECECEC;
 }
 
@@ -63,10 +63,33 @@ h1, h2, .couponCode span, .confirmationMessage strong{
     text-align: center;
 }
 
-.primaryButton {
+.navbarUserProfile li {
+    padding: 0.2em 1em;
+    margin-left: 0.5em;
+}
+
+.navbarUserProfile li:focus {
+    background-color: #525252;
+}
+
+.nav-link {
+    color: #525252;
+}
+
+.primaryButton, .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
     background-color: #525252;
     color: #FFF;
     border: none;
+}
+
+.primaryButton, .secondaryButton {
+    font-size: 1.5em;
+}
+
+.secondaryButton {
+    border: 2px solid #1C1C1C;
+    background-color: transparent;
+    color: #525252;
 }
 
 section {

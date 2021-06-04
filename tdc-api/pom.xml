@@ -12,15 +12,15 @@
   <version>1.0.0-SNAPSHOT</version>
   <properties>
     <compiler-plugin.version>3.8.1</compiler-plugin.version>
-    <java.version>16</java.version>
+    <java.version>11</java.version>
     <maven.compiler.parameters>true</maven.compiler.parameters>
-    <maven.compiler.source>16</maven.compiler.source>
-    <maven.compiler.target>16</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus.platform.version>1.13.6.Final</quarkus.platform.version>
     <quarkus-plugin.version>1.13.6.Final</quarkus-plugin.version>
-    <quarkus.package.type>fast-jar</quarkus.package.type>
+    <quarkus.package.type>uber-jar</quarkus.package.type>
     <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
     <skipTests>true</skipTests>
@@ -146,6 +146,7 @@
     </plugins>
   </build>
   <profiles>
+
     <profile>
       <id>native</id>
       <activation>
@@ -180,5 +181,30 @@
         <quarkus.package.type>native</quarkus.package.type>
       </properties>
     </profile>
+
+    <profile>
+      <id>lambda</id>
+      <activation>
+        <property>
+          <name>lambda</name>
+        </property>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>io.quarkus</groupId>
+          <artifactId>quarkus-amazon-lambda</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>io.quarkus</groupId>
+          <artifactId>quarkus-amazon-lambda-http</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>io.quarkus</groupId>
+          <artifactId>quarkus-test-amazon-lambda</artifactId>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+
   </profiles>
 </project>

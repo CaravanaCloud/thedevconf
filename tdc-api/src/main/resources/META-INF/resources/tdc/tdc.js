@@ -2,17 +2,6 @@ const hashids = new Hashids()
 
 const TDC_CLIENT_ID='tdc.clientId';
 
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-}
-
-function getRandomHash(max) {
-    return hashids.encode(getRandomInt(max));
-}
-
-function genRandomHash() {
-    return getRandomHash(Number. MAX_SAFE_INTEGER);
-}
 
 function onClientReady(cb){
     loadClientId(cb);

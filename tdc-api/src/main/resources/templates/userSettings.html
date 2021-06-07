@@ -1,81 +1,8 @@
 <div>
     <section class="row personalData">
         <h2 class="title mb-3">Dados Cadastrais</h2>
-        <form class="form-floating mb-3 needs-validation" novalidate="">
-            <div class="row g-3">
-                <div class="col-12">
-                    <input type="text" class="form-control" id="name" placeholder="Nome" value="" required="">
-                    <div class="invalid-feedback">
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <input type="email" class="form-control" id="email" placeholder="Email">
-                    <div class="invalid-feedback">
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <input type="email" class="form-control" id="emailConfirmation" placeholder="Confirme o email">
-                    <div class="invalid-feedback">
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <input type="password" class="form-control" id="password" placeholder="Senha">
-                    <div class="invalid-feedback">
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <input type="password" class="form-control" id="passwordConfirmation"
-                           placeholder="Confirme a senha">
-                    <div class="invalid-feedback">
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <input type="text" class="form-control" id="cpf" placeholder="CPF">
-                    <div class="invalid-feedback">
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <input type="text" class="form-control" id="passport"
-                           placeholder="Passaporte">
-                    <div class="invalid-feedback">
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <input type="tel" class="form-control" id="phone" placeholder="Telefone">
-                    <div class="invalid-feedback">
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <input type="tel" class="form-control" id="cellphone"
-                           placeholder="Celular">
-                    <div class="invalid-feedback">
-                    </div>
-                </div>
-
-                <div class="col-12">
-                    <input type="text" class="form-control" id="jobPosition"
-                           placeholder="Ocupação">
-                    <div class="invalid-feedback">
-                    </div>
-                </div>
-
-                <div class="col-12">
-                    <input type="text" class="form-control" id="companyName"
-                           placeholder="Empresa">
-                    <div class="invalid-feedback">
-                    </div>
-                </div>
-            </div>
-        </form>
-
+        {#include formPersonalUserData.html}
+        {/include}
     </section>
 
     <section class="row dataTerms">

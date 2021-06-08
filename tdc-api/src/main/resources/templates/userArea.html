@@ -12,6 +12,11 @@
           </button>
         </li>
         <li class="nav-item" role="presentation">
+          <button class="nav-link" id="pills-coupons-tab" data-bs-toggle="pill" data-bs-target="#pills-coupons"
+                  type="button" role="tab" aria-controls="pills-coupons" aria-selected="false">Cupons
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
           <button class="nav-link" id="pills-settings-tab" data-bs-toggle="pill" data-bs-target="#pills-settings"
                   type="button" role="tab" aria-controls="pills-settings" aria-selected="false">Configurações
           </button>
@@ -27,6 +32,11 @@
       <div class="tab-pane fade show active text-center" id="pills-profile" role="tabpanel"
            aria-labelledby="pills-profile-tab">
         {#include userProfile}
+        {/include}
+      </div>
+      <div class="tab-pane fade show text-center" id="pills-coupons" role="tabpanel"
+           aria-labelledby="pills-coupons-tab">
+        {#include userCoupons}
         {/include}
       </div>
       <div class="tab-pane fade text-start" id="pills-settings" role="tabpanel" aria-labelledby="pills-settings-tab">

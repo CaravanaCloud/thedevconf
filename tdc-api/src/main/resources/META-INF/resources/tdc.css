@@ -33,7 +33,7 @@ h1, h2, .couponCode span, .confirmationMessage p {
     font-size: 2.5em;
 }
 
-.summary, .value, .confirmationMessage {
+.summary, .summaryValue, .confirmationMessage {
     background-color: #C4C4C4;
     color: #525252;
     border: none;
@@ -94,4 +94,12 @@ h1, h2, .couponCode span, .confirmationMessage p {
 
 section {
     padding: 3rem;
+}
+
+.summaryValue span {
+    font-size: 1.6em;
+}
+
+.summaryValue strong {
+    font-size: 2.2em;
 }

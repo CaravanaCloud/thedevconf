@@ -39,7 +39,12 @@ h1, h2, .couponCode span, .confirmationMessage p {
     border: none;
     padding: 3em;
 }
-
+.couponBenefit {
+    width: 8.4em;
+    height: 8.4em;
+    background-color: #C4C4C4;
+    border-radius: 50%;
+}
 .couponCode, .navbarUserProfile li {
     background-color: #ECECEC;
 }

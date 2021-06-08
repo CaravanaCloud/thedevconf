@@ -42,4 +42,5 @@ tdc-cfp/package-lock.json
 tdc-cfp/package.json
 
 envrc.mysql
+.envrc
 

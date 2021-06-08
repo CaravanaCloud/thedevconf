@@ -1,3 +1,15 @@
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
+function getRandomHash(max) {
+    return hashids.encode(getRandomInt(max));
+}
+
+function genRandomHash() {
+    return getRandomHash(Number. MAX_SAFE_INTEGER);
+}
+
 function toMoment(dateArr){
     // Note: Because this mirrors the native Date parameters, months, hours, minutes, seconds, and milliseconds are all zero indexed. Years and days of the month are 1 indexed.
     dateArr = [

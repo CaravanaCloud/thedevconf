@@ -1,25 +1,23 @@
-<!DOCTYPE html>
 {#include main}
 
 {#body}
 <section class="container">
-	<h1 class="title">RESUMO DO EVENTO</h1>
+	<h1 class="title mb-5">RESUMO DO EVENTO</h1>
 	<div class="alert alert-warning alert-dismissible fade show mt-3 mb-3" role="alert">
 		Temos um <strong>presente</strong> para você! O <strong>basic pass grátis</strong> te dá entrada a vários
 		eventos...
 		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	</div>
-
 	<div class="row">
 		<div class="col-sm-12 col-md">
 			<div id="divSummary" class="p-5 mb-4 rounded-3 summary"></div>
 		</div>
 		<div class="col-sm-12 col-md-3">
 			<div class="row">
-				<div class="card card-body value">
+				<div class="card card-body summaryValue">
 					<div class="d-flex justify-content-between mb-3">
-						<span style="font-size: 1.6em;">Valor</span>
-						<strong style="font-size: 2.2em">R$ 9,00</strong>
+						<span>Valor</span>
+						<strong>R$ 9,00</strong>
 					</div>
 					<div class="text-center">
 						<a class="btn btn-primary primaryButton" href="/confirmation">CHECKOUT</a>
@@ -29,10 +27,9 @@
 		</div>
 	</div>
 </section>
-
 <section class="couponCode">
 	<div class="container">
-		<h2>CÓDIGO DE DESCONTO</h2>
+		<h2 class="title">CÓDIGO DE DESCONTO</h2>
 	</div>
 	<div class="container-fluid">
 		<div class="row d-flex justify-content-center items-content-center">
@@ -49,8 +46,6 @@
 		</div>
 	</div>
 </section>
-
-
 {/body}
 
 {#scripts}

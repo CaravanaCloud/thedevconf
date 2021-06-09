@@ -1,35 +1,31 @@
 {#include main}
 
 {#body}
-<section class="row">
-    <div class="container text-center col-sm-12 col-md-9 mb-5">
-        <div class="text-start">
-            <h1 class="title mb-5">LOGIN</h1>
-        </div>
-        <div class="form-signin mb-3">
-            <form>
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="userEmailLogin" required>
-                    <label for="userEmailLogin">Email</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="userPasswordLogin" required>
-                    <label for="userPasswordLogin">Senha</label>
-                </div>
-                <div class="d-flex justify-content-between mb-5">
-                    <button class="w-50 btn btn-lg btn-primary primaryButton" type="submit">ENTRAR</button>
-                    <a class="w-50 btn btn-lg btn-primary secondaryButton" href="/user/registration"
-                       type="submit">REGISTRAR</a>
-                </div>
-            </form>
-        </div>
-    </div>
+<section class="container text-center col-sm-12 col-md-9 mb-5">
+  <div class="text-start">
+    <h1 class="title mb-5">LOGIN</h1>
+  </div>
+  <div class="form-signin mb-3">
+    <form>
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="userEmailLogin" required>
+        <label for="userEmailLogin">Email</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="userPasswordLogin" required>
+        <label for="userPasswordLogin">Senha</label>
+      </div>
+      <div class="d-flex justify-content-between mb-5">
+        <button class="w-50 btn btn-lg btn-primary primaryButton" type="submit">ENTRAR</button>
+        <a class="w-50 btn btn-lg btn-primary secondaryButton" href="/user/registration"
+           type="submit">REGISTRAR</a>
+      </div>
+    </form>
+  </div>
 </section>
-<section class="row">
-    <div class="container text-center col-sm-12 col-md-9 mb-5">
-        <h2 class="title text-start mb-5">Fazer login com Google</h2>
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    </div>
+<section class="container col-sm-12 col-md-9 mb-5">
+  <h2 class="title text-start mb-5">Fazer login com Google</h2>
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
 </section>
 {/body}
 

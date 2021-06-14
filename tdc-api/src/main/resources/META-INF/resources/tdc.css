@@ -33,13 +33,18 @@ h1, h2, .couponCode span, .confirmationMessage p {
     font-size: 2.5em;
 }
 
-.summary, .value, .confirmationMessage {
+.summary, .summaryValue, .confirmationMessage {
     background-color: #C4C4C4;
     color: #525252;
     border: none;
     padding: 3em;
 }
-
+.couponBenefit {
+    width: 8.4em;
+    height: 8.4em;
+    background-color: #C4C4C4;
+    border-radius: 50%;
+}
 .couponCode, .navbarUserProfile li {
     background-color: #ECECEC;
 }
@@ -94,4 +99,19 @@ h1, h2, .couponCode span, .confirmationMessage p {
 
 section {
     padding: 3rem;
+}
+
+.summaryValue span {
+    font-size: 1.6em;
+}
+
+.summaryValue strong {
+    font-size: 2.2em;
+}
+
+.userPhotoProfile {
+    width: 18em;
+    height: 18em;
+    background-color: #C4C4C4;
+    border-radius: 50%;
 }

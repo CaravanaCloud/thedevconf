@@ -18,11 +18,11 @@
     <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <quarkus.platform.version>1.13.6.Final</quarkus.platform.version>
     <quarkus-plugin.version>1.13.6.Final</quarkus-plugin.version>
     <quarkus.package.type>uber-jar</quarkus.package.type>
     <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
+    <quarkus.platform.version>1.13.6.Final</quarkus.platform.version>
     <skipTests>true</skipTests>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
   </properties>
@@ -95,6 +95,10 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-container-image-docker</artifactId>
     </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-openapi</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <defaultGoal>clean compile quarkus:dev</defaultGoal>
@@ -146,7 +150,6 @@
     </plugins>
   </build>
   <profiles>
-
     <profile>
       <id>native</id>
       <activation>
@@ -181,7 +184,6 @@
         <quarkus.package.type>native</quarkus.package.type>
       </properties>
     </profile>
-
     <profile>
       <id>lambda</id>
       <activation>
@@ -205,6 +207,5 @@
         </dependency>
       </dependencies>
     </profile>
-
   </profiles>
 </project>

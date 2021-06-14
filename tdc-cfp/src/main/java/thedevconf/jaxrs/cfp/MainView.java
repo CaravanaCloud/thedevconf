@@ -25,7 +25,7 @@ import javax.ws.rs.core.Response;
 
 
 @Route("")
-@PWA(name = "TheDevConf CFP", shortName = "tdc-cfp", enableInstallPrompt = false)
+@PWA(name = "TheDevConf CFP", shortName = "tdc-cfp")
 @CssImport("./styles/shared-styles.css")
 @CssImport(value = "./styles/vaadin-text-field-styles.css", themeFor = "vaadin-text-field")
 public class MainView extends VerticalLayout implements PageConfigurator {

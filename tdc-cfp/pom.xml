@@ -24,7 +24,7 @@
         <maven.compiler.parameters>true</maven.compiler.parameters>
         <quarkus-plugin.version>${quarkus.platform.version}</quarkus-plugin.version>
         <failOnMissingWebXml>false</failOnMissingWebXml>
-        <vaadin.version>14.5.1</vaadin.version>
+        <vaadin.version>19.0.0</vaadin.version>
         <junit.jupiter.version>5.7.0</junit.jupiter.version>
         <kotlin.version>1.4.31</kotlin.version>
         <quarkus.package.type>uber-jar</quarkus.package.type>

@@ -115,3 +115,17 @@ section {
     background-color: #C4C4C4;
     border-radius: 50%;
 }
+
+.carousel,
+.carousel-item,
+.carousel-inner {
+    height: 400px !important;
+    width: 100% !important;
+}
+
+.carousel-inner {
+    background: #0a53be;
+    fill: #0c4128 !important;
+    background-image: url("/tdc/img/fundo-home.jpg") !important;
+    border: 2px solid green;
+}

@@ -116,16 +116,9 @@ section {
     border-radius: 50%;
 }
 
-.carousel,
-.carousel-item,
-.carousel-inner {
-    height: 400px !important;
-    width: 100% !important;
-}
-
-.carousel-inner {
-    background: #0a53be;
-    fill: #0c4128 !important;
-    background-image: url("/tdc/img/fundo-home.jpg") !important;
-    border: 2px solid green;
+.backgroundHome {
+    background: url('/tdc/images/background-image-home.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:auto;
 }

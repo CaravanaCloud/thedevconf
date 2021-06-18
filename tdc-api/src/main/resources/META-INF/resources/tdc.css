@@ -122,3 +122,7 @@ section {
     background-size: cover;
     height:auto;
 }
+
+.signOutDiv {
+    display: none;
+}

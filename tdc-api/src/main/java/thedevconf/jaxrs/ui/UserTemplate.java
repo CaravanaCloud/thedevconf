@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import static javax.ws.rs.core.MediaType.TEXT_HTML;
 
@@ -18,6 +19,9 @@ public class UserTemplate extends BaseResource {
 
     @Inject
     Template registration;
+
+    @Inject
+    Template userArea;
 
     @Path("summary")
     public SummaryTemplate getSummary(){
@@ -31,4 +35,10 @@ public class UserTemplate extends BaseResource {
         return instanceOf(registration);
     }
 
+    @GET
+    @Path("user-area")
+    @Produces(MediaType.TEXT_HTML)
+    public TemplateInstance getUserArea() {
+        return instanceOf(userArea);
+    }
 }

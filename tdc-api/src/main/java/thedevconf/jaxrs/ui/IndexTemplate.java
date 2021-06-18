@@ -21,27 +21,16 @@ public class IndexTemplate extends BaseResource {
     @Inject
     Template login;
 
-    @Inject
-    Template userArea;
-
     @GET
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance get() {
         return instanceOf(index);
     }
 
-
     @GET
     @Path("login")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getLogin() {
         return instanceOf(login);
-    }
-
-    @GET
-    @Path("user-area")
-    @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance getUserArea() {
-        return instanceOf(userArea);
     }
 }

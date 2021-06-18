@@ -15,15 +15,11 @@ import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
 @Path("")
 public class IndexTemplate extends BaseResource {
 
-
     @Inject
     Template index;
 
     @Inject
     Template login;
-
-    @Inject
-    Template confirmation;
 
     @Inject
     Template userArea;
@@ -40,13 +36,6 @@ public class IndexTemplate extends BaseResource {
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getLogin() {
         return instanceOf(login);
-    }
-
-    @GET
-    @Path("confirmation")
-    @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance getConfirmation() {
-        return instanceOf(confirmation);
     }
 
     @GET

@@ -91,6 +91,12 @@ h1, h2, .couponCode span, .confirmationMessage p {
     font-size: 1.5em;
 }
 
+.signInButton {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
 .secondaryButton {
     border: 2px solid #1C1C1C;
     background-color: transparent;

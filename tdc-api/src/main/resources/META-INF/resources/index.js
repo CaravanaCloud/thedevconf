@@ -5,7 +5,6 @@ function addHTML(id, value) {
 function signIn() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signIn().then(function () {
-        console.log('User signed in.');
         window.location="/user/user-area";
     });
 }
@@ -20,7 +19,6 @@ function onSignIn(googleUser) {
 }
 
 function setupLoginListeners() {
-    console.log('setup listeners');
     var auth2 = gapi.auth2.getAuthInstance();
 
     auth2.isSignedIn.listen(signinChanged);
@@ -32,18 +30,15 @@ function setupLoginListeners() {
 
 function loadAuth2() {
     gapi.load('auth2', () => {
-        console.log('loaded auth2');
         gapi.auth2.init().then(setupLoginListeners);
     });
 }
 
 function signinChanged(isSignedIn) {
-    console.log('signed in', isSignedIn);
     updateUser();
 }
 
 function userChanged(googleUser) {
-    console.log('user', googleUser);
     updateUser();
 }
 
@@ -65,7 +60,6 @@ function updateUser() {
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
-      console.log('User signed out.');
       window.location = "/";
     });
 }

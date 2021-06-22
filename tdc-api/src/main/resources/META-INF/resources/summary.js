@@ -5,8 +5,8 @@ function addHTML(id,val){
 }
 
 function drawMode(mode){
-    addHTML("divSummary",mode.name);
-    addHTML("divSummary","<hr/>");
+    addHTML("div-summary",mode.name);
+    addHTML("div-summary","<hr/>");
 }
 
 function draw(data){

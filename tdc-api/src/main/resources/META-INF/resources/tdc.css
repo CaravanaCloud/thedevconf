@@ -29,27 +29,28 @@ body {
     font-family: 'Titillium Web', Helvetica Neue, Ubuntu, Segoe UI, sans-serif;
 }
 
-h1, h2, .couponCode span, .confirmationMessage p {
+h1, h2, .coupon-code span, .confirmation-message p {
     font-size: 2.5em;
 }
 
-.summary, .summaryValue, .confirmationMessage {
+.summary, .summary-value, .confirmation-message {
     background-color: #C4C4C4;
     color: #525252;
     border: none;
     padding: 3em;
 }
-.couponBenefit {
+.circular-area {
     width: 8.4em;
     height: 8.4em;
     background-color: #C4C4C4;
     border-radius: 50%;
 }
-.couponCode, .navbarUserProfile li {
+
+.coupon-code {
     background-color: #ECECEC;
 }
 
-.couponCode input {
+.coupon-code input {
     background-color: transparent;
     padding: 0.5em;
     border:none;
@@ -57,47 +58,42 @@ h1, h2, .couponCode span, .confirmationMessage p {
     font-size: 20px;
 }
 
-.couponCode input:focus {
+.coupon-code input:focus {
     border-color: #CCC;
     -webkit-box-shadow: none;
     box-shadow: none;
     background-color: transparent;
 }
 
-.confirmationMessage {
+.confirmation-message {
     text-align: center;
-}
-
-.navbarUserProfile li {
-    padding: 0.2em 1em;
-    margin-left: 0.5em;
-}
-
-.navbarUserProfile li:focus {
-    background-color: #525252;
 }
 
 .nav-link {
     color: #525252;
 }
 
-.primaryButton, .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+.nav-link:focus {
+    color: #525252;
+}
+
+.primary-button, .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
     background-color: #525252;
     color: #FFF;
     border: none;
 }
 
-.primaryButton, .secondaryButton {
+.primary-button, .secondary-button {
     font-size: 1.5em;
 }
 
-.signInButton {
+.sign-in-button {
     border: none;
     outline: none;
     background-color: transparent;
 }
 
-.secondaryButton {
+.secondary-button {
     border: 2px solid #1C1C1C;
     background-color: transparent;
     color: #525252;
@@ -107,28 +103,28 @@ section {
     padding: 3rem;
 }
 
-.summaryValue span {
+.summary-value span {
     font-size: 1.6em;
 }
 
-.summaryValue strong {
+.summary-value strong {
     font-size: 2.2em;
 }
 
-.userPhotoProfile {
+.user-photo-profile {
     width: 18em;
     height: 18em;
     background-color: #C4C4C4;
     border-radius: 50%;
 }
 
-.backgroundHome {
+.background-home {
     background: url('/tdc/images/background-image-home.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     height:auto;
 }
 
-.signOutDiv {
+.sign-out-div {
     display: none;
 }

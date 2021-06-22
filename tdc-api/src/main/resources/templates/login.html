@@ -8,16 +8,16 @@
   <div class="form-signin mb-3">
     <form>
       <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="userEmailLogin" required>
-        <label for="userEmailLogin">Email</label>
+        <input id="user-email-login" type="email" class="form-control" required>
+        <label for="user-email-login">Email</label>
       </div>
       <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="userPasswordLogin" required>
-        <label for="userPasswordLogin">Senha</label>
+        <input id="user-password-login" type="password" class="form-control" required>
+        <label for="user-password-login">Senha</label>
       </div>
       <div class="d-flex justify-content-between mb-5">
-        <button class="w-50 btn btn-lg btn-primary primaryButton" type="submit">ENTRAR</button>
-        <a class="w-50 btn btn-lg btn-primary secondaryButton" href="/user/registration"
+        <button class="w-50 btn btn-lg btn-primary primary-button" type="submit">ENTRAR</button>
+        <a class="w-50 btn btn-lg btn-primary secondary-button" href="/user/registration"
            type="submit">REGISTRAR</a>
       </div>
     </form>
@@ -25,7 +25,7 @@
 </section>
 <section class="container col-sm-12 col-md-9 mb-5">
   <h2 class="title text-start mb-5">Fazer login com Google</h2>
-  <button class="g-signin2 signInButton" data-onsuccess="onSignIn" onclick="signIn();"></button>
+  <button class="g-signin2 sign-in-button" data-onsuccess="onSignIn" onclick="signIn();"></button>
 </section>
 {/body}
 

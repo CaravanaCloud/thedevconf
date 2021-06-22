@@ -12,7 +12,7 @@ function drawMode(mode){
 function draw(data){
     console.log(data.modes);
     var modes = data.modes;
-    modes.forEach(drawMode);
+    drawMode(modes[4]);
 }
 
 function refresh(){

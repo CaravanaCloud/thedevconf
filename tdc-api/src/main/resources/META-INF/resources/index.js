@@ -3,14 +3,42 @@ function addHTML(id, value) {
 }
 
 function signIn() {
-    const auth2 = gapi.auth2.getAuthInstance();
+    var auth2 = gapi.auth2.getAuthInstance();
     auth2.signIn().then(function () {
-        window.location = "/user/user-area";
+        console.log('User signed in.');
     });
 }
 
+function setupLoginListeners() {
+    console.log('setup listeners');
+    var auth2 = gapi.auth2.getAuthInstance();
+
+    auth2.isSignedIn.listen(signinChanged);
+
+    auth2.currentUser.listen(userChanged);
+
+    // Start with the current live values.
+    // refreshValues();
+    updateUser();
+}
+
+function loadAuth2() {
+    gapi.load('auth2', () => {
+        console.log('loaded auth2');
+        gapi.auth2.init().then(setupLoginListeners);
+    });
+}
+
+function signinChanged(isSignedIn) {
+    console.log('signed in', isSignedIn);
+}
+
+function userChanged(googleUser) {
+    console.log('user', googleUser);
+}
+
 function onSignIn(googleUser) {
-    const profile = googleUser.getBasicProfile();
+    var profile = googleUser.getBasicProfile();
 
     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
     console.log('Name: ' + profile.getName());
@@ -19,8 +47,9 @@ function onSignIn(googleUser) {
 }
 
 function signOut() {
-    const auth2 = gapi.auth2.getAuthInstance();
+    var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
-        window.location = "/";
+      console.log('User signed out.');
+      window.location = "/";
     });
 }

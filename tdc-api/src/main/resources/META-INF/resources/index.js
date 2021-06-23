@@ -47,15 +47,17 @@ function updateUser() {
         const isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get();
         const user = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
         if (isSignedIn) {
-            document.getElementById("login-header-tab").hidden = true;
-            addHTML("profile-header-tab", user.getName());
-            document.getElementById("user-photo-profile").src = user.getImageUrl();
-            addHTML("user-name-profile", user.getName());
-        } else {
-            document.getElementById("profile-header-tab").hidden = true;
+            showUserProfile(user);
         }
     }
 };
+
+function showUserProfile(user) {
+     document.getElementById("login-header-tab").hidden = true;
+     addHTML("profile-header-tab", user.getName());
+     document.getElementById("user-photo-profile").src = user.getImageUrl();
+     addHTML("user-name-profile", user.getName());
+}
 
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();

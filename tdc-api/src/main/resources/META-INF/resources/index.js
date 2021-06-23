@@ -47,12 +47,11 @@ function updateUser() {
         const isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get();
         if (isSignedIn) {
             const userName = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getName();
-            document.getElementById("login-header-tab").hidden = true;
             addHTML("profile-header-tab", userName);
+            document.getElementById("login-header-tab").hidden = true;
             addHTML("user-name-profile", userName);
         } else {
-            document.getElementById("profile-header-tab").hidden = false;
-            addHTML("login-header-tab", "Login");
+            document.getElementById("profile-header-tab").hidden = true;
         }
     }
 };

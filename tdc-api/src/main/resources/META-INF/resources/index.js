@@ -47,8 +47,8 @@ function updateUser() {
         const isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get();
         const user = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
         if (isSignedIn) {
-            addHTML("profile-header-tab", user.getName());
             document.getElementById("login-header-tab").hidden = true;
+            addHTML("profile-header-tab", user.getName());
             document.getElementById("user-photo-profile").src = user.getImageUrl();
             addHTML("user-name-profile", user.getName());
         } else {

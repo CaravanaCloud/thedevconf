@@ -111,13 +111,6 @@ section {
     font-size: 2.2em;
 }
 
-.user-photo-profile {
-    width: 18em;
-    height: 18em;
-    background-color: #C4C4C4;
-    border-radius: 50%;
-}
-
 .background-home {
     background: url('/tdc/images/background-image-home.jpg');
     background-repeat: no-repeat;

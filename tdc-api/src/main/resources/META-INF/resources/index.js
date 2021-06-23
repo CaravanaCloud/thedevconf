@@ -45,11 +45,12 @@ function userChanged(googleUser) {
 function updateUser() {
     if (gapi.auth2){
         const isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get();
+        const user = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile();
         if (isSignedIn) {
-            const userName = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getName();
-            addHTML("profile-header-tab", userName);
+            addHTML("profile-header-tab", user.getName());
             document.getElementById("login-header-tab").hidden = true;
-            addHTML("user-name-profile", userName);
+            document.getElementById("user-photo-profile").src = user.getImageUrl();
+            addHTML("user-name-profile", user.getName());
         } else {
             document.getElementById("profile-header-tab").hidden = true;
         }

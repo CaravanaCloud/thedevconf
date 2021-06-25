@@ -1,0 +1,12 @@
+#!/bin/sh
+
+echo QUARKUS_DATASOURCE_JDBC="true"
+echo QUARKUS_DATASOURCE_JDBC_URL="jdbc:h2:mem:;MODE=MYSQL"
+echo QUARKUS_DATASOURCE_USERNAME="sa"
+echo QUARKUS_DATASOURCE_PASSWORD=
+echo DATASOURCE_DB_KIND="h2"
+echo HIBERNATE_ORM_DATABASE_GENERATION="update"
+echo GOOGLE_CLIENT_ID="112902828557-5briq7k42grldiglvve9bfdpsmdmjmpm.apps.googleusercontent.com"
+
+echo AWS_PROFILE=tdc
+echo AWS_REGION=us-west-2

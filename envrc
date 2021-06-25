@@ -1,16 +1,23 @@
-export QUARKUS_CONTAINER_IMAGE_USERNAME=jfaerman
-export QUARKUS_CONTAINER_IMAGE_GROUP=jfaerman
-export QUARKUS_CONTAINER_IMAGE_TAG=latest
+export MYSQL_ROOT_PASSWORD="SETECAstronomy"
+export MYSQL_HOST="127.0.0.1"
+export MYSQL_PORT="3307"
+export MYSQL_DB="tdc-db"
+
+export CONTAINER_IMAGE_USERNAME=jfaerman
+export CONTAINER_IMAGE_GROUP=jfaerman
+export CONTAINER_IMAGE_TAG=latest
 
 export QUARKUS_DATASOURCE_JDBC="true"
-export QUARKUS_DATASOURCE_JDBC_URL="jdbc:h2:mem:"
-export QUARKUS_DATASOURCE_DB_KIND="h2"
+export QUARKUS_DATASOURCE_JDBC_URL="jdbc:h2:mem:;MODE=MYSQL"
 export QUARKUS_DATASOURCE_USERNAME="sa"
 export QUARKUS_DATASOURCE_PASSWORD=
-export QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION="update"
+export DATASOURCE_DB_KIND="h2"
+export HIBERNATE_ORM_DATABASE_GENERATION="update"
 export GOOGLE_CLIENT_ID="112902828557-5briq7k42grldiglvve9bfdpsmdmjmpm.apps.googleusercontent.com"
 
 export AWS_PROFILE=tdc
 export AWS_REGION=us-west-2
 
 export EB_APP=tdc-app-api
+
+

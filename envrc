@@ -9,7 +9,7 @@ export CONTAINER_IMAGE_TAG=latest
 
 export DATASOURCE_URL=jdbc:mysql://localhost:3335/tdc
 export DATASOURCE_USERNAME=root
-export DATASOURCE_PASSWORD=SomethinWicked1917
+export DATASOURCE_PASSWORD=ChangeMePlease
 export DATASOURCE_KIND=mysql
 
 export GOOGLE_CLIENT_ID="112902828557-5briq7k42grldiglvve9bfdpsmdmjmpm.apps.googleusercontent.com"

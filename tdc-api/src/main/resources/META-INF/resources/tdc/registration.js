@@ -1,13 +1,13 @@
-log("Sample Registration Page")
+console.log("Sample Registration Page");
 var vo = null;
 
-function postForm(){
+function postForm() {
     var params = {"clientId":vo.clientId};
-    var url = '/api/user/registration?' + new URLSearchParams(params).toString();;
+    var url = '/api/user/registration?' + new URLSearchParams(params).toString();
 
     vo.data = document.getElementById("vo_data").value;
 
-    fetch(url,{
+    fetch(url, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -15,20 +15,20 @@ function postForm(){
         body: JSON.stringify(vo)
     }).then(response => response.json())
         .then(data => paint(data));
-    console.log("UALA")
+    console.log("fetch data");
 }
 
-function paint(registration){
-    var ctime = toLocalString(registration.createTime);
+function paint(registration) {
+    var time = toLocalString(registration.createTime);
     replaceClass("createTime", registration.createTime);
     vo = registration;
 }
 
-function load(clientId){
-    log("Registering Client "+clientId);
+function load(clientId) {
+    log("Registering Client "+ clientId);
 
     var params = {"clientId":clientId};
-    var url = '/api/user/registration?' + new URLSearchParams(params).toString();;
+    var url = '/api/user/registration?' + new URLSearchParams(params).toString();
 
     fetch(url)
         .then(response => response.json())

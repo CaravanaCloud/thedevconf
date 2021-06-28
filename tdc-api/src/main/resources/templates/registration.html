@@ -4,7 +4,7 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-12">
+    <div class="col-md-12">
       <h1 class="title mb-5">{msg:reg_title()}</h1>
       <p>Client ID: <span class="tdc_client_id"></span></p>
       <p class="tdc_debug"></p>
@@ -12,23 +12,17 @@
   </div>
 
   <div class="row">
-    <div class="col12">
+    <div class="col-md-12">
       <p>Created At: <span class="createTime"></span></p>
-<!--      <form class="row g-3" novalidate>-->
-<!--        <div class="form-group">-->
-<!--          <label for="vo_data">Data</label>-->
-<!--          <input type="text" class="form-control"-->
-<!--                 id="vo_data" placeholder="Any data">-->
-<!--        </div>-->
-<!--        <button type="button" class="btn btn-primary primary-button" onclick="postForm();">Salvar</button>-->
-<!--      </form>-->
+      <form class="row g-3 needs-validation mb-5" novalidate>
+        {#include formUserData /}
+        <div class="col-md-12 text-end">
+          <button type="button" class="btn btn-primary primary-button" onclick="postForm();">SALVAR</button>
+        </div>
+      </form>
     </div>
-  <form class="row g-3 needs-validation" novalidate>
-    {#include formUserData /}
-    <div class="col-md-12 text-end">
-      <button class="btn btn-primary primary-button" type="submit" onclick="formPost();">SALVAR</button>
-    </div>
-  </form>
+  </div>
+
 </div>
 {/body}
 

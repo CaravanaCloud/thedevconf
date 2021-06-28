@@ -6,6 +6,6 @@ import io.quarkus.qute.i18n.Message;
 @Localized("es")
 public interface RegistrationMsgs_ES extends RegistrationMsgs {
     @Override
-    @Message("BBienvenido al sistema de Inscripciones del TDC")
+    @Message("Bienvenido al sistema de Inscripciones del TDC")
     String reg_title();
 }

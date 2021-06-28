@@ -9,6 +9,7 @@ function signIn() {
     });
 }
 
+//TODO: Remove unreachable code?
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
 
@@ -28,6 +29,7 @@ function setupLoginListeners() {
     updateUser();
 }
 
+//TODO: Remove unreachable code?
 function loadAuth2() {
     gapi.load('auth2', () => {
         gapi.auth2.init().then(setupLoginListeners);

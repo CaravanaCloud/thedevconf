@@ -22,6 +22,6 @@ public class SummaryTemplate extends BaseResource{
     @GET
     @Produces(TEXT_HTML)
     public TemplateInstance get() {
-        return instanceOf(summary);
+      return instanceOf(summary);
     }
 }

@@ -1,47 +1,84 @@
 package thedevconf.jaxrs.api.vo;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class RegistrationVO{
+public class RegistrationVO {
     String userId;
     String clientId;
-    String data;
+    String name;
+    String email;
+    String phone;
+    String company;
+    String occupation;
+    String country;
+    String city;
+    String gender;
+    String ethnicity;
+    String pcd;
     Boolean acceptedTerms;
     LocalDateTime createTime;
 
-    public RegistrationVO(String userId, String clientId, String data, Boolean acceptedTerms, LocalDateTime createTime) {
+    public RegistrationVO(String userId, String clientId, String name, String email, String phone, String company,
+                          String occupation, String country, String city, String gender, String ethnicity, String pcd,
+                          Boolean acceptedTerms,
+                          LocalDateTime createTime) {
         this.userId = userId;
         this.clientId = clientId;
-        this.data = data;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.company = company;
+        this.occupation = occupation;
+        this.country = country;
+        this.city = city;
+        this.gender = gender;
+        this.ethnicity = ethnicity;
+        this.pcd = pcd;
         this.acceptedTerms = acceptedTerms;
         this.createTime = createTime;
     }
 
-    public String getUserId() {
-        return userId;
-    }
+    public String getUserId() { return userId; }
 
-    public String getClientId() {
-        return clientId;
-    }
+    public String getClientId() { return clientId; }
 
-    public String getData() {
-        return data;
-    }
+    public String getName() { return name; }
 
-    public Boolean getAcceptedTerms() {
-        return acceptedTerms;
-    }
+    public String getEmail() { return email; }
 
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
+    public String getPhone() { return phone; }
+
+    public String getCompany() { return company; }
+
+    public String getOccupation() { return occupation; }
+
+    public String getCountry() { return country; }
+
+    public String getCity() {  return city; }
+
+    public String getGender() { return gender; }
+
+    public String getEthnicity() { return ethnicity; }
+
+    public String getPcd() { return pcd; }
+
+    public Boolean getAcceptedTerms() { return acceptedTerms; }
+
+    public LocalDateTime getCreateTime() { return createTime; }
 
     public static RegistrationVO of(String clientId) {
         return new RegistrationVO(
                 null,
                 clientId,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
                 null,
                 false,
                 LocalDateTime.now()

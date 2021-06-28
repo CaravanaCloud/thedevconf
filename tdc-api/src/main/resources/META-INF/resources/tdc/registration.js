@@ -5,7 +5,17 @@ function postForm() {
     var params = {"clientId":vo.clientId};
     var url = '/api/user/registration?' + new URLSearchParams(params).toString();
 
-    vo.data = document.getElementById("vo_data").value;
+    vo.name = document.getElementById("vo_name").value;
+    vo.email = document.getElementById("vo_email").value;
+    vo.phone = document.getElementById("vo_phone").value;
+    vo.company = document.getElementById("vo_company").value;
+    vo.occupation = document.getElementById("vo_occupation").value;
+    vo.country = document.getElementById("vo_country").value;
+    vo.city = document.getElementById("vo_city").value;
+    vo.gender = document.getElementById("vo_gender").value;
+    vo.ethnicity = document.getElementById("vo_ethnicity").value;
+    vo.pcd = document.getElementById("vo_pcd").value;
+    vo.acceptedTerms = Boolean(document.getElementById("vo_accepted_terms").value);
 
     fetch(url, {
         method: "POST",
@@ -37,23 +47,23 @@ function load(clientId) {
 
 onClientReady(load);
 
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
+function handleFormSubmit() {
   'use strict'
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
+  var forms = document.querySelectorAll('.needs-validation');
 
-  // Loop over them and prevent submission
   Array.prototype.slice.call(forms)
     .forEach(function (form) {
       form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
+        event.preventDefault();
+        form.classList.add('was-validated');
+        if (form.checkValidity()) {
+        postForm();
+        } else {
+            event.stopPropagation();
         }
-
-        form.classList.add('was-validated')
       }, false)
     })
-})()
+}
+
+handleFormSubmit()

@@ -1,6 +1,6 @@
-package thedevconf.jaxrs.api.blueprints.dnc.poke.dao;
+package thedevconf.jaxrs.api.blueprints.poke.dao;
 
-import thedevconf.jaxrs.api.blueprints.dnc.poke.entity.Pokemon;
+import thedevconf.jaxrs.api.blueprints.poke.entity.Pokemon;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;

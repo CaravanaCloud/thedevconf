@@ -1,4 +1,4 @@
-package thedevconf.jaxrs.api.blueprints.dnc.poke.entity;
+package thedevconf.jaxrs.api.blueprints.poke.entity;
 
 import thedevconf.jaxrs.api.blueprints.dnc.PartyPlaceThing;
 

@@ -1,12 +1,12 @@
-package thedevconf.jaxrs.api.blueprints.dnc.poke.entity;
+package thedevconf.jaxrs.api.blueprints.poke.entity;
 
 import thedevconf.jaxrs.api.blueprints.dnc.Role;
 
 import java.math.BigDecimal;
 
 @Role
-public class Guest {
+public class Home {
     Trainer trainer;
     Pokemon pokemon;
-    BigDecimal bet;
+    BigDecimal seatsReserve;
 }

@@ -1,6 +1,6 @@
-package thedevconf.jaxrs.api.blueprints.dnc.poke.vo;
+package thedevconf.jaxrs.api.blueprints.poke.vo;
 
-import thedevconf.jaxrs.api.blueprints.dnc.poke.entity.Pokemon;
+import thedevconf.jaxrs.api.blueprints.poke.entity.Pokemon;
 
 import java.util.List;
 

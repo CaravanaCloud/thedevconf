@@ -2,6 +2,7 @@ package thedevconf.jaxrs.api.blueprints.poke.rs;
 
 import thedevconf.jaxrs.api.blueprints.poke.dao.JDBCPokedex;
 import thedevconf.jaxrs.api.blueprints.poke.dao.JPAPokedex;
+import thedevconf.jaxrs.api.blueprints.poke.dao.PanachePokedex;
 import thedevconf.jaxrs.api.blueprints.poke.vo.PokedexVO;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -21,6 +22,8 @@ public class PokedexResource {
     @Inject
     JPAPokedex jpaPokedex;
 
+    @Inject
+    PanachePokedex panachePokedex;
 
     @Path("jdbc")
     @GET
@@ -34,5 +37,12 @@ public class PokedexResource {
     @Produces(APPLICATION_JSON)
     public PokedexVO getAllJPA(){
         return PokedexVO.of(jpaPokedex.findAll());
+    }
+
+    @Path("panache")
+    @GET
+    @Produces(APPLICATION_JSON)
+    public PokedexVO getAllPanache(){
+        return PokedexVO.of(panachePokedex.findAll());
     }
 }

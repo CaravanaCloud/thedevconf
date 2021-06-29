@@ -25,6 +25,7 @@
     <quarkus.platform.version>1.13.7.Final</quarkus.platform.version>
     <skipTests>true</skipTests>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
+    <google-api.version>1.31.5</google-api.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -110,6 +111,11 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-hibernate-orm-rest-data-panache</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.api-client</groupId>
+      <artifactId>google-api-client</artifactId>
+      <version>${google-api.version}</version>
     </dependency>
   </dependencies>
   <build>

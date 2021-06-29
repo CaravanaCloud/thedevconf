@@ -1,5 +1,10 @@
 function addHTML(id, value) {
-    document.getElementById(id).innerHTML = value;
+    const el = document.getElementById(id);
+    if (el){
+        el.innerHTML = value;
+    } else {
+        debug(`No element found by id [${id}]`);
+    }
 }
 
 function signIn() {
@@ -57,8 +62,11 @@ function updateUser() {
 function showUserProfile(user) {
      document.getElementById("login-header-tab").hidden = true;
      addHTML("profile-header-tab", user.getName());
-     document.getElementById("user-photo-profile").src = user.getImageUrl();
-     addHTML("user-name-profile", user.getName());
+     const el = document.getElementById("user-photo-profile");
+     if (el != null) {
+         el.src = user.getImageUrl();
+     }
+    addHTML("user-name-profile", user.getName());
 }
 
 function signOut() {

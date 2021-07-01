@@ -21,7 +21,7 @@ public class JDBCPokedex {
             var stmt = conn.createStatement();
             var rs = stmt.executeQuery(sql)){
             while(rs.next()){
-                var id = rs.getInt("id");
+                var id = rs.getLong("id");
                 var name = rs.getString("name");
                 var poke = Pokemon.of(id,name);
                 result.add(poke);

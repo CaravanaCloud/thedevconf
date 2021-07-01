@@ -27,3 +27,12 @@ function toLocalString(dateArr){
     var mmt = toMoment(dateArr);
     return mmt.format('LLLL');
 }
+
+function addHTML(id, value) {
+    const el = document.getElementById(id);
+    if (el){
+        el.innerHTML = value;
+    } else {
+        debug(`No element found by id [${id}]`);
+    }
+}

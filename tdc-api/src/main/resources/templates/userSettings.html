@@ -1,5 +1,10 @@
 <section class="row">
-  {#include formUserData /}
+  <form class="row g-3 needs-validation mb-5" novalidate>
+    {#include formUserData /}
+    <div class="col-md-12 text-end">
+      <button type="submit" class="btn btn-primary primary-button">SALVAR</button>
+    </div>
+  </form>
 </section>
 
 <section class="row">

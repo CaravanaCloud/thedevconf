@@ -6,6 +6,7 @@ function postForm() {
     var url = '/api/user/registration?' + new URLSearchParams(params).toString();
 
     vo.name = document.getElementById("vo_name").value;
+    vo.language = document.getElementById("vo_language").value;
     vo.email = document.getElementById("vo_email").value;
     vo.phone = document.getElementById("vo_phone").value;
     vo.company = document.getElementById("vo_company").value;

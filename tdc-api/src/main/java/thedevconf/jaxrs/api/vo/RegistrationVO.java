@@ -6,6 +6,7 @@ public class RegistrationVO {
     String userId;
     String clientId;
     String name;
+    String language;
     String email;
     String phone;
     String company;
@@ -18,13 +19,13 @@ public class RegistrationVO {
     Boolean acceptedTerms;
     LocalDateTime createTime;
 
-    public RegistrationVO(String userId, String clientId, String name, String email, String phone, String company,
-                          String occupation, String country, String city, String gender, String ethnicity, String pcd,
-                          Boolean acceptedTerms,
-                          LocalDateTime createTime) {
+    public RegistrationVO(String userId, String clientId, String name, String language, String email, String phone,
+                          String company, String occupation, String country, String city, String gender,
+                          String ethnicity, String pcd, Boolean acceptedTerms, LocalDateTime createTime) {
         this.userId = userId;
         this.clientId = clientId;
         this.name = name;
+        this.language = language;
         this.email = email;
         this.phone = phone;
         this.company = company;
@@ -43,6 +44,9 @@ public class RegistrationVO {
     public String getClientId() { return clientId; }
 
     public String getName() { return name; }
+
+
+    public String getLanguage() { return language; }
 
     public String getEmail() { return email; }
 
@@ -70,6 +74,7 @@ public class RegistrationVO {
         return new RegistrationVO(
                 null,
                 clientId,
+                null,
                 null,
                 null,
                 null,

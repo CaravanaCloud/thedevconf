@@ -1,11 +1,13 @@
 // noinspection JSUnresolvedFunction
 const hashids = new Hashids()
 
+// Browser ID
 const CLIENT_ID = 'tdc.clientId';
+
+// User ID
 const ID_TOKEN = 'tdc.idToken';
 const ID_TOKEN_TYPE = 'tdc.token';
 const GOOGLE_TOKEN = 'tdc.tokenType';
-
 const GOOGLE_ID = 'tdc.google.id';
 const GOOGLE_NAME = 'tdc.google.name';
 const GOOGLE_GIVEN_NAME = 'tdc.google.given_name';
@@ -59,14 +61,21 @@ function loadClientId(cb){
     cb(userInfo);
 }
 
-function saveGoogleTokenOnSignIn(googleUser) {
+function saveGoogleTokenOnSignIn(user) {
     debug("saveGoogleTokenOnSignIn()");
-    debug(googleUser);
-    let lStore = window.localStorage;
+    debug(user);
+    const lStore = window.localStorage;
     if (lStore) {
-        let idToken = googleUser.getAuthResponse().id_token;
+        const idToken = user.getAuthResponse().id_token;
         lStore.setItem(ID_TOKEN_TYPE, GOOGLE_TOKEN);
         lStore.setItem(ID_TOKEN, idToken);
+        const profile = user.getBasicProfile();
+        lStore.setItem(GOOGLE_ID, profile.getId());
+        lStore.setItem(GOOGLE_NAME, profile.getName());
+        lStore.setItem(GOOGLE_GIVEN_NAME, profile.getGivenName());
+        lStore.setItem(GOOGLE_FAMILY_NAME, profile.getFamilyName());
+        lStore.setItem(GOOGLE_IMAGE_URL, profile.getImageUrl());
+        lStore.setItem(GOOGLE_EMAIL, profile.getEmail());
         debug("Google ID Token stored ", idToken);
     } else warn("Local Storage Unavailabe");
 }
@@ -107,7 +116,10 @@ function setupLoginListeners() {
 
 function signinChanged(isSignedIn) {
     debug("signInChanged()",isSignedIn)
-    updateUser();
+    if ( ! isSignedIn ){
+        clearLocalStorage();
+    }
+    // updateUser();
 }
 
 function userChanged(googleUser) {
@@ -134,18 +146,6 @@ function printStorage(){
 
 function showUserProfile(user) {
     debug("showUserProfile()")
-    let lStore = window.localStorage;
-    if (lStore) {
-        let idToken = googleUser.getAuthResponse().id_token;
-        lStore.setItem(GOOGLE_ID, user.getId());
-        lStore.setItem(GOOGLE_NAME, user.getName());
-        lStore.setItem(GOOGLE_GIVEN_NAME, user.getGivenName());
-        lStore.setItem(GOOGLE_FAMILY_NAME, user.getFamilyName());
-        lStore.setItem(GOOGLE_IMAGE_URL, user.getImageUrl);
-        lStore.setItem(GOOGLE_EMAIL, user.getEmail())
-        debug("Google ID Token stored ", idToken);
-    } else warn("Local Storage Unavailabe");
-
     document.getElementById("login-header-tab").hidden = true;
     addHTML("profile-header-tab", user.getName());
     const el = document.getElementById("user-photo-profile");
@@ -157,22 +157,35 @@ function showUserProfile(user) {
 
 function signIn() {
     var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signIn().then(function () {
+/*
+   auth2.signIn().then(function () {
         window.location="/user/user-area";
     });
+ */
 }
 
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
+    clearLocalStorage();
+    auth2.signOut().then(function () {
+        window.location = "/";
+    });
+}
+
+function clearLocalStorage(){
     let lStore = window.localStorage;
     if (lStore) {
         lStore.removeItem(ID_TOKEN_TYPE);
         lStore.removeItem(ID_TOKEN);
-        debug("Google ID Token erased ", idToken);
+        lStore.removeItem(GOOGLE_TOKEN);
+        lStore.removeItem(GOOGLE_ID);
+        lStore.removeItem(GOOGLE_NAME);
+        lStore.removeItem(GOOGLE_GIVEN_NAME);
+        lStore.removeItem(GOOGLE_FAMILY_NAME);
+        lStore.removeItem(GOOGLE_IMAGE_URL);
+        lStore.removeItem(GOOGLE_EMAIL);
+        debug("Local Storage Cleared");
     } else warn("Local Storage Unavailabe");
-    auth2.signOut().then(function () {
-        window.location = "/";
-    });
 }
 
 onClientReady(debugOnCR);

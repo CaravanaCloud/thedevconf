@@ -4,6 +4,7 @@ import io.quarkus.oidc.IdToken;
 import io.quarkus.oidc.RefreshToken;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import thedevconf.jaxrs.api.vo.RegistrationVO;
+import thedevconf.jaxrs.api.vo.UserInfoVO;
 import thedevconf.jaxrs.ui.BaseResource;
 import thedevconf.jaxrs.ui.SummaryTemplate;
 
@@ -113,7 +114,8 @@ public class UserResource extends BaseResource {
 
     @GET
     @Path("info")
-    public String getInfo() {
-        return "It's a me!";
+    public UserInfoVO getInfo() {
+        UserInfoVO user = null;
+        return user;
     }
 }

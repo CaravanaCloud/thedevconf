@@ -1,4 +1,4 @@
-package thedevconf.jaxrs.api;
+package thedevconf.jaxrs.api.rs;
 
 import thedevconf.jaxrs.api.entity.Heartbeat;
 

@@ -1,14 +1,11 @@
 package thedevconf.jaxrs.auth;
 
-import thedevconf.jaxrs.api.vo.UserInfoVO;
-
 public class ThreadLocalUserInfo {
-    static ThreadLocal<UserInfoVO> tlui = new ThreadLocal<>();
+    static ThreadLocal<UserSession> tlui = new ThreadLocal<>();
 
-    public static void load(String clientId) {
-        System.out.println("loading client id: "+clientId);
-        UserInfoVO userInfoVO = UserInfoVO.byClientId(clientId);
-        tlui.set(userInfoVO);
+    public static void set(UserSession user) {
+        System.out.println("setting user: "+user);
+        tlui.set(user);
     }
 
     public static void clear() {
@@ -16,8 +13,8 @@ public class ThreadLocalUserInfo {
         tlui.remove();
     }
 
-    public static UserInfoVO get() {
-        UserInfoVO user = tlui.get();
+    public static UserSession get() {
+        UserSession user = tlui.get();
         System.out.println("Getting user info "+user);
         return user;
     }

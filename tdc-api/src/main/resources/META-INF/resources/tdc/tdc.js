@@ -45,13 +45,15 @@ function loadUserFromStorage(){
             [GOOGLE_EMAIL]: lStore.getItem(GOOGLE_EMAIL),
             "getName": function() {
                     return this[GOOGLE_NAME];
-                }
-            ,
+                    },
             "getImageUrl": function() {
                 return this[GOOGLE_IMAGE_URL];
                 },
             "getClientId": function (){
                 return this[CLIENT_ID];
+                },
+            "getIdToken": function (){
+                return this[ID_TOKEN];
             }
         }
         saveClientIdToCookie(userInfo);
@@ -99,8 +101,8 @@ function saveGoogleTokenOnSignIn(googleUser) {
 function saveUserInfoToBackend(userInfo, googleUser){
     let url = '/api/google/tokensignin';
     let data = {
-        id_token: userInfo[ID_TOKEN],
-        client_id: userInfo[CLIENT_ID]
+        [ID_TOKEN]: userInfo.getIdToken(),
+        [CLIENT_ID]: userInfo.getClientId()
     };
     let jsonBody = JSON.stringify(data);
     console.log(data);

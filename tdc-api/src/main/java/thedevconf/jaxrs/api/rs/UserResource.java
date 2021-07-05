@@ -1,11 +1,10 @@
 package thedevconf.jaxrs.api.rs;
 
 import thedevconf.jaxrs.api.vo.RegistrationVO;
-import thedevconf.jaxrs.api.vo.UserInfoVO;
+import thedevconf.jaxrs.auth.UserSession;
 import thedevconf.jaxrs.ui.BaseResource;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.sql.DataSource;
@@ -59,9 +58,8 @@ public class UserResource extends BaseResource {
     @GET
     @Produces(APPLICATION_JSON)
     @Path("info")
-    public UserInfoVO getInfo() {
-        UserInfoVO user = UserInfoVO.getCurrentUserInfoVO();
-        System.out.println("Fetching user "+user);
+    public UserSession getInfo() {
+        UserSession user = UserSession.getCurrent();
         return user;
     }
 }

@@ -16,7 +16,7 @@ const GOOGLE_IMAGE_URL = 'tdc.google.image_url';
 const GOOGLE_EMAIL = 'tdc.google.email';
 
 function onClientReady(cb){
-    loadClientId(cb);
+    loadUserInfo(cb);
 }
 
 function log(){
@@ -33,21 +33,29 @@ function loadUserFromStorage(){
     let userInfo = null;
     let lStore = window.localStorage;
     if (lStore) {
-        userInfo = {}
-        userInfo[CLIENT_ID] = lStore.getItem(CLIENT_ID);
-        userInfo[ID_TOKEN] = lStore.getItem(ID_TOKEN);
-        userInfo[ID_TOKEN_TYPE] = lStore.getItem(ID_TOKEN_TYPE);
-        userInfo[GOOGLE_ID] = lStore.getItem(GOOGLE_ID);
-        userInfo[GOOGLE_NAME] = lStore.getItem(GOOGLE_NAME);
-        userInfo[GOOGLE_GIVEN_NAME] = lStore.getItem(GOOGLE_GIVEN_NAME);
-        userInfo[GOOGLE_FAMILY_NAME] = lStore.getItem(GOOGLE_FAMILY_NAME);
-        userInfo[GOOGLE_IMAGE_URL] = lStore.getItem(GOOGLE_IMAGE_URL);
-        userInfo[GOOGLE_EMAIL] = lStore.getItem(GOOGLE_EMAIL);
+        userInfo = {
+            [CLIENT_ID]: lStore.getItem(CLIENT_ID),
+            [ID_TOKEN]: lStore.getItem(ID_TOKEN),
+            [ID_TOKEN_TYPE]: lStore.getItem(ID_TOKEN_TYPE),
+            [GOOGLE_ID]: lStore.getItem(GOOGLE_ID),
+            [GOOGLE_NAME]: lStore.getItem(GOOGLE_NAME),
+            [GOOGLE_GIVEN_NAME]: lStore.getItem(GOOGLE_GIVEN_NAME),
+            [GOOGLE_FAMILY_NAME]: lStore.getItem(GOOGLE_FAMILY_NAME),
+            [GOOGLE_IMAGE_URL]: lStore.getItem(GOOGLE_IMAGE_URL),
+            [GOOGLE_EMAIL]: lStore.getItem(GOOGLE_EMAIL),
+            "getName": function() {
+                    return this[GOOGLE_NAME];
+                }
+            ,
+            "getImageUrl": function() {
+                return this[GOOGLE_IMAGE_URL];
+                }
+        }
     }
     return userInfo;
 }
 
-function loadClientId(cb){
+function loadUserInfo(cb){
     let userInfo = null;
     let lStore = window.localStorage;
     if (lStore){
@@ -55,15 +63,52 @@ function loadClientId(cb){
         if(! clientId) {
             clientId = genRandomHash();
             lStore.setItem(CLIENT_ID, clientId);
+            saveClientIdToCookie()
         }
         userInfo = loadUserFromStorage();
     } else warn("Local Storage Unavailable");
     cb(userInfo);
 }
 
-function saveGoogleTokenOnSignIn(user) {
+
+function saveClientIdToCookie(){
+    //TODO: document.cookie = 'cookie1=test; expires=Sun, 1 Jan 2023 00:00:00 UTC; path=/'
+}
+
+function saveGoogleTokenOnSignIn(googleUser) {
     debug("saveGoogleTokenOnSignIn()");
-    debug(user);
+    debug(googleUser);
+    saveUserInfoToLocalStorage(googleUser);
+    loadUserInfo(function (userInfo){
+        saveUserInfoToBackend(userInfo, googleUser);
+    });
+}
+
+function saveUserInfoToBackend(userInfo, googleUser){
+    let url = '/api/google/tokensignin';
+    let data = {
+        id_token: userInfo[ID_TOKEN],
+        client_id: userInfo[CLIENT_ID]
+    };
+    let jsonBody = JSON.stringify(data);
+    console.log(data);
+    fetch(url, {
+        method: 'POST', // or 'PUT'
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: jsonBody,
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
+
+function saveUserInfoToLocalStorage(user) {
     const lStore = window.localStorage;
     if (lStore) {
         const idToken = user.getAuthResponse().id_token;
@@ -93,11 +138,6 @@ function replaceClass(className, innerHTML){
     for (let i = 0; i < els.length; i++) {
         els[i].innerHTML = innerHTML;
     }
-}
-
-function replaceElements(userInfo){
-    const clientIdLabel = userInfo[CLIENT_ID] || "ANONYMOUS";
-    replaceClass("tdc_client_id", clientIdLabel);
 }
 
 function loadGoogleAuth2() {
@@ -135,24 +175,12 @@ function updateUser() {
         const profile = user.getBasicProfile();
         if (isSignedIn) {
             saveGoogleTokenOnSignIn(user);
-            showUserProfile(profile);
         }
     }
 };
 
 function printStorage(){
     log(loadUserFromStorage());
-}
-
-function showUserProfile(user) {
-    debug("showUserProfile()")
-    document.getElementById("login-header-tab").hidden = true;
-    addHTML("profile-header-tab", user.getName());
-    const el = document.getElementById("user-photo-profile");
-    if (el != null) {
-        el.src = user.getImageUrl();
-    }
-    addHTML("user-name-profile", user.getName());
 }
 
 function signIn() {
@@ -189,6 +217,6 @@ function clearLocalStorage(){
 }
 
 onClientReady(debugOnCR);
-onClientReady(replaceElements);
+
 
 log("TDC Client Library Loaded.");

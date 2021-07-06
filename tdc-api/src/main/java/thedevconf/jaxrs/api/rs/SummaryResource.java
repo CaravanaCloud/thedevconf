@@ -1,4 +1,4 @@
-package thedevconf.jaxrs.api;
+package thedevconf.jaxrs.api.rs;
 
 import cloud.caravana.vo.Alternatives;
 import cloud.caravana.vo.TDCVOs;

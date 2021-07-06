@@ -45,12 +45,18 @@ function loadUserFromStorage(){
             [GOOGLE_EMAIL]: lStore.getItem(GOOGLE_EMAIL),
             "getName": function() {
                     return this[GOOGLE_NAME];
-                }
-            ,
+                    },
             "getImageUrl": function() {
                 return this[GOOGLE_IMAGE_URL];
-                }
+                },
+            "getClientId": function (){
+                return this[CLIENT_ID];
+                },
+            "getIdToken": function (){
+                return this[ID_TOKEN];
+            }
         }
+        saveClientIdToCookie(userInfo);
     }
     return userInfo;
 }
@@ -63,16 +69,24 @@ function loadUserInfo(cb){
         if(! clientId) {
             clientId = genRandomHash();
             lStore.setItem(CLIENT_ID, clientId);
-            saveClientIdToCookie()
         }
         userInfo = loadUserFromStorage();
     } else warn("Local Storage Unavailable");
     cb(userInfo);
 }
 
+function saveCookie(key, value){
+    debug("saveCookie()");
+    let duration = moment().add(6, 'months');
+    let path = "/";
+    let expiration = duration.toISOString();
+    let cookie = `${key}=${value}; expires=${expiration}; path=${path}`;
+    debug(cookie);
+    document.cookie = cookie;
+}
 
-function saveClientIdToCookie(){
-    //TODO: document.cookie = 'cookie1=test; expires=Sun, 1 Jan 2023 00:00:00 UTC; path=/'
+function saveClientIdToCookie(userInfo){
+    saveCookie(CLIENT_ID, userInfo.getClientId());
 }
 
 function saveGoogleTokenOnSignIn(googleUser) {
@@ -87,8 +101,8 @@ function saveGoogleTokenOnSignIn(googleUser) {
 function saveUserInfoToBackend(userInfo, googleUser){
     let url = '/api/google/tokensignin';
     let data = {
-        id_token: userInfo[ID_TOKEN],
-        client_id: userInfo[CLIENT_ID]
+        [ID_TOKEN]: userInfo.getIdToken(),
+        [CLIENT_ID]: userInfo.getClientId()
     };
     let jsonBody = JSON.stringify(data);
     console.log(data);

@@ -1,4 +1,3 @@
-*
 !target/*-runner
 !target/*-runner.jar
 !target/lib/*
@@ -8,3 +7,4 @@
 .elasticbeanstalk/*
 .git
 .gitignore
+.vscode

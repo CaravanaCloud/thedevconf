@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  api:
+    build: .
+    ports:
+      - "8181:8181"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    links: 
+      - db
+    environment:
+      - QUARKUS_DATASOURCE_JDBC_URL=jdbc:mysql://db/tdc
+      - QUARKUS_DATASOURCE_DB_KIND=mysql
+      - QUARKUS_DATASOURCE_USERNAME=root
+      - QUARKUS_DATASOURCE_PASSWORD=SETECAstronomy
+      - QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION=update
+  db:
+    image: mysql
+    container_name: tdc-db
+    ports:
+      - "3307:3306"
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=SETECAstronomy
+      - MYSQL_DATABASE=tdc

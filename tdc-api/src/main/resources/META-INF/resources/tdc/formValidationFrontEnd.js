@@ -11,6 +11,7 @@ function handleFormSubmit() {
                 if (form.checkValidity()) {
                     postRegistrationForm();
                 } else {
+                    console.log("invalid data")
                     event.stopPropagation();
                 }
             }, false)

@@ -1,9 +1,9 @@
 console.log("Sample Registration Page");
-var vo = null;
+const vo = null;
 
 function postForm() {
-    var params = {"clientId":vo.clientId};
-    var url = '/api/user/registration?' + new URLSearchParams(params).toString();
+    const params = {"clientId":vo.clientId};
+    const url = '/api/user/registration?' + new URLSearchParams(params).toString();
 
     vo.name = document.getElementById("vo_name").value;
     vo.language = document.getElementById("vo_language").value;
@@ -30,7 +30,7 @@ function postForm() {
 }
 
 function paint(registration) {
-    var time = toLocalString(registration.createTime);
+    const time = toLocalString(registration.createTime);
     replaceClass("createTime", registration.createTime);
     vo = registration;
 }
@@ -38,8 +38,8 @@ function paint(registration) {
 function load(clientId) {
     log("Registering Client "+ clientId);
 
-    var params = {"clientId":clientId};
-    var url = '/api/user/registration?' + new URLSearchParams(params).toString();
+    const params = {"clientId":clientId};
+    const url = '/api/user/registration?' + new URLSearchParams(params).toString();
 
     fetch(url)
         .then(response => response.json())
@@ -51,7 +51,7 @@ onClientReady(load);
 function handleFormSubmit() {
   'use strict'
 
-  var forms = document.querySelectorAll('.needs-validation');
+  const forms = document.querySelectorAll('.needs-validation');
 
   Array.prototype.slice.call(forms)
     .forEach(function (form) {

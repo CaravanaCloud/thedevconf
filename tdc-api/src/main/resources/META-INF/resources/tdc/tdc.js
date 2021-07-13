@@ -44,14 +44,14 @@ function loadUserFromStorage(){
             [GOOGLE_IMAGE_URL]: lStore.getItem(GOOGLE_IMAGE_URL),
             [GOOGLE_EMAIL]: lStore.getItem(GOOGLE_EMAIL),
             "getName": function() {
-                    return this[GOOGLE_NAME];
-                    },
+                return this[GOOGLE_NAME];
+            },
             "getImageUrl": function() {
                 return this[GOOGLE_IMAGE_URL];
-                },
+            },
             "getClientId": function (){
                 return this[CLIENT_ID];
-                },
+            },
             "getIdToken": function (){
                 return this[ID_TOKEN];
             }
@@ -66,7 +66,7 @@ function loadUserInfo(cb){
     let lStore = window.localStorage;
     if (lStore){
         let clientId = lStore.getItem(CLIENT_ID);
-        if(! clientId) {
+        if(!clientId) {
             clientId = genRandomHash();
             lStore.setItem(CLIENT_ID, clientId);
         }
@@ -162,7 +162,7 @@ function loadGoogleAuth2() {
 
 function setupLoginListeners() {
     debug("setupLoginListers()")
-    var auth2 = gapi.auth2.getAuthInstance();
+    const auth2 = gapi.auth2.getAuthInstance();
     auth2.isSignedIn.listen(signinChanged);
     auth2.currentUser.listen(userChanged);
     updateUser();
@@ -173,7 +173,6 @@ function signinChanged(isSignedIn) {
     if ( ! isSignedIn ){
         clearLocalStorage();
     }
-    // updateUser();
 }
 
 function userChanged(googleUser) {
@@ -197,15 +196,17 @@ function printStorage(){
     log(loadUserFromStorage());
 }
 
-function signIn(userInfo) {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signIn().then(function() {
-        window.location="/user/user-area";
+function signIn() {
+    const auth2 = gapi.auth2.getAuthInstance();
+
+    auth2.signIn().then(updateUser).then(function() {
+        window.location="user/user-area";
     });
+
 }
 
 function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
+    const auth2 = gapi.auth2.getAuthInstance();
     clearLocalStorage();
     auth2.signOut().then(function() {
         window.location = "/";

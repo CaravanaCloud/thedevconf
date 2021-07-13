@@ -197,19 +197,17 @@ function printStorage(){
     log(loadUserFromStorage());
 }
 
-function signIn() {
+function signIn(userInfo) {
     var auth2 = gapi.auth2.getAuthInstance();
-/*
-   auth2.signIn().then(function () {
+    auth2.signIn().then(function() {
         window.location="/user/user-area";
     });
- */
 }
 
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     clearLocalStorage();
-    auth2.signOut().then(function () {
+    auth2.signOut().then(function() {
         window.location = "/";
     });
 }

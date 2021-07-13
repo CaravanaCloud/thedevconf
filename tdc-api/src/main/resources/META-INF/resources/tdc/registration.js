@@ -49,22 +49,22 @@ function load(clientId) {
 onClientReady(load);
 
 function handleFormSubmit() {
-  'use strict'
+    'use strict'
 
-  const forms = document.querySelectorAll('.needs-validation');
+    const forms = document.querySelectorAll('.needs-validation');
 
-  Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        form.classList.add('was-validated');
-        if (form.checkValidity()) {
-        postForm();
-        } else {
-            event.stopPropagation();
-        }
-      }, false)
-    })
+    Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                form.classList.add('was-validated');
+                if (form.checkValidity()) {
+                    postForm();
+                } else {
+                    event.stopPropagation();
+                }
+            }, false)
+        })
 }
 
 handleFormSubmit()

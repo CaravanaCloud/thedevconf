@@ -1,7 +1,7 @@
 console.log("Sample Registration Page");
 const vo = null;
 
-function postForm() {
+function postRegistrationForm() {
     const params = {"clientId":vo.clientId};
     const url = '/api/user/registration?' + new URLSearchParams(params).toString();
 
@@ -59,7 +59,7 @@ function handleFormSubmit() {
                 event.preventDefault();
                 form.classList.add('was-validated');
                 if (form.checkValidity()) {
-                    postForm();
+                    postRegistrationForm();
                 } else {
                     event.stopPropagation();
                 }

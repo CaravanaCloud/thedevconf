@@ -27,7 +27,7 @@ function postRegistrationForm() {
         body: JSON.stringify(vo)
     }).then(response => response.json())
         .then(data => paint(data));
-    console.log("fetch data" + vo.name + vo.email + vo.password);
+    console.log("fetch data=> " + JSON.stringify(vo));
 }
 
 function paint(registration) {

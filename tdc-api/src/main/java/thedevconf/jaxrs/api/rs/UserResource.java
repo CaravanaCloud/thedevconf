@@ -54,7 +54,6 @@ public class UserResource extends BaseResource {
         return vo;
     }
 
-
     @GET
     @Produces(APPLICATION_JSON)
     @Path("info")

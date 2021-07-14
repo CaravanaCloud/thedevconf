@@ -4,6 +4,7 @@ import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 import thedevconf.jaxrs.api.vo.RegistrationVO;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -37,6 +38,7 @@ public class UserTemplate extends BaseResource {
 
     @GET
     @Path("user-area")
+    @RolesAllowed("user")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getUserArea() {
         return instanceOf(userArea);

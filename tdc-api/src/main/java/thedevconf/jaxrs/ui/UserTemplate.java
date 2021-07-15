@@ -38,7 +38,6 @@ public class UserTemplate extends BaseResource {
 
     @GET
     @Path("user-area")
-    @RolesAllowed("user")
     @Produces(MediaType.TEXT_HTML)
     public TemplateInstance getUserArea() {
         return instanceOf(userArea);

@@ -86,6 +86,7 @@ public class GoogleSignInResource {
             userSessionService.updateProfile(
                     clientId,
                     idTokenStr,
+                    name,
                     email,
                     emailVerified,
                     pictureUrl,

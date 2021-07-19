@@ -1,3 +1,13 @@
+const optionsManager = (options, elementIdToDisplayOptions, selectedOptionToShow) => {
+    return Object.values(options).forEach(option => {
+        if(option === selectedOptionToShow) {
+            return $(elementIdToDisplayOptions).append(`<option selected value=${option}>${option}</option>`);
+        } else {
+            return $(elementIdToDisplayOptions).append(`<option value=${option}>${option}</option>`);
+        }
+    })
+}
+
 const url ="https://restcountries.eu/rest/v2/all";
 
 async function getCountriesData(url) {
@@ -8,25 +18,12 @@ async function getCountriesData(url) {
     }
     return data;
 }
-const addSelectedOption = (id, value) => {
-    return $(id).append(`<option selected value=${value}>${value}</option>`);
-}
-
-const addOptions = (id, value) => {
-    return $(id).append(`<option value=${value}>${value}</option>`);
-}
 
 function showCountriesOptions(data) {
     const countries = data.map(data => data.translations['br']);
+    const id = "#vo_country";
 
-    countries.forEach(country => {
-        const id = "#vo_country";
-        if(country === "Brasil") {
-            addSelectedOption(id, country);
-        } else {
-            addOptions(id, country);
-        }
-    });
+    optionsManager(countries, id, "Brasil");
 }
 
 function showLanguageOptions() {
@@ -35,55 +32,36 @@ function showLanguageOptions() {
         EN: "Inglês",
         ES: "Espanhol"
     }
+    const id = "#vo_language";
 
-    Object.values(languageOptions).forEach(language => {
-        const id = "#vo_language";
-        if (language === "Português-BR") {
-            addSelectedOption(id, language);
-        } else {
-            addOptions(id, language);
-        }
-    });
+    optionsManager(languageOptions, id, "Brasil");
 }
 
 function showGenderOptions() {
     const genderOptions = {
         0: "Prefiro não responder"
     }
+    const id = "#vo_gender";
+    optionsManager(genderOptions, id, "Prefiro não responder");
 
-    Object.values(genderOptions).forEach(gender => {
-        const id = "#vo_gender";
-        if(gender === "Prefiro não responder") {
-            addSelectedOption(id, gender);
-        } else {
-            addOptions(id, gender);
-        }});
 }
 
 function showEthnicityOptions() {
     const ethnicityOptions = {
         0: "Prefiro não responder"
     }
-    Object.values(ethnicityOptions).forEach(ethnicity => {
-        const id = "#vo_ethnicity";
-        if(ethnicity === "Prefiro não responder") {
-            addSelectedOption(id, ethnicity);
-        } else {
-            addOptions(id, ethnicity);
-        }});
+    const id = "#vo_ethnicity";
+
+    optionsManager(ethnicityOptions, id, "Prefiro não responder");
 }
 
 function showPcdOptions() {
     const pcdOptions = {
         0: "Não se aplica"
     }
-    Object.values(pcdOptions).forEach(pcd => {
-        const id = "#vo_pcd";
-        if(pcd === "Não se aplica") {
-            addSelectedOption(id, pcd);
-        } else {
-            addOptions(id, pcd);
-        }});
+    const id = "#vo_pcd";
+
+    optionsManager(pcdOptions, id, "Não se aplica");
 }
 
 getCountriesData(url);

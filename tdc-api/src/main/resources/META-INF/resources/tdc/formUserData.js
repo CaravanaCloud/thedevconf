@@ -48,7 +48,7 @@ function showLanguageOptions() {
 
 function showGenderOptions() {
     const genderOptions = {
-        P: "Prefiro não responder"
+        0: "Prefiro não responder"
     }
 
     Object.values(genderOptions).forEach(gender => {
@@ -60,6 +60,20 @@ function showGenderOptions() {
         }});
 }
 
+function showEthnicityOptions() {
+    const ethnicityOptions = {
+        0: "Prefiro não responder"
+    }
+    Object.values(ethnicityOptions).forEach(ethnicity => {
+        const id = "#vo_ethnicity";
+        if(ethnicity === "Prefiro não responder") {
+            addSelectedOption(id, ethnicity);
+        } else {
+            addOptions(id, ethnicity);
+        }});
+}
+
 getCountriesData(url);
 showLanguageOptions();
-showGenderOptions()
+showGenderOptions();
+showEthnicityOptions();

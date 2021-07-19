@@ -1,9 +1,9 @@
-const optionsManager = (options, elementIdToDisplayOptions, selectedOptionToShow) => {
+const createOptions = (options, elementIdToAppendOptions, optionToDisplayAsSelected) => {
     return Object.values(options).forEach(option => {
-        if(option === selectedOptionToShow) {
-            return $(elementIdToDisplayOptions).append(`<option selected value=${option}>${option}</option>`);
+        if(option === optionToDisplayAsSelected) {
+            return $(elementIdToAppendOptions).append(`<option selected value=${option}>${option}</option>`);
         } else {
-            return $(elementIdToDisplayOptions).append(`<option value=${option}>${option}</option>`);
+            return $(elementIdToAppendOptions).append(`<option value=${option}>${option}</option>`);
         }
     })
 }
@@ -23,45 +23,45 @@ function showCountriesOptions(data) {
     const countries = data.map(data => data.translations['br']);
     const id = "#vo_country";
 
-    optionsManager(countries, id, "Brasil");
+    createOptions(countries, id, "Brasil");
 }
 
 function showLanguageOptions() {
-    const languageOptions = {
+    const languages = {
         PT: "Português-BR",
         EN: "Inglês",
         ES: "Espanhol"
     }
     const id = "#vo_language";
 
-    optionsManager(languageOptions, id, "Brasil");
+    createOptions(languages, id, "Brasil");
 }
 
 function showGenderOptions() {
-    const genderOptions = {
+    const genders = {
         0: "Prefiro não responder"
     }
     const id = "#vo_gender";
-    optionsManager(genderOptions, id, "Prefiro não responder");
+    createOptions(genders, id, "Prefiro não responder");
 
 }
 
 function showEthnicityOptions() {
-    const ethnicityOptions = {
+    const ethnicities = {
         0: "Prefiro não responder"
     }
     const id = "#vo_ethnicity";
 
-    optionsManager(ethnicityOptions, id, "Prefiro não responder");
+    createOptions(ethnicities, id, "Prefiro não responder");
 }
 
 function showPcdOptions() {
-    const pcdOptions = {
+    const pcd = {
         0: "Não se aplica"
     }
     const id = "#vo_pcd";
 
-    optionsManager(pcdOptions, id, "Não se aplica");
+    createOptions(pcd, id, "Não se aplica");
 }
 
 getCountriesData(url);

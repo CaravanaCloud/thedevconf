@@ -8,13 +8,24 @@ async function getCountriesData(url) {
     }
     return data;
 }
+const addSelectedOption = (id, value) => {
+    return $(id).append(`<option selected value=${value}>${value}</option>`);
+}
+
+const addOptions = (id, value) => {
+    return $(id).append(`<option value=${value}>${value}</option>`);
+}
 
 function showCountriesOptions(data) {
-    data.forEach(data => {
-        if(data.translations['br'] === "Brasil") {
-            $("#vo_country").append(`<option selected value="${data.translations['br']}">${data.translations['br']}</option>`);
+    const countries = data.map(data => data.translations['br']);
+
+    countries.forEach(country => {
+        const id = "#vo_country";
+        if(country === "Brasil") {
+            addSelectedOption(id, country);
+        } else {
+            addOptions(id, country);
         }
-        $("#vo_country").append(`<option value="${data.translations['br']}">${data.translations['br']}</option>`);
     });
 }
 
@@ -26,10 +37,12 @@ function showLanguageOptions() {
     }
 
     Object.values(languageOptions).forEach(language => {
+        const id = "#vo_language";
         if (language === "Português-BR") {
-            $("#vo_language").append(`<option selected value="${language}">${language}</option>`);
+            addSelectedOption(id, language);
+        } else {
+            addOptions(id, language);
         }
-        $("#vo_language").append(`<option value ="${language}">${language}</option>`);
     });
 }
 
@@ -39,11 +52,12 @@ function showGenderOptions() {
     }
 
     Object.values(genderOptions).forEach(gender => {
+        const id = "#vo_gender";
         if(gender === "Prefiro não responder") {
-            $("#vo_gender").append(`<option selected value="${gender}">${gender}</option>`);
-        }
-        $("#vo_gender").append(`<option value="${gender}">${gender}</option>`);
-    });
+            addSelectedOption(id, gender);
+        } else {
+            addOptions(id, gender);
+        }});
 }
 
 getCountriesData(url);

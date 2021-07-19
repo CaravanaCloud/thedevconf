@@ -73,7 +73,21 @@ function showEthnicityOptions() {
         }});
 }
 
+function showPcdOptions() {
+    const pcdOptions = {
+        0: "Não se aplica"
+    }
+    Object.values(pcdOptions).forEach(pcd => {
+        const id = "#vo_pcd";
+        if(pcd === "Não se aplica") {
+            addSelectedOption(id, pcd);
+        } else {
+            addOptions(id, pcd);
+        }});
+}
+
 getCountriesData(url);
 showLanguageOptions();
 showGenderOptions();
 showEthnicityOptions();
+showPcdOptions();

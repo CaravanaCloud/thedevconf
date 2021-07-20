@@ -76,11 +76,11 @@ mvn
 ## Start the API Module
 Set the API environment variables (JDBC):
 ```
-export QUARKUS_DATASOURCE_JDBC_URL="jdbc:mysql://$MYSQL_HOST:$MYSQL_PORT/$MYSQL_DB"
-export QUARKUS_DATASOURCE_DB_KIND="mysql"
-export QUARKUS_DATASOURCE_USERNAME="root"
-export QUARKUS_DATASOURCE_PASSWORD="$MYSQL_ROOT_PASSWORD"
-export QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION="update"
+export DATASOURCE_URL="jdbc:mysql://$MYSQL_HOST:$MYSQL_PORT/$MYSQL_DB"
+export DATASOURCE_KIND="mysql"
+export DATASOURCE_USERNAME="root"
+export DATASOURCE_PASSWORD="$MYSQL_ROOT_PASSWORD"
+export HIBERNATE_ORM_DATABASE_GENERATION=none
 ```
 
 Start the API service:
@@ -135,3 +135,19 @@ Visit the application at the default address [http://localhost:8282](http://loca
 
 ## Start the Registration Application
 //TODO 
+
+
+## Docker
+
+You can use docker instead the steps before. Open thedevconf project in your terminal and run the follows commands:
+
+```shell
+$ docker-compose run --service-ports api bash
+$ mvn clean install
+$ cd tdc-api
+$ ./mvnw compile quarkus:dev -Dquarkus.http.host=0.0.0.0
+```
+
+Back the browser and see the project running on:
+
+http://localhost:8181

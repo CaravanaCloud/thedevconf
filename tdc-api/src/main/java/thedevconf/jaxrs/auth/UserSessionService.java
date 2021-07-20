@@ -19,6 +19,7 @@ public class UserSessionService {
     @Transactional
     public void updateProfile(String clientId,
                                      String idToken,
+                                     String name,
                                      String email,
                                      boolean emailVerified,
                                      String pictureUrl,
@@ -28,6 +29,7 @@ public class UserSessionService {
         log.info("updateProfile()");
         UserSession user = this.ofClientId(clientId);
         user.setIdToken(idToken);
+        user.setName(name);
         user.setEmail(email);
         user.setEmailVerified(emailVerified);
         user.setPictureUrl(pictureUrl);

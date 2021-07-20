@@ -24,7 +24,7 @@ function toMoment(dateArr){
 }
 
 function toLocalString(dateArr){
-    var mmt = toMoment(dateArr);
+    const mmt = toMoment(dateArr);
     return mmt.format('LLLL');
 }
 

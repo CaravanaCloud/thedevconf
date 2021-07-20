@@ -1,4 +1,4 @@
-name: DeployEB
+name: DeployMainToElasticBeanstalk
 
 on:
   push:
@@ -50,4 +50,4 @@ jobs:
         run: echo "deploy to staging"
 
       - name: Lista target
-        run: find target
+        run: find .

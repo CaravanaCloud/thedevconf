@@ -50,4 +50,5 @@ jobs:
         run: echo "deploy to staging"
 
       - name: Lista target
-        run: find .
+        run: find target
+        working-directory: tdc-api

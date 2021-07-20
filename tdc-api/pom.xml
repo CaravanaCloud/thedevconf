@@ -154,6 +154,7 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>${compiler-plugin.version}</version>
       </plugin>
+
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
@@ -169,6 +170,7 @@
           <finalName>tdc-api</finalName>
         </configuration>
       </plugin>
+
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${surefire-plugin.version}</version>
@@ -182,6 +184,7 @@
     </plugins>
   </build>
   <profiles>
+
     <profile>
       <id>native</id>
       <activation>
@@ -216,6 +219,7 @@
         <quarkus.package.type>native</quarkus.package.type>
       </properties>
     </profile>
+
     <profile>
       <id>lambda</id>
       <activation>

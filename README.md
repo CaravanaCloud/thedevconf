@@ -29,7 +29,7 @@ Set the MySQL container environment variables:
 export MYSQL_ROOT_PASSWORD="SETECAstronomy"
 export MYSQL_HOST="127.0.0.1"
 export MYSQL_PORT="3307"
-export MYSQL_DB="tdc-db"
+export MYSQL_DB="globalcode"
 ```
 
 You can also use [DirEnv](https://direnv.net/) or your IDE settings to configure environment variables.
@@ -39,7 +39,7 @@ You can also use [DirEnv](https://direnv.net/) or your IDE settings to configure
 Start a MySQL container:
 ```
 docker run --rm \
-  --name tdc-mysql \
+  --name $MYSQL_DB \
   -p 0.0.0.0:$MYSQL_PORT:3306 \
   -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD \
   -e MYSQL_DATABASE=$MYSQL_DB \

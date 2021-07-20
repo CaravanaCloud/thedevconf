@@ -1,4 +1,4 @@
-function handleFormSubmit() {
+function handleFormSubmit(formType) {
     'use strict'
 
     const forms = document.querySelectorAll('.needs-validation');
@@ -9,7 +9,12 @@ function handleFormSubmit() {
                 event.preventDefault();
                 form.classList.add('was-validated');
                 if (form.checkValidity()) {
-                    postRegistrationForm();
+                    if(formType === 'user-data-form') {
+                        postUserDataForm();
+                    }
+                    if(formType === 'registration-form') {
+                        postRegistrationForm();
+                    }
                 } else {
                     console.log("invalid data")
                     event.stopPropagation();
@@ -17,5 +22,3 @@ function handleFormSubmit() {
             }, false)
         })
 }
-
-handleFormSubmit()

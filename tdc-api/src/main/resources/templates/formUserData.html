@@ -41,7 +41,9 @@
     </div>
 
     <div class="form-floating col-md-6">
-      <select id="vo_city" class="form-select h-auto" aria-label="Cidade" required></select>
+      <select id="vo_city" class="form-select h-auto" aria-label="Cidade" required>
+        <option value="one">one</option>
+      </select>
       <label class="ms-2" for="vo_city">Cidade</label>
     </div>
 
@@ -68,7 +70,7 @@
       </label>
     </div>
     <div class="col-md-12 text-end">
-      <button type="submit" class="btn btn-primary primary-button">SALVAR</button>
+      <button type="submit" class="btn btn-primary primary-button" onclick="handleFormSubmit('user-data-form')">SALVAR</button>
     </div>
   </form>
 </div>

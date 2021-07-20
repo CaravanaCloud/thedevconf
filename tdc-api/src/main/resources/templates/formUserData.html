@@ -1,58 +1,79 @@
-<h2 class="title mt-3">Dados Cadastrais</h2>
-<div class="col-md-6">
-  <input id="vo_name" type="text" class="form-control" placeholder="Nome" aria-label="Nome" required>
-</div>
+<section class="container col-sm-12 col-md-9 mb-5">
+  <div class="form-signin mb-3">
+    <form class="row g-3 needs-validation mb-5" novalidate>
+      <h2 class="title mt-3">Dados Cadastrais</h2>
+      <div class="form-floating col-md-6">
+        <input id="vo_name" type="text" class="form-control" aria-label="Nome" required>
+        <label class="ms-2" for="vo_name">Nome</label>
+      </div>
 
-<div class="col-md-6">
-  <select id="vo_language" class="form-select" aria-label="Idioma" required></select>
-</div>
+      <div class="form-floating col-md-6">
+        <select id="vo_language" class="form-select" aria-label="Idioma" required></select>
+        <label class="ms-2" for="vo_language">Idioma</label>
+      </div>
 
-<div class="col-md-6">
-  <input id="vo_email" type="email" class="form-control" placeholder="Email" aria-label="Email" required>
-</div>
+      <div class="form-floating col-md-6">
+        <input id="vo_email" type="email" class="form-control" aria-label="Email" required>
+        <label class="ms-2" for="vo_email">Email</label>
+      </div>
 
-<div class="col-md-6">
-  <input id="vo_phone" type="tel" class="form-control" placeholder="Telefone" aria-label="Telefone" required>
-</div>
+      <div class="form-floating col-md-6">
+        <input id="vo_phone" type="tel" class="form-control" aria-label="Telefone" required>
+        <label class="ms-2" for="vo_phone">Telefone</label>
 
-<div class="col-md-6">
-  <input id="vo_company" type="text" class="form-control" placeholder="Empresa" aria-label="Empresa" required>
-</div>
+      </div>
 
-<div class="col-md-6">
-  <input id="vo_occupation" type="text" class="form-control" placeholder="Cargo" aria-label="Cargo" required>
-</div>
+      <div class="form-floating col-md-6">
+        <input id="vo_company" type="text" class="form-control" aria-label="Empresa" required>
+        <label class="ms-2" for="vo_company">Empresa</label>
 
-<h2 class="title mt-5 mb-3">Dados para estatística do evento</h2>
-<div class="col-md-6">
-  <select id="vo_country" class="form-select" aria-label="País" required></select>
-</div>
+      </div>
 
-<div class="col-md-6">
-  <select id="vo_city" class="form-select" aria-label="Cidade" required>
-    <option selected disabled value="">Cidade</option>
-    <option  value="1">One</option>
-    <option  value="2">Two</option>
-  </select>
-</div>
+      <div class="form-floating col-md-6">
+        <input id="vo_occupation" type="text" class="form-control" aria-label="Cargo" required>
+        <label class="ms-2" for="vo_occupation">Cargo</label>
 
-<div class="col-md-6">
-  <select id="vo_gender" class="form-select" aria-label="Gênero" required></select>
-</div>
+      </div>
 
-<div class="col-md-6">
-  <select id="vo_ethnicity" class="form-select" aria-label="Etnia" required></select>
-</div>
+      <h2 class="title mt-5 mb-3">Dados para estatística do evento</h2>
+      <div class="form-floating col-md-6">
+        <select id="vo_country" class="form-select" aria-label="País" required></select>
+        <label class="ms-2" for="vo_country">País</label>
+      </div>
 
-<div class="col-md-6">
-  <select id="vo_pcd" class="form-select" aria-label="PcD" required></select>
-</div>
+      <div class="form-floating col-md-6">
+        <select id="vo_city" class="form-select" aria-label="Cidade" required></select>
+        <label class="ms-2" for="vo_city">Cidade</label>
+      </div>
 
-<div class="form-check py-2 ms-2 bg-light">
-  <input id="vo_accepted_terms" class="form-check-input" type="checkbox" value=true required>
-  <label class="form-check-label" for="vo_accepted_terms">
-    Eu li e concordo com os termos de uso de dados. Entenda como seus dados estão sendo utilizados clicando <a href="https://thedevconf.com/tdc/2021/connections/privacidade">aqui</a>.
-  </label>
-</div>
+      <div class="form-floating col-md-6">
+        <select id="vo_gender" class="form-select" aria-label="Gênero" required></select>
+        <label class="ms-2" for="vo_gender">Gênero</label>
+      </div>
 
+      <div class="form-floating col-md-6">
+        <select id="vo_ethnicity" class="form-select" aria-label="Etnia" required></select>
+        <label class="ms-2" for="vo_ethnicity">Etnia</label>
+      </div>
+
+      <div class="form-floating col-md-6">
+        <select id="vo_pcd" class="form-select" aria-label="PcD" required></select>
+        <label class="ms-2" for="vo_pcd">PcD</label>
+      </div>
+
+      <div class="form-check py-2 ms-2 bg-light">
+        <input id="vo_accepted_terms" class="form-check-input" type="checkbox" value=true required>
+        <label class="form-check-label" for="vo_accepted_terms">
+          Eu li e concordo com os termos de uso de dados. Entenda como seus dados estão sendo utilizados clicando <a
+          href="https://thedevconf.com/tdc/2021/connections/privacidade">aqui</a>.
+        </label>
+      </div>
+      <div class="col-md-12 text-end">
+        <button type="submit" class="btn btn-primary primary-button">SALVAR</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script src="/tdc/formValidationFrontEnd.js"></script>
 <script src="/tdc/formUserData.js" defer></script>

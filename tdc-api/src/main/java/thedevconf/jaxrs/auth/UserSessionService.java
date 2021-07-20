@@ -18,14 +18,14 @@ public class UserSessionService {
 
     @Transactional
     public void updateProfile(String clientId,
-                                     String idToken,
-                                     String name,
-                                     String email,
-                                     boolean emailVerified,
-                                     String pictureUrl,
-                                     String locale,
-                                     String familyName,
-                                     String givenName) {
+                              String idToken,
+                              String name,
+                              String email,
+                              boolean emailVerified,
+                              String pictureUrl,
+                              String locale,
+                              String familyName,
+                              String givenName) {
         log.info("updateProfile()");
         UserSession user = this.ofClientId(clientId);
         user.setIdToken(idToken);
@@ -41,9 +41,9 @@ public class UserSessionService {
     }
 
     @Transactional
-    public UserSession ofClientId(String clientId){
+    public UserSession ofClientId(String clientId) {
         UserSession user = em.find(UserSession.class, clientId);
-        if (user == null){
+        if (user == null) {
             user = UserSession.byClientId(clientId);
             user = em.merge(user);
         }

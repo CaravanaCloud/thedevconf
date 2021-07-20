@@ -4,7 +4,7 @@ public class ThreadLocalUserInfo {
     static ThreadLocal<UserSession> tlui = new ThreadLocal<>();
 
     public static void set(UserSession user) {
-        System.out.println("setting user: "+user);
+        System.out.println("setting user: " + user);
         tlui.set(user);
     }
 
@@ -15,8 +15,7 @@ public class ThreadLocalUserInfo {
 
     public static UserSession get() {
         UserSession user = tlui.get();
-        System.out.println("Getting user info "+user);
+        System.out.println("Getting user info " + user);
         return user;
     }
-
 }

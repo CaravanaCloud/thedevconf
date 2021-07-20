@@ -23,7 +23,7 @@ public class UserSession {
     String givenName;
     LocalDateTime modifiedTime;
 
-    public UserSession(){
+    public UserSession() {
     }
 
     public static UserSession byClientId(String clientId) {
@@ -33,7 +33,7 @@ public class UserSession {
         return userInfoVO;
     }
 
-    public static final UserSession getCurrent(){
+    public static final UserSession getCurrent() {
         UserSession user = ThreadLocalUserInfo.get();
         return user;
     }
@@ -98,7 +98,7 @@ public class UserSession {
         this.modifiedTime = now;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -106,7 +106,7 @@ public class UserSession {
         this.name = name;
     }
 
-    public String getIdToken(){
+    public String getIdToken() {
         return idToken;
     }
 
@@ -114,16 +114,16 @@ public class UserSession {
         this.idToken = idToken;
     }
 
-    public String getClientId(){
+    public String getClientId() {
         return clientId;
     }
 
-    public LocalDateTime getCreateTime(){
+    public LocalDateTime getCreateTime() {
         return ctime;
     }
 
     @Override
     public String toString() {
-        return "UserInfoVO[clientId="+getClientId()+", ctime="+getCreateTime()+"]";
+        return "UserInfoVO[clientId=" + getClientId() + ", ctime=" + getCreateTime() + "]";
     }
 }

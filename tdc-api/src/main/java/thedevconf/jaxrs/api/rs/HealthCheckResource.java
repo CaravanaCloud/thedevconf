@@ -33,11 +33,11 @@ public class HealthCheckResource {
     @Produces(APPLICATION_JSON)
     @Transactional
     public Heartbeat ready() {
-        try{
+        try {
             Heartbeat hb = Heartbeat.of();
             EntityManager em = this.em.get();
             return em.merge(hb);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

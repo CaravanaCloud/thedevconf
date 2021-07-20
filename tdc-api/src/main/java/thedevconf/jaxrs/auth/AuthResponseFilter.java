@@ -17,7 +17,7 @@ public class AuthResponseFilter implements ContainerResponseFilter {
         String path = requestContext.getUriInfo().getPath();
         StringBuilder msg = new StringBuilder();
         msg.append("AuthResponseFilter.filter( \n");
-        msg.append("path = "+path+"\n");
+        msg.append("path = " + path + "\n");
         ThreadLocalUserInfo.clear();
         log.info(msg.toString());
     }

@@ -14,6 +14,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
       - uses: nelonoel/branch-name@v1.0.1
 
       - uses: DeLaGuardo/setup-graalvm@4.0
@@ -21,6 +22,7 @@ jobs:
           graalvm: '21.0.0.2'
           java: 'java11'
           arch: 'amd64'
+
       - run: java -version
 
       - name: Cache Maven packages
@@ -31,7 +33,7 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
 
       - name: Build Maven package
-        run: mvn --batch-mode --update-snapshots clean compile
+        run: mvn --batch-mode --update-snapshots clean package -Dquarkus.package.type=uber-jar
         env:
           MAVEN_OPTS: "-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
 
@@ -46,3 +48,6 @@ jobs:
 
       - name: Deploy
         run: echo "deploy to staging"
+
+      - name: Lista target
+        run: find target

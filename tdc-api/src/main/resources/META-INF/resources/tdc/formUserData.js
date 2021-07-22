@@ -1,9 +1,9 @@
 const createOptions = (options, elementIdToAppendOptions, optionToDisplayAsSelected) => {
     return Object.values(options).forEach(option => {
         if (option === optionToDisplayAsSelected) {
-            return $(elementIdToAppendOptions).append(`<option selected value=${option}>${option}</option>`);
+            return $(elementIdToAppendOptions).append(`<option selected value="${option}">${option}</option>`);
         } else {
-            return $(elementIdToAppendOptions).append(`<option value=${option}>${option}</option>`);
+            return $(elementIdToAppendOptions).append(`<option value="${option}">${option}</option>`);
         }
     })
 }

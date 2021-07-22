@@ -64,6 +64,16 @@ function showPcdOptions() {
     createOptions(pcd, id, "Não se aplica");
 }
 
+function getAcceptedTermsValue() {
+    const element = document.getElementById("vo_accepted_terms");
+
+    if(element.checked) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 const getValueOf = (id) => document.getElementById(id).value;
 
 function postUserDataForm() {
@@ -79,24 +89,25 @@ function postUserDataForm() {
         city: getValueOf("vo_city"),
         gender: getValueOf("vo_gender"),
         ethnicity: getValueOf("vo_ethnicity"),
-        pcd: getValueOf("vo_pcd")
+        pcd: getValueOf("vo_pcd"),
+        acceptTerms: getAcceptedTermsValue()
     }
 
     console.log("fetch data=> " + JSON.stringify(user));
 
     fetch(url, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        }).then(response => {
-            if(response.ok) {
-                console.log("Dados enviados com sucesso!");
-            } else {
-                console.log("Ocorreu algum problema durante o envio dos dados!");
-            }
-        });
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    }).then(response => {
+        if (response.ok) {
+            console.log("Dados enviados com sucesso!");
+        } else {
+            console.log("Ocorreu algum problema durante o envio dos dados!");
+        }
+    });
 }
 
 getCountriesData(url);

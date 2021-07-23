@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 
 @ApplicationScoped
 public class UserService {
+    //TODO: Add functions to: Read, Update and Delete user data
 
     @Inject
     EntityManager em;

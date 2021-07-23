@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
 public class UserResourceTest {
+//TODO: Clean database after each test
 
     @Test
     public void testShouldPostUserData() {
@@ -22,7 +23,7 @@ public class UserResourceTest {
                 "\"company\":\"Caravana Cloud\"," +
                 "\"occupation\":\"Desenvolvedora\"," +
                 "\"country\":\"Brasil\"," +
-                "\"city\":\"Barcelona\"," +
+                "\"city\":\"Recife\"," +
                 "\"gender\":\"Prefiro não responder\"," +
                 "\"ethnicity\":\"Prefiro não responder\"," +
                 "\"pcd\":\"Não se aplica\", " +

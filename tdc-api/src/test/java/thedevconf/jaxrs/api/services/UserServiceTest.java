@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
 public class UserServiceTest {
+//TODO: Clean database after each test
 
     @Inject
     UserService userService;

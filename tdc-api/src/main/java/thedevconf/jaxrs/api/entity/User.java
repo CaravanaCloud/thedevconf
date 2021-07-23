@@ -6,6 +6,10 @@ import java.util.Objects;
 
 @Entity
 public class User {
+    //TODO:
+    // Make relation between User and UserSession
+    // Add data validation
+    // maybe transform each user property in a type?)
 
     @Id
     @Column(name = "id")

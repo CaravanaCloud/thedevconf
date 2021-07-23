@@ -9,7 +9,7 @@ import javax.ws.rs.core.Application;
 
 @OpenAPIDefinition(
         info = @Info(
-                title="TDC API",
+                title = "TDC API",
                 version = "0.0.1")
 )
 @ApplicationPath("")

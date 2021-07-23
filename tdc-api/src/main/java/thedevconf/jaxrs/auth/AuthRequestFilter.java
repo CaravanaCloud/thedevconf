@@ -20,15 +20,15 @@ public class AuthRequestFilter implements ContainerRequestFilter {
         String path = context.getUriInfo().getPath();
         StringBuilder msg = new StringBuilder();
         msg.append("AuthRequestFilter.filter( \n");
-        msg.append("path = "+path+"\n");
+        msg.append("path = " + path + "\n");
         Cookie cookie = context.getCookies().get(CLIENT_ID);
         String clientId = "NO COOKIE FOR YOU";
-        if (cookie != null){
+        if (cookie != null) {
             clientId = cookie.getValue();
             UserSession user = sessionService.ofClientId(clientId);
             ThreadLocalUserInfo.set(user);
         }
-        msg.append("clientId = "+clientId+"\n");
+        msg.append("clientId = " + clientId + "\n");
         msg.append(") \n");
         logger.info(msg.toString());
         /*

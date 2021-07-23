@@ -40,21 +40,21 @@ public class GoogleSignInResource {
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    public JsonObject tokenSignIn(Map<String, String> body) throws Exception{
+    public JsonObject tokenSignIn(Map<String, String> body) throws Exception {
         String clientId = body.get(CLIENT_ID);
         String idTokenStr = body.get(ID_TOKEN);
         System.out.println("TOKEN SIGN IN");
         System.out.println(clientId);
         System.out.println(idTokenStr);
         System.out.println("/TOKEN SIGN IN");
-        if(idTokenStr != null) {
+        if (idTokenStr != null) {
             validateWithGoogle(clientId, idTokenStr);
         }
         return JsonObject.EMPTY_JSON_OBJECT;
     }
 
     private void validateWithGoogle(String clientId,
-                                    String idTokenStr) throws Exception{
+                                    String idTokenStr) throws Exception {
         log.info("validateWithGoogle()");
         HttpTransport transport = new NetHttpTransport();
         JsonFactory jsonFactory = new JacksonFactory();
@@ -103,7 +103,7 @@ public class GoogleSignInResource {
     @GET
     @Consumes(APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public String getTokenSignIn(Map<String, String> body){
+    public String getTokenSignIn(Map<String, String> body) {
         return body.toString();
     }
 }

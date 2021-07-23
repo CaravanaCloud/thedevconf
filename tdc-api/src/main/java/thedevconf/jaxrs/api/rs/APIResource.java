@@ -16,12 +16,12 @@ public class APIResource {
     UserResource userResource;
 
     @Path("_hc")
-    public HealthCheckResource getHealthCheckResource(){
+    public HealthCheckResource getHealthCheckResource() {
         return healthCheck;
     }
 
     @Path("user")
-    public UserResource getUserResource(){
+    public UserResource getUserResource() {
         return userResource;
     }
 }

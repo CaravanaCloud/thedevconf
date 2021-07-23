@@ -46,8 +46,9 @@ jobs:
       - name: Check AWS authentication
         run: aws sts get-caller-identity
 
-      - name: Deploy
-        run: echo "deploy to staging"
+      - name: Upload Jar to S3
+        run: aws s3 cp tdc-api-eb.zip s3://artifacts.thedevconf/tdc-api-eb.zip
+        working-directory: tdc-api/target
 
       - name: Lista target
         run: find target

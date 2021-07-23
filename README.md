@@ -150,4 +150,5 @@ $ ./mvnw compile quarkus:dev -Dquarkus.http.host=0.0.0.0
 
 Back the browser and see the project running on:
 
-http://localhost:8181
+http://localhost:8181.
+.

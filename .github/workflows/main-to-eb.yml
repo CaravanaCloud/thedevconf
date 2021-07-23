@@ -51,5 +51,5 @@ jobs:
         working-directory: tdc-api/target
 
       - name: Pegar o ID do commit
-        run: echo "${github.sha}"
+        run: echo "${{github.sha}}"
 

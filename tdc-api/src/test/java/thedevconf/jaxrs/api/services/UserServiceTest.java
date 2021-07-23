@@ -32,8 +32,7 @@ public class UserServiceTest {
                 "Prefiro não responder",
                 "Não se aplica",
                 AcceptedTerms.TRUE
-                );
-
+        );
         userService.create(user);
         User userFromDatabase = em.find(User.class, 1L);
 

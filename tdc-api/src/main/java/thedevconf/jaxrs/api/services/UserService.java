@@ -19,5 +19,4 @@ public class UserService {
         System.out.println(user);
         em.merge(user);
     }
-
 }

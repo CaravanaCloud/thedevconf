@@ -50,6 +50,6 @@ jobs:
         run: aws s3 cp tdc-api-eb.zip s3://artifacts.thedevconf/tdc-api-eb.zip
         working-directory: tdc-api/target
 
-      - name: Lista target
-        run: find target
-        working-directory: tdc-api
+      - name: Pegar o ID do commit
+        run: echo "${github.sha}"
+

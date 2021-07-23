@@ -90,7 +90,7 @@ function postUserDataForm() {
         gender: getValueOf("vo_gender"),
         ethnicity: getValueOf("vo_ethnicity"),
         pcd: getValueOf("vo_pcd"),
-        acceptTerms: getAcceptedTermsValue()
+        acceptedTerms: getAcceptedTermsValue()
     }
 
     console.log("fetch data=> " + JSON.stringify(user));

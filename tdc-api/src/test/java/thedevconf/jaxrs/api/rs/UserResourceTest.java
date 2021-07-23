@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UserResourceTest {
 
     @Test
-    public void testShouldAcceptPostsOfUserData() {
+    public void testShouldPostUserData() {
         String userData = "{\"language\":\"Português-BR\"," +
                 "\"phone\":\"123456789\"," +
                 "\"company\":\"Caravana Cloud\"," +

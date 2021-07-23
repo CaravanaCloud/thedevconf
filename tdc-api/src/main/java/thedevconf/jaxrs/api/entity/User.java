@@ -2,6 +2,7 @@ package thedevconf.jaxrs.api.entity;
 
 import javax.persistence.*;
 import javax.ws.rs.Consumes;
+import java.util.Objects;
 
 @Entity
 public class User {
@@ -23,6 +24,20 @@ public class User {
 
     public User() {
     }
+
+    public User(String language, String phone, String company, String occupation, String country, String city, String gender, String ethnicity, String pcd, AcceptedTerms acceptedTerms) {
+        this.language = language;
+        this.phone = phone;
+        this.company = company;
+        this.occupation = occupation;
+        this.country = country;
+        this.city = city;
+        this.gender = gender;
+        this.ethnicity = ethnicity;
+        this.pcd = pcd;
+        this.acceptedTerms = acceptedTerms;
+    }
+
 
     public Long getId() {
         return id;
@@ -111,5 +126,18 @@ public class User {
         } else {
             this.acceptedTerms = AcceptedTerms.FALSE;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(language, user.language) && Objects.equals(phone, user.phone) && Objects.equals(company, user.company) && Objects.equals(occupation, user.occupation) && Objects.equals(country, user.country) && Objects.equals(city, user.city) && Objects.equals(gender, user.gender) && Objects.equals(ethnicity, user.ethnicity) && Objects.equals(pcd, user.pcd) && acceptedTerms == user.acceptedTerms;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, language, phone, company, occupation, country, city, gender, ethnicity, pcd, acceptedTerms);
     }
 }

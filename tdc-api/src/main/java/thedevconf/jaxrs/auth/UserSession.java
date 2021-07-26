@@ -5,6 +5,7 @@ import org.checkerframework.checker.units.qual.Length;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.time.LocalDateTime;
 
 @Entity
@@ -23,8 +24,12 @@ public class UserSession {
     String givenName;
     LocalDateTime modifiedTime;
 
+    @Transient
+    boolean isUserInBasicPass;
+
     public UserSession() {
     }
+
 
     public static UserSession byClientId(String clientId) {
         UserSession userInfoVO = new UserSession();
@@ -125,5 +130,9 @@ public class UserSession {
     @Override
     public String toString() {
         return "UserInfoVO[clientId=" + getClientId() + ", ctime=" + getCreateTime() + "]";
+    }
+
+    public void setUserInBasicPass(boolean isUserInBasicPass) {
+        this.isUserInBasicPass = isUserInBasicPass;
     }
 }

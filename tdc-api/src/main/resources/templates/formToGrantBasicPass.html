@@ -13,12 +13,13 @@
       <label class="ms-2" for="name">Nome</label>
     </div>
     <div class="form-floating col-md-6">
-      <input id="email" type="text" class="form-control h-auto" aria-label="Email" required>
+      <input id="email" type="text" class="form-control h-auto" aria-label="Email"
+             onkeyup="mustBeEquals(event,'email','email_confirmation')" required>
       <label class="ms-2" for="email">Email</label>
     </div>
     <div class="form-floating col-md-6">
-      <input id="email_confirmation" type="text" class="form-control h-auto" aria-label="Confirme o email" required>
-      <label class="ms-2" for="email_confirmation">Confirme o email</label>
+      <input id="email_confirmation" type="text" class="form-control h-auto" aria-label="Confirme o email" onkeyup="mustBeEquals(event,'email','email_confirmation') required>
+      <label class=" ms-2" for="email_confirmation">Confirme o email</label>
     </div>
     <div class="form-check py-2 ms-2">
       <input id="vo_accepted_terms" class="form-check-input" type="checkbox">

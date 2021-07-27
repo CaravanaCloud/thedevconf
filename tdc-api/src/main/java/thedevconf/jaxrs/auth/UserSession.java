@@ -2,16 +2,18 @@ package thedevconf.jaxrs.auth;
 
 import org.checkerframework.checker.units.qual.Length;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "UserSession.byEmail", query = "select us from UserSession us where us.email = :email")
+})
 public class UserSession {
     @Id
     String clientId;
+
     @Column(length = 12288)
     String idToken;
     String name;
@@ -26,9 +28,9 @@ public class UserSession {
 
     @Transient
     boolean isUserInBasicPass;
+    private LocalDateTime accessTime;
 
-    public UserSession() {
-    }
+    public UserSession() {}
 
 
     public static UserSession byClientId(String clientId) {
@@ -134,5 +136,16 @@ public class UserSession {
 
     public void setUserInBasicPass(boolean isUserInBasicPass) {
         this.isUserInBasicPass = isUserInBasicPass;
+    }
+
+    public void getUser() {
+    }
+
+    public void setAccessTime(LocalDateTime accessTime) {
+        this.accessTime = accessTime;
+    }
+
+    public LocalDateTime getAccessTime(){
+        return accessTime;
     }
 }

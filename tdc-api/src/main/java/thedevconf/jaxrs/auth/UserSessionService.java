@@ -1,12 +1,12 @@
 package thedevconf.jaxrs.auth;
 
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.logging.Logger;
 
 @ApplicationScoped
@@ -17,18 +17,35 @@ public class UserSessionService {
     EntityManager em;
 
     @Transactional
-    public void updateProfile(String clientId,
-                              String idToken,
-                              String name,
-                              String email,
-                              boolean emailVerified,
-                              String pictureUrl,
-                              String locale,
-                              String familyName,
-                              String givenName) {
+    public UserSession ofClientId(String clientId) {
+        UserSession user = em.find(UserSession.class, clientId);
+        if (user == null) {
+            user = UserSession.byClientId(clientId);
+            user = em.merge(user);
+        }
+        return user;
+    }
+
+
+    @Transactional
+    public UserSession authenticate(String clientId, String idTokenStr, String name, String email, boolean emailVerified,
+                          String pictureUrl, String locale, String familyName, String givenName) {
+        var session = findByEmail(email);
+        if (session != null)
+            return session;
+        session = newUserSession(clientId,
+                idTokenStr, name, email,
+                emailVerified, pictureUrl, locale,
+                familyName, givenName);
+        session.setAccessTime(LocalDateTime.now());
+        // Set User to Session
+        return session;
+    }
+
+    UserSession newUserSession(String clientId, String idTokenStr, String name, String email, boolean emailVerified, String pictureUrl, String locale, String familyName, String givenName) {
         log.info("updateProfile()");
         UserSession user = this.ofClientId(clientId);
-        user.setIdToken(idToken);
+        user.setIdToken(idTokenStr);
         user.setName(name);
         user.setEmail(email);
         user.setEmailVerified(emailVerified);
@@ -37,16 +54,18 @@ public class UserSessionService {
         user.setFamilyName(familyName);
         user.setGivenName(givenName);
         user.setModifiedTime(LocalDateTime.now());
-        user = em.merge(user);
+        em.persist(user);
+        return user;
     }
 
-    @Transactional
-    public UserSession ofClientId(String clientId) {
-        UserSession user = em.find(UserSession.class, clientId);
-        if (user == null) {
-            user = UserSession.byClientId(clientId);
-            user = em.merge(user);
+    UserSession findByEmail(String email) {
+        var query = em.createNamedQuery("UserSession.byEmail");
+        query.setParameter("email", email);
+        query.setMaxResults(1);
+        var results = (List<UserSession>) query.getResultList();
+        if (! results.isEmpty()){
+            return results.get(0);
         }
-        return user;
+        return null;
     }
 }

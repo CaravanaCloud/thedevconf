@@ -36,7 +36,7 @@ h2, .coupon-code span, .confirmation-message p {
     font-size: 1.8em;
 }
 
-.summary, .summary-value, .confirmation-message {
+.summary, .summary-value, .confirmation-message, .form-to-grant-basic-pass {
     background-color: #C4C4C4;
     color: #525252;
     border: none;

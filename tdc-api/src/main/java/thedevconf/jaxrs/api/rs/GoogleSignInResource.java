@@ -83,7 +83,7 @@ public class GoogleSignInResource {
 
             // Use or store profile information
             System.out.println(name);
-            userSessionService.updateProfile(
+            userSessionService.authenticate(
                     clientId,
                     idTokenStr,
                     name,
@@ -99,6 +99,7 @@ public class GoogleSignInResource {
         }
     }
 
+    /*
     @Path("tokensignin")
     @GET
     @Consumes(APPLICATION_JSON)
@@ -106,4 +107,5 @@ public class GoogleSignInResource {
     public String getTokenSignIn(Map<String, String> body) {
         return body.toString();
     }
+    */
 }

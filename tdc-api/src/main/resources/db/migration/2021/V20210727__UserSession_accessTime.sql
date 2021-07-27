@@ -1,0 +1,1 @@
+alter table UserSession add column accessTime datetime;

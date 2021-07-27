@@ -10,5 +10,6 @@ public class RegistrationService {
         //TODO: get User from UserSession
         //TODO: Create Registration entity ( User <-> Mode )
         //TODO: Find Registration from User + Mode
+        throw new UnsupportedOperationException("must be implemented!");
     }
 }

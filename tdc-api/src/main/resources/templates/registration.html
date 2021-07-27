@@ -25,13 +25,22 @@
         </div>
 
         <div class="form-floating mb-3">
-          <input id="vo_email" type="email" class="form-control" required>
+          <input id="vo_email" type="email" class="form-control" onkeyup="mustBeEquals(event,'vo_email','vo_email_confirm')"  required>
           <label for="vo_email">Email</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input id="vo_email_confirm" type="email" class="form-control" onkeyup="mustBeEquals(event,'vo_email','vo_email_confirm')" required>
+          <label for="vo_email_confirm">Confirme o Email</label>
         </div>
 
         <div class="form-floating mb-3">
-          <input id="vo_password" type="password" class="form-control" required>
+          <input id="vo_password" type="password" class="form-control" onkeyup="mustBeEquals(event,'vo_password','vo_password_confirm')" required>
           <label for="vo_password">Senha</label>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input id="vo_password_confirm" type="password" class="form-control" onkeyup="mustBeEquals(event,'vo_password','vo_password_confirm')" required>
+          <label for="vo_password_confirm">Confirme a Senha</label>
         </div>
 
         <div class="form-check py-2 mb-3 bg-light">

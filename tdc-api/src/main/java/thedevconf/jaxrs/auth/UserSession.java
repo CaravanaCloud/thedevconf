@@ -1,12 +1,10 @@
 package thedevconf.jaxrs.auth;
 
-import org.checkerframework.checker.units.qual.Length;
-
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "UserSession_tdc")
 @NamedQueries({
         @NamedQuery(name = "UserSession.byEmail", query = "select us from UserSession us where us.email = :email")
 })
@@ -30,7 +28,8 @@ public class UserSession {
     boolean isUserInBasicPass;
     private LocalDateTime accessTime;
 
-    public UserSession() {}
+    public UserSession() {
+    }
 
 
     public static UserSession byClientId(String clientId) {
@@ -145,7 +144,7 @@ public class UserSession {
         this.accessTime = accessTime;
     }
 
-    public LocalDateTime getAccessTime(){
+    public LocalDateTime getAccessTime() {
         return accessTime;
     }
 }

@@ -11,12 +11,14 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+
 import thedevconf.jaxrs.api.entity.Mode;
 import thedevconf.jaxrs.api.entity.User;
 import thedevconf.jaxrs.api.services.RegistrationService;
 import thedevconf.jaxrs.api.services.UserService;
 import thedevconf.jaxrs.api.vo.RegistrationVO;
 import thedevconf.jaxrs.auth.UserSession;
+
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 /**
@@ -26,14 +28,18 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 public class UserResource {
     @Inject
     SummaryResource summary;
+
     //hibernate
     @Inject
     EntityManager em;
+
     //jdbc
     @Inject
     DataSource ds;
+
     @Inject
     UserService userService;
+
     @Inject
     RegistrationService registrationService;
 
@@ -54,8 +60,8 @@ public class UserResource {
     @Produces(APPLICATION_JSON)
     @Consumes(APPLICATION_JSON)
     public RegistrationVO getRegistrationVO(
-        @QueryParam("clientId") String clientId,
-        @Valid RegistrationVO vo
+            @QueryParam("clientId") String clientId,
+            @Valid RegistrationVO vo
     ) {
         System.out.println(vo);
         //em.merge()...

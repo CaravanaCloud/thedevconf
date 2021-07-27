@@ -1,16 +1,13 @@
 package thedevconf.jaxrs.api.rs;
 
-import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
-import thedevconf.jaxrs.api.entity.User;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import static io.restassured.RestAssured.given;
-import static org.junit.jupiter.api.Assertions.fail;
 
 @QuarkusTest
 public class UserResourceTest {
@@ -21,10 +18,7 @@ public class UserResourceTest {
 
     @Test
     public void testShouldPostUserData() {
-//        var x = em.find(User.class, 1L);
-//        if (x != null) {
-//            fail("User already exists:" + x.getId());
-//        }
+
         String userData = "{\"language\":\"Português-BR\"," +
                 "\"phone\":\"123456789\"," +
                 "\"company\":\"Caravana Cloud\"," +

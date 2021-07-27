@@ -24,17 +24,13 @@ public class UserServiceTest {
 
     @Test
     public void testShouldCreateAnUser() {
-//        var x = em.find(User.class, 1L);
-//        if (x != null) {
-//            fail("User already exists:" + x.getId());
-//        }
         User user = new User(
                 "Português-BR",
                 "123456789",
                 "Caravana Cloud",
                 "Desenvolvedora",
-                "Espanha",
-                "Barcelona",
+                "Brasil",
+                "Recife",
                 "Prefiro não responder",
                 "Prefiro não responder",
                 "Não se aplica",

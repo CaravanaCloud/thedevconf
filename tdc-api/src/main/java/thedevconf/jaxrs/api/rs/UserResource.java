@@ -1,7 +1,9 @@
 package thedevconf.jaxrs.api.rs;
 
 import cloud.caravana.App;
+import thedevconf.jaxrs.api.entity.Mode;
 import thedevconf.jaxrs.api.entity.User;
+import thedevconf.jaxrs.api.services.RegistrationService;
 import thedevconf.jaxrs.api.services.UserService;
 import thedevconf.jaxrs.api.vo.RegistrationVO;
 import thedevconf.jaxrs.auth.UserSession;
@@ -38,6 +40,9 @@ public class UserResource {
 
     @Inject
     UserService userService;
+
+    @Inject
+    RegistrationService registrationService;
 
     @Path("summary")
     public SummaryResource getSummary() {
@@ -79,6 +84,8 @@ public class UserResource {
     @Path("info")
     public UserSession getInfo() {
         UserSession user = UserSession.getCurrent();
+        boolean isUserInBasicPass = registrationService.isRegistered(user, Mode.BASICPASS);
+        user.setUserInBasicPass(isUserInBasicPass);
         return user;
     }
 }

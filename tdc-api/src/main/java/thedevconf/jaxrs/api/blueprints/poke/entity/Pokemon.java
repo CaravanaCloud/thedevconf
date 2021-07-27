@@ -9,7 +9,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @Entity
-@PartyPlaceThing
 @NamedQueries({
         @NamedQuery(name = "pokemon.all", query = "select p from Pokemon p order by p.id")
 })

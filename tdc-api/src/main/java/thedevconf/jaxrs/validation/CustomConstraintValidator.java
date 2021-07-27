@@ -21,12 +21,12 @@ public class CustomConstraintValidator implements ConstraintValidator<CustomCons
     public boolean isValid(Object value, ConstraintValidatorContext context) {
         try {
             final Constructor<? extends ConstraintValidator<CustomConstraint, ? extends Object>> constructor =
-                this.constraintAnnotation
-                    .delegateTo()
-                    .getConstructor(new Class[0]);
+                    this.constraintAnnotation
+                            .delegateTo()
+                            .getConstructor(new Class[0]);
             constructor.setAccessible(true);
             final ConstraintValidator constraintValidator =
-                constructor.newInstance(new Object[0]);
+                    constructor.newInstance(new Object[0]);
             return constraintValidator.isValid(value, context);
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
             throw new RuntimeException(e);

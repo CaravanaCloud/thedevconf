@@ -18,13 +18,13 @@ public class RegistrationVO {
     LocalDateTime createTime;
 
     public RegistrationVO(
-        String userId,
-        String clientId,
-        String name,
-        EmailWithConfirmationVO emailWithConfirmation,
-        PasswordWithConfirmationVO passwordWithConfirmation,
-        Boolean acceptedTerms,
-        LocalDateTime createTime
+            String userId,
+            String clientId,
+            String name,
+            EmailWithConfirmationVO emailWithConfirmation,
+            PasswordWithConfirmationVO passwordWithConfirmation,
+            Boolean acceptedTerms,
+            LocalDateTime createTime
     ) {
         this.userId = userId;
         this.clientId = clientId;
@@ -37,13 +37,13 @@ public class RegistrationVO {
 
     public static RegistrationVO of(String clientId) {
         return new RegistrationVO(
-            null,
-            clientId,
-            null,
-            new EmailWithConfirmationVO(),
-            new PasswordWithConfirmationVO(),
-            false,
-            LocalDateTime.now()
+                null,
+                clientId,
+                null,
+                new EmailWithConfirmationVO(),
+                new PasswordWithConfirmationVO(),
+                false,
+                LocalDateTime.now()
         );
     }
 
@@ -106,13 +106,13 @@ public class RegistrationVO {
     @Override
     public String toString() {
         return "RegistrationVO{" +
-            "userId='" + userId + '\'' +
-            ", clientId='" + clientId + '\'' +
-            ", name='" + name + '\'' +
-            ", emailWithConfirmation='" + emailWithConfirmation + '\'' +
-            ", passwordWithConfirmation='" + passwordWithConfirmation + '\'' +
-            ", acceptedTerms=" + acceptedTerms +
-            ", createTime=" + createTime +
-            '}';
+                "userId='" + userId + '\'' +
+                ", clientId='" + clientId + '\'' +
+                ", name='" + name + '\'' +
+                ", emailWithConfirmation='" + emailWithConfirmation + '\'' +
+                ", passwordWithConfirmation='" + passwordWithConfirmation + '\'' +
+                ", acceptedTerms=" + acceptedTerms +
+                ", createTime=" + createTime +
+                '}';
     }
 }

@@ -10,15 +10,15 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("")
-public class ConfirmationTemplate extends BaseResource{
+public class ConfirmationTemplate extends BaseResource {
 
-  @Inject
-  Template confirmation;
+    @Inject
+    Template confirmation;
 
-  @GET
-  @Path("confirmation")
-  @Produces(MediaType.TEXT_HTML)
-  public TemplateInstance getConfirmation() {
-    return instanceOf(confirmation);
-  }
+    @GET
+    @Path("confirmation")
+    @Produces(MediaType.TEXT_HTML)
+    public TemplateInstance getConfirmation() {
+        return instanceOf(confirmation);
+    }
 }

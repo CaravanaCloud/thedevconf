@@ -1,11 +1,11 @@
-function mustBeEquals(event,idField1,idField2){
+function mustBeEquals(event, idField1, idField2) {
     const field1 = document.getElementById(idField1);
     const field2 = document.getElementById(idField2);
-    if(field1.checkValidity()){
-        if(field1.value == field2.value){
+    if (field1.checkValidity()) {
+        if (field1.value == field2.value) {
             field2.setCustomValidity('');
             return;
-        }else{
+        } else {
             field2.setCustomValidity('invalid');
             return;
         }
@@ -13,6 +13,7 @@ function mustBeEquals(event,idField1,idField2){
     console.log(`field ${idField1} is not equals to ${idField2}`)
     field2.setCustomValidity('invalid');
 }
+
 function handleFormSubmit(formType) {
     'use strict'
 
@@ -24,10 +25,10 @@ function handleFormSubmit(formType) {
                 event.preventDefault();
                 form.classList.add('was-validated');
                 if (form.checkValidity()) {
-                    if(formType === 'user-data-form') {
+                    if (formType === 'user-data-form') {
                         postUserDataForm();
                     }
-                    if(formType === 'registration-form') {
+                    if (formType === 'registration-form') {
                         postRegistrationForm();
                     }
                 } else {

@@ -1,5 +1,7 @@
 package thedevconf.jaxrs.api.services;
 
+import io.quarkus.flyway.FlywayDataSource;
+import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 import thedevconf.jaxrs.api.entity.AcceptedTerms;
@@ -22,13 +24,17 @@ public class UserServiceTest {
 
     @Test
     public void testShouldCreateAnUser() {
+//        var x = em.find(User.class, 1L);
+//        if (x != null) {
+//            fail("User already exists:" + x.getId());
+//        }
         User user = new User(
                 "Português-BR",
                 "123456789",
                 "Caravana Cloud",
                 "Desenvolvedora",
-                "Brasil",
-                "Recife",
+                "Espanha",
+                "Barcelona",
                 "Prefiro não responder",
                 "Prefiro não responder",
                 "Não se aplica",

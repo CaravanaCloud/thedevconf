@@ -12,13 +12,13 @@ import javax.validation.Payload;
  * Custom Constraint to allow the custom validation
  */
 @Constraint
-    (validatedBy = CustomConstraintValidator.class)
+        (validatedBy = CustomConstraintValidator.class)
 @Retention(RetentionPolicy.RUNTIME)
 @Target({
-    ElementType.CONSTRUCTOR,
-    ElementType.FIELD,
-    ElementType.TYPE,
-    ElementType.METHOD})
+        ElementType.CONSTRUCTOR,
+        ElementType.FIELD,
+        ElementType.TYPE,
+        ElementType.METHOD})
 public @interface CustomConstraint {
 
     String message() default "{thedevconf.jaxrs.validation.CustomConstraint.message}";

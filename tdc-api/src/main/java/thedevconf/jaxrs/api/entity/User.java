@@ -1,7 +1,6 @@
 package thedevconf.jaxrs.api.entity;
 
 import javax.persistence.*;
-import javax.ws.rs.Consumes;
 import java.util.Objects;
 
 @Entity

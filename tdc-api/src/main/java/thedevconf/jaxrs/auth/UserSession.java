@@ -1,9 +1,6 @@
 package thedevconf.jaxrs.auth;
 
-import org.checkerframework.checker.units.qual.Length;
-
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity

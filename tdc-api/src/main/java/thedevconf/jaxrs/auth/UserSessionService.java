@@ -4,7 +4,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Logger;
@@ -26,10 +25,9 @@ public class UserSessionService {
         return user;
     }
 
-
     @Transactional
     public UserSession authenticate(String clientId, String idTokenStr, String name, String email, boolean emailVerified,
-                          String pictureUrl, String locale, String familyName, String givenName) {
+                                    String pictureUrl, String locale, String familyName, String givenName) {
         var session = findByEmail(email);
         if (session != null)
             return session;
@@ -63,7 +61,7 @@ public class UserSessionService {
         query.setParameter("email", email);
         query.setMaxResults(1);
         var results = (List<UserSession>) query.getResultList();
-        if (! results.isEmpty()){
+        if (!results.isEmpty()) {
             return results.get(0);
         }
         return null;

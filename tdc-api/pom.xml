@@ -131,6 +131,10 @@
       <artifactId>google-http-client-jackson</artifactId>
       <version>1.29.2</version>
     </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-hibernate-validator</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <defaultGoal>clean compile quarkus:dev</defaultGoal>

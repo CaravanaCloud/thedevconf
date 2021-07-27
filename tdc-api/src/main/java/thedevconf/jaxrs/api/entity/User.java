@@ -5,6 +5,7 @@ import javax.ws.rs.Consumes;
 import java.util.Objects;
 
 @Entity
+@Table(name = "User_tdc")
 public class User {
     //TODO:
     // Make relation between User and UserSession

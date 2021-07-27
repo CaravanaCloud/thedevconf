@@ -1,4 +1,4 @@
-CREATE TABLE UserSession (
+CREATE TABLE UserSession_tdc (
     clientId varchar(255) NOT NULL PRIMARY KEY,
     ctime timestamp DEFAULT NULL,
     email varchar(255) DEFAULT NULL,

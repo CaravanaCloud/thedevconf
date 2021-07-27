@@ -1,1 +1,1 @@
-alter table UserSession add column accessTime datetime;
+alter table UserSession_tdc   add column accessTime datetime;

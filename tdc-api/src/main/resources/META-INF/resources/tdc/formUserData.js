@@ -67,7 +67,7 @@ function showPcdOptions() {
 function getAcceptedTermsValue() {
     const element = document.getElementById("vo_accepted_terms");
 
-    if(element.checked) {
+    if (element.checked) {
         return true;
     } else {
         return false;

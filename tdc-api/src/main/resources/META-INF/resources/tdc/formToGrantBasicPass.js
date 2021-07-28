@@ -17,7 +17,8 @@ function postDataToGrantBasicPassThroughEmail() {
     const user = {
         name: getValueOf("vo_name_to_grant_basic_pass"),
         email: getValueOf("vo_email_to_grant_basic_pass"),
-        acceptedTerms: getAcceptedTermsValue()
+        acceptedTerms: getAcceptedTermsValue(),
+        emailSendingStatus: false
     }
 
     console.log("fetch data=> " + JSON.stringify(user));

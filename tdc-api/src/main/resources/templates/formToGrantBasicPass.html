@@ -9,30 +9,33 @@
   </div>
   <form class="row g-3 needs-validation" novalidate>
     <div class="form-floating col-md-12">
-      <input id="name" type="text" class="form-control h-auto" aria-label="Nome" required>
-      <label for="name">Nome</label>
+      <input id="vo_name_to_grant_basic_pass" type="text" class="form-control h-auto" aria-label="Nome" required>
+      <label for="vo_name_to_grant_basic_pass">Nome</label>
     </div>
     <div class="form-floating col-md-6">
-      <input id="email" type="text" class="form-control h-auto" aria-label="Email"
+      <input id="vo_email_to_grant_basic_pass" type="email" class="form-control h-auto" aria-label="Email"
              onkeyup="mustBeEquals(event,'email','email_confirmation')" required>
-      <label for="email">Email</label>
+      <label for="vo_email_to_grant_basic_pass">Email</label>
     </div>
     <div class="form-floating col-md-6">
-      <input id="email_confirmation" type="text" class="form-control h-auto" aria-label="Confirme o email" onkeyup="mustBeEquals(event,'email','email_confirmation')" required>
+      <input id="email_confirmation" type="email" class="form-control h-auto" aria-label="Confirme o email"
+             onkeyup="mustBeEquals(event,'email','email_confirmation')" required>
       <label class=" ms-2" for="email_confirmation">Confirme o email</label>
     </div>
     <div class="form-check ms-2">
-      <input id="vo_accepted_terms" class="form-check-input" type="checkbox">
-      <label class="form-check-label" for="vo_accepted_terms">
+      <input id="vo_accepted_terms_to_grant_basic_pass" class="form-check-input" type="checkbox">
+      <label class="form-check-label" for="vo_accepted_terms_to_grant_basic_pass">
         Eu li e concordo com os termos de uso de dados. Entenda como seus dados estão sendo utilizados clicando <a
         href="https://thedevconf.com/tdc/2021/connections/privacidade">aqui</a>.
       </label>
     </div>
     <div class="col-md-12 text-end">
-      <button type="submit" class="btn btn-primary primary-button" onclick="handleFormSubmit('user-data-form')">GARANTIR
+      <button type="submit" class="btn btn-primary primary-button"
+              onclick="handleFormSubmit('grant-basic-pass-through-email-form')">GARANTIR
       </button>
     </div>
   </form>
 </div>
 
 <script src="/tdc/formValidationFrontEnd.js"></script>
+<script src="/tdc/formToGrantBasicPass.js" defer></script>

@@ -25,11 +25,14 @@ function handleFormSubmit(formType) {
                 event.preventDefault();
                 form.classList.add('was-validated');
                 if (form.checkValidity()) {
-                    if (formType === 'user-data-form') {
-                        postUserDataForm();
+                    if (formType === 'grant-basic-pass-through-email-form') {
+                        postDataToGrantBasicPassThroughEmail();
                     }
                     if (formType === 'registration-form') {
                         postRegistrationForm();
+                    }
+                    if (formType === 'user-data-form') {
+                        postUserDataForm();
                     }
                 } else {
                     console.log("invalid data")

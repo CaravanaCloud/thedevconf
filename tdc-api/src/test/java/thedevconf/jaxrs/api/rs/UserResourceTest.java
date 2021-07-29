@@ -3,21 +3,22 @@ package thedevconf.jaxrs.api.rs;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
-import thedevconf.jaxrs.api.entity.AcceptedTerms;
-import thedevconf.jaxrs.api.entity.User;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import static io.restassured.RestAssured.given;
-import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
 public class UserResourceTest {
 //TODO: Clean database after each test
 
+    @Inject
+    EntityManager em;
+
     @Test
     public void testShouldPostUserData() {
+
         String userData = "{\"language\":\"Português-BR\"," +
                 "\"phone\":\"123456789\"," +
                 "\"company\":\"Caravana Cloud\"," +

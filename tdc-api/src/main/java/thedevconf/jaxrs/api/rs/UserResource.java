@@ -1,23 +1,23 @@
 package thedevconf.jaxrs.api.rs;
 
-import cloud.caravana.App;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.sql.DataSource;
+import javax.validation.Valid;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+
 import thedevconf.jaxrs.api.entity.Mode;
 import thedevconf.jaxrs.api.entity.User;
 import thedevconf.jaxrs.api.services.RegistrationService;
 import thedevconf.jaxrs.api.services.UserService;
 import thedevconf.jaxrs.api.vo.RegistrationVO;
 import thedevconf.jaxrs.auth.UserSession;
-import thedevconf.jaxrs.ui.BaseResource;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.sql.DataSource;
-import javax.transaction.Transactional;
-import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
-
-import java.util.Set;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
@@ -26,7 +26,6 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
  */
 @ApplicationScoped
 public class UserResource {
-
     @Inject
     SummaryResource summary;
 
@@ -62,7 +61,8 @@ public class UserResource {
     @Consumes(APPLICATION_JSON)
     public RegistrationVO getRegistrationVO(
             @QueryParam("clientId") String clientId,
-            RegistrationVO vo) {
+            @Valid RegistrationVO vo
+    ) {
         System.out.println(vo);
         //em.merge()...
         //ds.getConnection().createStatement()

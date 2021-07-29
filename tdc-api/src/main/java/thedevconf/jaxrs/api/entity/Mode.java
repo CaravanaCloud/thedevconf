@@ -6,7 +6,7 @@ import javax.persistence.*;
         @NamedQuery(name = "mode.all", query = "select m from Mode m order by m.id")
 })
 @Entity
-@Table("mode_tdc")
+@Table(name = "mode_tdc")
 public class Mode {
     public static final String BASICPASS = "BASICPASS";
     public static final String VIPPASS = "VIPPASS";

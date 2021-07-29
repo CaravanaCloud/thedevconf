@@ -23,7 +23,7 @@
     <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
     <quarkus.platform.version>2.0.2.Final</quarkus.platform.version>
-    <skipTests>true</skipTests>
+    <skipTests>false</skipTests>
     <surefire-plugin.version>3.0.0-M5</surefire-plugin.version>
     <google-api.version>1.31.5</google-api.version>
   </properties>
@@ -130,6 +130,10 @@
       <groupId>com.google.http-client</groupId>
       <artifactId>google-http-client-jackson</artifactId>
       <version>1.29.2</version>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-hibernate-validator</artifactId>
     </dependency>
   </dependencies>
   <build>

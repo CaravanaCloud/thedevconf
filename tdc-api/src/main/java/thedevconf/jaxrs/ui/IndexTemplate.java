@@ -2,7 +2,6 @@ package thedevconf.jaxrs.ui;
 
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
-import thedevconf.jaxrs.Configuration;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;

@@ -4,7 +4,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.json.JsonObject;
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 
 import java.util.Collections;
 import java.util.Map;
@@ -20,7 +19,6 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson.JacksonFactory;
 import thedevconf.jaxrs.Configuration;
-import com.google.api.client.json.JsonFactory;
 import thedevconf.jaxrs.auth.UserSessionService;
 
 @Path("api/google")
@@ -83,7 +81,7 @@ public class GoogleSignInResource {
 
             // Use or store profile information
             System.out.println(name);
-            userSessionService.updateProfile(
+            userSessionService.authenticate(
                     clientId,
                     idTokenStr,
                     name,
@@ -99,6 +97,7 @@ public class GoogleSignInResource {
         }
     }
 
+    /*
     @Path("tokensignin")
     @GET
     @Consumes(APPLICATION_JSON)
@@ -106,4 +105,5 @@ public class GoogleSignInResource {
     public String getTokenSignIn(Map<String, String> body) {
         return body.toString();
     }
+    */
 }

@@ -6,8 +6,12 @@ function postRegistrationForm() {
     const url = '/api/user/registration?' + new URLSearchParams(params).toString();
 
     vo.name = document.getElementById("vo_name").value;
-    vo.email = document.getElementById("vo_email").value;
-    vo.password = document.getElementById("vo_password").value;
+    vo.emailWithConfirmation = {};
+    vo.emailWithConfirmation.email = document.getElementById("vo_email").value;
+    vo.emailWithConfirmation.emailConfirmation = document.getElementById("vo_email_confirm").value;
+    vo.passwordWithConfirmation={};
+    vo.passwordWithConfirmation.password = document.getElementById("vo_password").value;
+    vo.passwordWithConfirmation.passwordConfirmation = document.getElementById("vo_password_confirm").value;
     vo.acceptedTerms = Boolean(document.getElementById("vo_accepted_terms").value);
 
     fetch(url, {
@@ -17,6 +21,7 @@ function postRegistrationForm() {
         },
         body: JSON.stringify(vo)
     }).then(response => response.json())
+        .then(data => {console.log(data);return data})
         .then(data => paint(data));
     console.log("fetch data=> " + JSON.stringify(vo));
 }
@@ -27,7 +32,8 @@ function paint(registration) {
     vo = registration;
 }
 
-function load(clientId) {
+function load(userInfo) {
+    const clientId = userInfo.getClientId();
     log("Registering Client "+ clientId);
 
     const params = {"clientId":clientId};

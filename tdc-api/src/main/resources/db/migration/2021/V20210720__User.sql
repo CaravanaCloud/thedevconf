@@ -1,4 +1,4 @@
-CREATE TABLE User (
+CREATE TABLE User_tdc (
     id int NOT NULL AUTO_INCREMENT,
     language varchar(255) NOT NULL,
     phone varchar(255) NOT NULL,

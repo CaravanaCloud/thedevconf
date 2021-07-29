@@ -2,9 +2,7 @@ package thedevconf.jaxrs.ui;
 
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
-import thedevconf.jaxrs.api.vo.RegistrationVO;
 
-import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -25,7 +23,7 @@ public class UserTemplate extends BaseResource {
     Template userArea;
 
     @Path("summary")
-    public SummaryTemplate getSummary(){
+    public SummaryTemplate getSummary() {
         return summary;
     }
 

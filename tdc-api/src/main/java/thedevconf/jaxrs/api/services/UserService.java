@@ -1,6 +1,5 @@
 package thedevconf.jaxrs.api.services;
 
-import thedevconf.jaxrs.api.entity.AcceptedTerms;
 import thedevconf.jaxrs.api.entity.User;
 
 import javax.enterprise.context.ApplicationScoped;

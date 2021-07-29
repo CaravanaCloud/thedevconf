@@ -21,7 +21,7 @@ function postRegistrationForm() {
         },
         body: JSON.stringify(vo)
     }).then(response => response.json())
-        .then(data => {console.log(data);return data});
+        .then(data => {console.log(data);return data})
         .then(data => paint(data));
     console.log("fetch data=> " + JSON.stringify(vo));
 }

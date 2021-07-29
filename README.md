@@ -65,9 +65,8 @@ mysql> show databases;
 5 rows in set (0.01 sec)
 ```
 
-## Install the commons pockage
+## Compile everything
 ```
-cd tdc-commons
 mvn
 ```
 

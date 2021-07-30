@@ -94,5 +94,6 @@ public class UserResource {
             // p.set...
             return em.merge(p);
         }
+        return null;
     }
 }

@@ -15,6 +15,7 @@ public class User {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    String name;
     String language;
     String phone;
     String company;
@@ -25,6 +26,8 @@ public class User {
     String ethnicity;
     String pcd;
     AcceptedTerms acceptedTerms;
+    @Transient
+    UserSession session;
 
     public User() {
     }
@@ -40,6 +43,16 @@ public class User {
         this.ethnicity = ethnicity;
         this.pcd = pcd;
         this.acceptedTerms = acceptedTerms;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public static User of(UserSession session) {
+        var user = new User();
+        user.name = session.getName();
+        return user;
     }
 
 
@@ -143,5 +156,9 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id, language, phone, company, occupation, country, city, gender, ethnicity, pcd, acceptedTerms);
+    }
+
+    public void setSession(UserSession session) {
+        this.session = session;
     }
 }

@@ -1,5 +1,7 @@
 package thedevconf.jaxrs.auth;
 
+import thedevconf.jaxrs.api.entity.UserSession;
+
 public class ThreadLocalUserInfo {
     static ThreadLocal<UserSession> tlui = new ThreadLocal<>();
 

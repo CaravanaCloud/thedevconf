@@ -1,7 +1,10 @@
-package thedevconf.jaxrs.auth;
+package thedevconf.jaxrs.api.entity;
+
+import thedevconf.jaxrs.auth.ThreadLocalUserInfo;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Entity
 @Table(name = "UserSession_tdc")
@@ -25,12 +28,19 @@ public class UserSession {
     LocalDateTime modifiedTime;
 
     @Transient
+    Optional<User> user;
+
+    public Optional<User> getUser() {
+        return user;
+    }
+
+    @Transient
     boolean isUserInBasicPass;
     private LocalDateTime accessTime;
 
+
     public UserSession() {
     }
-
 
     public static UserSession byClientId(String clientId) {
         UserSession userInfoVO = new UserSession();
@@ -137,14 +147,19 @@ public class UserSession {
         this.isUserInBasicPass = isUserInBasicPass;
     }
 
-    public void getUser() {
-    }
-
     public void setAccessTime(LocalDateTime accessTime) {
         this.accessTime = accessTime;
     }
 
     public LocalDateTime getAccessTime() {
         return accessTime;
+    }
+
+    public boolean isAuthenticated() {
+        return email != null && ! email.isEmpty();
+    }
+
+    public void setUser(User user) {
+        this.user = Optional.ofNullable(user);
     }
 }

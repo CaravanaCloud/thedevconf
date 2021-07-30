@@ -1,5 +1,7 @@
 package thedevconf.jaxrs.auth;
 
+import thedevconf.jaxrs.api.entity.UserSession;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;

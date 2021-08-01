@@ -40,11 +40,14 @@ public class PasswordGeneratorService {
     private final SecretKeyFactory secretKeyFactory;
 
     public PasswordGeneratorService(
-        @ConfigProperty(name = SALT_SIZE_PROPERTY) final Optional<Integer> saltSizeProperty,
-        @ConfigProperty(name = SECRET_KEY_ALGORITHM_PROPERTY,
-            defaultValue = SECRET_KEY_ALGORITHM_DEFAULT_VALUE) final Optional<String> algorithm,
-        @ConfigProperty(name = ITERATION_COUNT_PROPERTY) final Optional<Integer> iterationCount,
-        @ConfigProperty(name = KEY_LENGTH_PROPERTY) final Optional<Integer> keyLength
+        @ConfigProperty(name = SALT_SIZE_PROPERTY)
+        final Optional<Integer> saltSizeProperty,
+        @ConfigProperty(name = SECRET_KEY_ALGORITHM_PROPERTY, defaultValue = SECRET_KEY_ALGORITHM_DEFAULT_VALUE)
+        final Optional<String> algorithm,
+        @ConfigProperty(name = ITERATION_COUNT_PROPERTY)
+        final Optional<Integer> iterationCount,
+        @ConfigProperty(name = KEY_LENGTH_PROPERTY)
+        final Optional<Integer> keyLength
     ) {
         this.saltSize = getSaltSize(saltSizeProperty);
         this.iterationCount = iterationCount(iterationCount);

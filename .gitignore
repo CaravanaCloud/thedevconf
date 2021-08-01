@@ -45,3 +45,8 @@ envrc.mysql
 .envrc
 
 .gradle/
+
+config/
+
+.env
+

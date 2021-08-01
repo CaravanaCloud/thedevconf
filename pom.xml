@@ -33,7 +33,7 @@
   </modules>
 
   <build>
-    <defaultGoal>clean compile</defaultGoal>
+    <defaultGoal>clean install</defaultGoal>
   </build>
 
 </project>

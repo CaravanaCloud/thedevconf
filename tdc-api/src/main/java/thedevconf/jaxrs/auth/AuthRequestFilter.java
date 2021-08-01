@@ -1,5 +1,7 @@
 package thedevconf.jaxrs.auth;
 
+import thedevconf.jaxrs.api.entity.UserSession;
+
 import javax.inject.Inject;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;

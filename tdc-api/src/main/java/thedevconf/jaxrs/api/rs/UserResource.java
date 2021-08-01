@@ -12,12 +12,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+import thedevconf.jaxrs.api.blueprints.poke.entity.Pokemon;
 import thedevconf.jaxrs.api.entity.Mode;
 import thedevconf.jaxrs.api.entity.User;
 import thedevconf.jaxrs.api.services.RegistrationService;
 import thedevconf.jaxrs.api.services.UserService;
 import thedevconf.jaxrs.api.vo.RegistrationVO;
-import thedevconf.jaxrs.auth.UserSession;
+import thedevconf.jaxrs.api.entity.UserSession;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
@@ -81,11 +82,18 @@ public class UserResource {
 
     @GET
     @Produces(APPLICATION_JSON)
-    @Path("info")
-    public UserSession getInfo() {
-        UserSession user = UserSession.getCurrent();
-        boolean isUserInBasicPass = registrationService.isRegistered(user, Mode.BASICPASS);
-        user.setUserInBasicPass(isUserInBasicPass);
-        return user;
+    @Path("session")
+    public UserSession getSession() {
+        return userService.currentSession();
+    }
+
+    public Pokemon updateEmpresa(Pokemon p){
+        var session = userService.currentSession();
+        var canUpdate = session.isAuthenticated(); // && isSameTrainer
+        if (canUpdate) {
+            // p.set...
+            return em.merge(p);
+        }
+        return null;
     }
 }

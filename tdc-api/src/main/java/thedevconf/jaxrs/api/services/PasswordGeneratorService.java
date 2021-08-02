@@ -75,7 +75,7 @@ public class PasswordGeneratorService {
     }
 
     private int iterationCount(Optional<Integer> iterationCount) {
-        final int iterationCountValue = iterationCount.orElse(ITERATION_COUNT_MINIMAL_VALUE);
+        final int iterationCountValue = iterationCount.orElse(ITERATION_COUNT_DEFAULT_VALUE);
         validateIterationCount(iterationCountValue);
         return iterationCountValue;
     }

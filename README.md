@@ -19,13 +19,13 @@ sdk install java 21.1.0.r16-grl
 ```
 
 ### Install [Maven](https://sdkman.io/sdks#maven)
-```
+```shell
 sdk install maven
 ```
 ## Set environment variables
 
 Set the MySQL container environment variables:
-```
+```shell
 export MYSQL_ROOT_PASSWORD="SETECAstronomy"
 export MYSQL_HOST="127.0.0.1"
 export MYSQL_PORT="3307"
@@ -37,7 +37,7 @@ You can also use [DirEnv](https://direnv.net/) or your IDE settings to configure
 ## Start a MySQL database using Docker
 
 Start a MySQL container:
-```
+```shell
 docker run --rm \
   --name $MYSQL_DB \
   -p 0.0.0.0:$MYSQL_PORT:3306 \
@@ -49,6 +49,26 @@ docker run --rm \
 Test your MySQL Connection:
 ```
 mysql --host=$MYSQL_HOST --port=$MYSQL_PORT -uroot -p$MYSQL_ROOT_PASSWORD
+```
+
+Or use the MySQL CLI thru the docker container that you've started:
+```shell
+$ docker exec -it $MYSQL_DB mysql --port=$MYSQL_PORT -uroot -p$MYSQL_ROOT_PASSWORD
+mysql: [Warning] Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.23 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql>
+
 ```
 
 ```
@@ -83,12 +103,12 @@ export HIBERNATE_ORM_DATABASE_GENERATION=none
 ```
 
 Start the API service:
-```
+```shell
 cd tdc-api
 mvn
 ```
 
-```
+```shell
 mvn
 [INFO] Scanning for projects...
 [INFO]
@@ -119,9 +139,9 @@ __  ____  __  _____   ___  __ ____  ______
  -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \
 --\___\_\____/_/ |_/_/|_/_/|_|\____/___/
 2021-08-01 22:48:38,533 INFO  [org.fly.cor.int.lic.VersionPrinter] (Quarkus Main Thread) Flyway Community Edition 7.9.2 by Redgate
-2021-08-01 22:48:39,062 INFO  [org.fly.cor.int.dat.bas.BaseDatabaseType] (Quarkus Main Thread) Database: jdbc:mysql://127.0.0.1:3307/globalcode (MySQL 8.0)
-2021-08-01 22:48:39,193 INFO  [org.fly.cor.int.com.DbMigrate] (Quarkus Main Thread) Current version of schema `globalcode`: 20210729
-2021-08-01 22:48:39,196 INFO  [org.fly.cor.int.com.DbMigrate] (Quarkus Main Thread) Schema `globalcode` is up to date. No migration necessary.
+2021-08-01 22:48:39,062 INFO  [org.fly.cor.int.dat.bas.BaseDatabaseType] (Quarkus Main Thread) Database: jdbc:mysql://127.0.0.1:3307/tdc-db (MySQL 8.0)
+2021-08-01 22:48:39,193 INFO  [org.fly.cor.int.com.DbMigrate] (Quarkus Main Thread) Current version of schema `tdc-db`: 20210729
+2021-08-01 22:48:39,196 INFO  [org.fly.cor.int.com.DbMigrate] (Quarkus Main Thread) Schema `tdc-db` is up to date. No migration necessary.
 2021-08-01 22:48:40,051 INFO  [io.quarkus] (Quarkus Main Thread) tdc-api 1.0.0-SNAPSHOT on JVM (powered by Quarkus 2.0.2.Final) started in 11.208s. Listening on: http://localhost:8181
 2021-08-01 22:48:40,053 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
 2021-08-01 22:48:40,054 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, cdi, flyway, hibernate-orm, hibernate-orm-panache, hibernate-orm-rest-data-panache, hibernate-validator, jdbc-h2, jdbc-mysq
@@ -132,7 +152,7 @@ Tests paused, press [r] to resume, [w] to open the browser, [h] for more options
 ```
 
 Test the application health using the [readiness probe](http://localhost:8181/api/_hc/ready) :
-```
+```shell
  curl -s http://localhost:8181/api/_hc/ready | jq
 {
   "uuid": "2801a2ba-b318-4967-be1e-b258468437e8",

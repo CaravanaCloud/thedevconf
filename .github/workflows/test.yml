@@ -40,11 +40,4 @@ jobs:
         
     - name: Run tests  
       run: mvn clean test
-      env:
-        MAVEN_OPTS: "-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
-        QUARKUS_DATASOURCE_JDBC_URL: jdbc:h2:mem:tdcdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false;MODE=MYSQL
-        QUARKUS_DATASOURCE_USERNAME: sa
-        QUARKUS_DATASOURCE_PASSWORD: ''
-        QUARKUS_DATASOURCE_DB_KIND: h2
-        QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION: create-drop
       

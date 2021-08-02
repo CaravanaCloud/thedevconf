@@ -92,7 +92,7 @@ public class PasswordGeneratorService {
     }
 
     private int keyLength(Optional<Integer> keyLength) {
-        final int keyLengthValue = keyLength.orElse(KEY_LENGTH_MINIMAL_VALUE);
+        final int keyLengthValue = keyLength.orElse(KEY_LENGTH_DEFAULT_VALUE);
         validateKeyLength(keyLengthValue);
         return keyLengthValue;
     }

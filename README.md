@@ -29,7 +29,7 @@ Set the MySQL container environment variables:
 export MYSQL_ROOT_PASSWORD="SETECAstronomy"
 export MYSQL_HOST="127.0.0.1"
 export MYSQL_PORT="3307"
-export MYSQL_DB="globalcode"
+export MYSQL_DB="tdc-db"
 ```
 
 You can also use [DirEnv](https://direnv.net/) or your IDE settings to configure environment variables.
@@ -103,17 +103,9 @@ Test the application health using the [readiness probe](http://localhost:8181/ap
 ```
  curl -s http://localhost:8181/api/_hc/ready | jq
 {
-  "uuid": "4bd7e030-5f1b-47a8-9308-0913b440f3ad",
+  "uuid": "2801a2ba-b318-4967-be1e-b258468437e8",
   "sourceIP": "127.0.0.1",
-  "acceptTime": [
-    2021,
-    5,
-    23,
-    14,
-    6,
-    9,
-    967111196
-  ],
+  "acceptTime": "2021-08-01T22:39:11.1104739",
   "payload": "<3"
 }
 ```

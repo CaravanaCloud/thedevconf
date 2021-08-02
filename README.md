@@ -29,7 +29,7 @@ Set the MySQL container environment variables:
 export MYSQL_ROOT_PASSWORD="SETECAstronomy"
 export MYSQL_HOST="127.0.0.1"
 export MYSQL_PORT="3307"
-export MYSQL_DB="globalcode"
+export MYSQL_DB="tdc-db"
 ```
 
 You can also use [DirEnv](https://direnv.net/) or your IDE settings to configure environment variables.
@@ -89,31 +89,55 @@ mvn
 ```
 
 ```
-Running main method
+mvn
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -------------------------< thedevconf:tdc-api >-------------------------
+[INFO] Building tdc-api 1.0.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- quarkus-maven-plugin:2.0.2.Final:dev (default-cli) @ tdc-api ---
+[INFO] Invoking io.quarkus:quarkus-maven-plugin:2.0.2.Final:generate-code @ tdc-api
+[INFO] Invoking org.apache.maven.plugins:maven-resources-plugin:2.6:resources @ tdc-api
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 94 resources
+[INFO] Invoking org.apache.maven.plugins:maven-compiler-plugin:3.8.1:compile @ tdc-api
+[INFO] Nothing to compile - all classes are up to date
+[INFO] Invoking org.apache.maven.plugins:maven-resources-plugin:2.6:testResources @ tdc-api
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory C:\Users\marruda\personal\github.com\dearrudam\thedevconf\tdc-api\src\test\resources
+[INFO] Invoking org.apache.maven.plugins:maven-compiler-plugin:3.8.1:testCompile @ tdc-api
+[INFO] Nothing to compile - all classes are up to date
+Listening for transport dt_socket at address: 5005
+2021-08-01 22:48:32,616 INFO  [io.qua.fly.FlywayProcessor] (build-24) Adding application migrations in path '/C:/Users/marruda/personal/github.com/dearrudam/thedevconf/tdc-api/target/classes/db/migration/' using proto
+col 'file'
+2021-08-01 22:48:33,818 WARN  [io.qua.arc.pro.BeanArchives] (build-90) Failed to index [Ljava.lang.Object;: Class does not exist in ClassLoader QuarkusClassLoader:Deployment Class Loader: DEV
+2021-08-01 22:48:33,867 WARN  [io.qua.arc.pro.BeanArchives] (build-90) Failed to index [C: Class does not exist in ClassLoader QuarkusClassLoader:Deployment Class Loader: DEV
+2021-08-01 22:48:33,909 WARN  [io.qua.arc.pro.BeanArchives] (build-90) Failed to index [B: Class does not exist in ClassLoader QuarkusClassLoader:Deployment Class Loader: DEV
 __  ____  __  _____   ___  __ ____  ______ 
---/ __ \/ / / / _ | / _ \/ //_/ / / / __/
--/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \   
---\___\_\____/_/ |_/_/|_/_/|_|\____/___/   
-2021-05-23 12:43:50,496 INFO  [io.quarkus] (Quarkus Main Thread) tdc-api 1.0.0-SNAPSHOT on JVM (powered by Quarkus 1.12.1.Final) started in 1.230s. Listening on: http://localhost:8181
-2021-05-23 12:43:50,498 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
-2021-05-23 12:43:50,498 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [cdi, resteasy, resteasy-jackson]
+ --/ __ \/ / / / _ | / _ \/ //_/ / / / __/
+ -/ /_/ / /_/ / __ |/ , _/ ,< / /_/ /\ \
+--\___\_\____/_/ |_/_/|_/_/|_|\____/___/
+2021-08-01 22:48:38,533 INFO  [org.fly.cor.int.lic.VersionPrinter] (Quarkus Main Thread) Flyway Community Edition 7.9.2 by Redgate
+2021-08-01 22:48:39,062 INFO  [org.fly.cor.int.dat.bas.BaseDatabaseType] (Quarkus Main Thread) Database: jdbc:mysql://127.0.0.1:3307/globalcode (MySQL 8.0)
+2021-08-01 22:48:39,193 INFO  [org.fly.cor.int.com.DbMigrate] (Quarkus Main Thread) Current version of schema `globalcode`: 20210729
+2021-08-01 22:48:39,196 INFO  [org.fly.cor.int.com.DbMigrate] (Quarkus Main Thread) Schema `globalcode` is up to date. No migration necessary.
+2021-08-01 22:48:40,051 INFO  [io.quarkus] (Quarkus Main Thread) tdc-api 1.0.0-SNAPSHOT on JVM (powered by Quarkus 2.0.2.Final) started in 11.208s. Listening on: http://localhost:8181
+2021-08-01 22:48:40,053 INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2021-08-01 22:48:40,054 INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, cdi, flyway, hibernate-orm, hibernate-orm-panache, hibernate-orm-rest-data-panache, hibernate-validator, jdbc-h2, jdbc-mysq
+l, narayana-jta, qute, resteasy, resteasy-jackson, resteasy-qute, security, security-jdbc, smallrye-context-propagation, smallrye-openapi, swagger-ui]
+
+--
+Tests paused, press [r] to resume, [w] to open the browser, [h] for more options>
 ```
 
 Test the application health using the [readiness probe](http://localhost:8181/api/_hc/ready) :
 ```
  curl -s http://localhost:8181/api/_hc/ready | jq
 {
-  "uuid": "4bd7e030-5f1b-47a8-9308-0913b440f3ad",
+  "uuid": "2801a2ba-b318-4967-be1e-b258468437e8",
   "sourceIP": "127.0.0.1",
-  "acceptTime": [
-    2021,
-    5,
-    23,
-    14,
-    6,
-    9,
-    967111196
-  ],
+  "acceptTime": "2021-08-01T22:39:11.1104739",
   "payload": "<3"
 }
 ```

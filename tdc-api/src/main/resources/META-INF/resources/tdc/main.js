@@ -16,6 +16,7 @@ function showUserProfile(userInfo) {
 
     $("#login-header-tab").remove();
     $("#home-header-tab").after(`<li class="nav-item"><a class="nav-link" href="/user/user-area">${userName}</a></li>`);
+    $("#header-tabs").append(`<li class="nav-item"><a id="logout-header-tab" class="nav-link" onclick="signOut()">Sair</a></li>`);
 
     const el = document.getElementById("user-photo-profile");
     if (el != null) {

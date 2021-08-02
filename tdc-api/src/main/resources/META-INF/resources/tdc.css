@@ -126,3 +126,7 @@ section {
 .sign-out-div {
     display: none;
 }
+
+#logout-header-tab {
+    cursor: pointer;
+}

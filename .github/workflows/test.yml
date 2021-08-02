@@ -29,7 +29,7 @@ jobs:
         restore-keys: ${{ runner.os }}-m2
     
     - name: Build with maven  
-      run: mvn --batch-mode --update-snapshots clean package -DskipTests=true
+      run: mvn --update-snapshots clean package -DskipTests=true
       env:
         MAVEN_OPTS: "-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
         QUARKUS_DATASOURCE_JDBC_URL: jdbc:h2:mem:tdcdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false;MODE=MYSQL
@@ -39,7 +39,7 @@ jobs:
         QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION: none
         
     - name: Run tests  
-      run: mvn --batch-mode clean test
+      run: mvn clean test
       env:
         MAVEN_OPTS: "-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
         QUARKUS_DATASOURCE_JDBC_URL: jdbc:h2:mem:tdcdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false;MODE=MYSQL

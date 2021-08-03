@@ -18,6 +18,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import thedevconf.jaxrs.api.RegistrationServiceTestProfile;
 import thedevconf.jaxrs.api.entity.Person;
+import thedevconf.jaxrs.api.entity.Registration;
 import thedevconf.jaxrs.api.entity.UserEmail;
 import thedevconf.jaxrs.api.entity.UserEmailPassword;
 import thedevconf.jaxrs.api.services.PasswordGeneratorService;
@@ -29,7 +30,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 @QuarkusTest
 @TestMethodOrder(OrderAnnotation.class)
-@TestProfile(RegistrationServiceTestProfile.class)
 class RegistrationResourceTest {
     @Test
     @DisplayName("GET  /api/user/registration must return 200")
@@ -53,6 +53,7 @@ class RegistrationResourceTest {
     public void afterEach() {
         UserEmail.deleteAll();
         UserEmailPassword.deleteAll();
+        Registration.deleteAll();
         Person.deleteAll();
     }
 

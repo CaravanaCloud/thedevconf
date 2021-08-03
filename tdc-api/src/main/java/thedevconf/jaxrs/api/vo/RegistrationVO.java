@@ -1,14 +1,11 @@
 package thedevconf.jaxrs.api.vo;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import thedevconf.jaxrs.api.services.RegistrationService;
 import thedevconf.jaxrs.validation.CustomConstraint;
 

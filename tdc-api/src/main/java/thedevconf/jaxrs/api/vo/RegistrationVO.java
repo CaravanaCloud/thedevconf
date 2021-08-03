@@ -54,6 +54,10 @@ public class RegistrationVO {
         this.createTime = createTime;
     }
 
+    public static RegistrationVO of(final String clientId) {
+        return new RegistrationVO();
+    }
+
     public String getName() {
         return name;
     }

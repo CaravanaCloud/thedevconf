@@ -10,7 +10,13 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "UserEmail_tdc")
+@NamedQueries({
+    @NamedQuery(name = UserEmail.FIND_BY_EMAIL, query = "select us from UserEmail us where us.email = :email")
+})
 public class UserEmail extends PanacheEntityBase {
+
+    public static final String FIND_BY_EMAIL = "UserEmail.byEmail";
+
     @Id
     @NotNull
     @Email
@@ -18,13 +24,6 @@ public class UserEmail extends PanacheEntityBase {
     LocalDateTime validatedAt;
     @ManyToOne
     Person person;
-
-    public static UserEmail of(UserSession session, Person user) {
-        var email = new UserEmail();
-        email.email = session.getEmail();
-        email.validatedAt = LocalDateTime.now(); //TODO: Actually check
-        return email;
-    }
 
     public static boolean containsByEmail(String email) {
         return UserEmail.count("email", email) > 0;

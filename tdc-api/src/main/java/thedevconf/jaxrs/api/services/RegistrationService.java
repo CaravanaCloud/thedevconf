@@ -88,52 +88,26 @@ public class RegistrationService extends BaseService {
     @Transactional
     public void register(@NotNull @Valid RegistrationVO registration) {
         if (UserEmail.containsByEmail(registration
-                .getEmailWithConfirmation().email)) {
+                                          .getEmailWithConfirmation().email)) {
             // defensive programming
             throw new IllegalStateException("this method should be not executed 'cause " +
-                    "the parameter should be validated by " +
-                    "the Bean Validation API. " +
-                    "Check the application configuration.");
+                                                "the parameter should be validated by " +
+                                                "the Bean Validation API. " +
+                                                "Check the application configuration.");
         }
         Person user = Person.newTransientFromName(registration.getName());
         user.setAcceptedTerms(registration.getAcceptedTerms());
         user.persist();
         UserEmail userEmail = UserEmail.newFromEmailAndUser(
-                registration.getEmailWithConfirmation().email,
-                user
+            registration.getEmailWithConfirmation().email,
+            user
         );
         UserEmailPassword.createFrom(
-                userEmail.getEmail(),
-                registration.getPasswordWithConfirmation().password,
-                passwordGeneratorService
+            userEmail.getEmail(),
+            registration.getPasswordWithConfirmation().password,
+            passwordGeneratorService
         );
     }
-
-    /*
-    @Transactional
-    public void register(@NotNull @Valid RegistrationVO registration) {
-        if (UserEmail.containsByEmail(registration
-                .getEmailWithConfirmation().email)) {
-            // defensive programming
-            throw new IllegalStateException("this method should be not executed 'cause " +
-                    "the parameter should be validated by " +
-                    "the Bean Validation API. " +
-                    "Check the application configuration.");
-        }
-        Person user = Person.newTransientFromName(registration.getName());
-        user.setAcceptedTerms(registration.getAcceptedTerms());
-        user.persist();
-        UserEmail userEmail = UserEmail.newFromEmailAndUser(
-                registration.getEmailWithConfirmation().email,
-                user
-        );
-        UserEmailPassword.createFrom(
-                userEmail.getEmail(),
-                registration.getPasswordWithConfirmation().password,
-                passwordGeneratorService
-        );
-    }
-    */
 
     public static class RegistrationValidator
             implements ConstraintValidator<CustomConstraint, RegistrationVO> {

@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
 import org.junit.jupiter.api.AfterAll;
@@ -20,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import thedevconf.jaxrs.api.entity.Registration;
 import thedevconf.jaxrs.api.entity.UserEmail;
 import thedevconf.jaxrs.api.entity.UserEmailPassword;
 import thedevconf.jaxrs.api.vo.RegistrationVO;
@@ -64,6 +66,7 @@ class RegistrationServiceTest {
     public void afterEach() {
         UserEmail.deleteAll();
         UserEmailPassword.deleteAll();
+        Registration.deleteAll();
         Person.deleteAll();
     }
 
@@ -116,8 +119,7 @@ class RegistrationServiceTest {
             registration.getPasswordWithConfirmation().passwordConfirmation = valueOf(
                 passwordConfirmation);
             registration.setAcceptedTerms(Boolean.valueOf(valueOf(acceptTerms)));
-            //TODO: RECOVER
-            // registrationService.register(registration);
+            registrationService.register(registration);
         }, "must fail when the given invalid registration comes " + scenario);
     }
 

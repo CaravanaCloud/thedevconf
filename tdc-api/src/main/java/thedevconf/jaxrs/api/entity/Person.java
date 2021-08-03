@@ -59,12 +59,6 @@ public class Person extends PanacheEntityBase {
         return name;
     }
 
-    public static Person of(UserSession session) {
-        var user = new Person();
-        user.name = session.getName();
-        return user;
-    }
-
     public static Person newFromSession(UserSession session) {
         var user = Person.newFromName(session.getName());
         UserEmail.newFromSessionAndUser(session, user);

@@ -32,11 +32,7 @@ public class UserService {
 
     private User findByEmail(UserSession session) {
         User user;
-        var email = em.createNamedQuery("User.byEmail", UserEmail.class)
-                .setParameter("email", session.getEmail())
-                .setMaxResults(1)
-                .getResultStream()
-                .findFirst();
+        var email = UserEmail.findByEmail(session.getEmail());
         if (email.isPresent()){
             user = email.get().getUser();
         }else {
@@ -46,10 +42,8 @@ public class UserService {
     }
 
     private User newUserFromSession(UserSession session) {
-        var user = User.of(session);
-        var email = UserEmail.of(session,user);
+        var user = User.newFromSession(session);
         em.persist(user);
-        em.persist(email);
         return user;
     }
 

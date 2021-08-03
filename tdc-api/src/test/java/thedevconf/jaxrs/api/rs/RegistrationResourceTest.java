@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Optional;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import javax.validation.ConstraintViolationException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -24,9 +23,7 @@ import thedevconf.jaxrs.api.entity.UserEmailPassword;
 import thedevconf.jaxrs.api.services.PasswordGeneratorService;
 import thedevconf.jaxrs.api.vo.RegistrationVO;
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.reset;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 

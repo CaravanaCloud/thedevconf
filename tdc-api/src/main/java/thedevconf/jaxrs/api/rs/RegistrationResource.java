@@ -3,6 +3,7 @@ package thedevconf.jaxrs.api.rs;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -26,10 +27,11 @@ public class RegistrationResource {
     @POST
     @Produces(APPLICATION_JSON)
     @Consumes(APPLICATION_JSON)
-    public Response getRegistrationVO(
+    public Response post(
+        @NotNull
         @Valid RegistrationVO registration
     ) {
         registrationService.register(registration);
-        return Response.accepted().build();
+        return Response.ok().build();
     }
 }

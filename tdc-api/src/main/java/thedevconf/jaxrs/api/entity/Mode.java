@@ -1,13 +1,18 @@
 package thedevconf.jaxrs.api.entity;
 
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+
 import javax.persistence.*;
 
 @NamedQueries({
-        @NamedQuery(name = "mode.all", query = "select m from Mode m order by m.id")
+        @NamedQuery(name = "mode.all", query = "select m from Mode m order by m.id"),
+        @NamedQuery(name = "mode.byCode",
+                query = "select m from Mode m where m.code = :code order by m.id")
 })
 @Entity
-@Table(name = "mode_tdc")
-public class Mode {
+@Table(name = "tdc_mode")
+public class Mode extends PanacheEntityBase {
     public static final String BASICPASS = "BASICPASS";
     public static final String VIPPASS = "VIPPASS";
     public static final String PASSVIP = "PASSVIP";
@@ -16,15 +21,30 @@ public class Mode {
     public static final String CORPPASS = "CORPPASS";
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", updatable = false, nullable = false)
     Long id;
 
+    @Column(unique = true)
     String code;
     String modeName;
     String description;
 
-    public Long getId() {
+    public static Mode of(String code) {
+        Mode mode = new Mode();
+        mode.code = code;
+        return mode;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false, nullable = false)
+    public Long getId(){
         return id;
+    }
+
+    public void setId(Long id){
+        this.id=id;
     }
 
     public String getCode() {

@@ -13,9 +13,9 @@ public class UserEmail {
     String email;
     LocalDateTime validatedAt;
     @ManyToOne
-    User user;
+    Person user;
 
-    public static UserEmail of(UserSession session, User user) {
+    public static UserEmail of(UserSession session, Person user) {
         var email = new UserEmail();
         email.email = session.getEmail();
         email.validatedAt = LocalDateTime.now(); //TODO: Actually check
@@ -31,7 +31,7 @@ public class UserEmail {
         return validatedAt;
     }
 
-    public User getUser() {
+    public Person getUser() {
         return user;
     }
 }

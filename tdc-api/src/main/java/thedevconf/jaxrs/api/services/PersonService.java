@@ -1,6 +1,6 @@
 package thedevconf.jaxrs.api.services;
 
-import thedevconf.jaxrs.api.entity.User;
+import thedevconf.jaxrs.api.entity.Person;
 import thedevconf.jaxrs.api.entity.UserEmail;
 import thedevconf.jaxrs.api.entity.UserSession;
 
@@ -11,18 +11,18 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 @ApplicationScoped
-public class UserService {
+public class PersonService {
     //TODO: Add functions to: Read, Update and Delete user data
 
     @Inject
     EntityManager em;
 
     @Inject
-    UserService users;
+    PersonService users;
 
     @Transactional
-    public Optional<User> findBySession(UserSession session) {
-        var user = (User) null;
+    public Optional<Person> findBySession(UserSession session) {
+        var user = (Person) null;
         if (session.isAuthenticated()){
             user = findByEmail(session);
             session.setUser(user);
@@ -30,8 +30,8 @@ public class UserService {
         return Optional.ofNullable(user);
     }
 
-    private User findByEmail(UserSession session) {
-        User user;
+    private Person findByEmail(UserSession session) {
+        Person user;
         var email = em.createNamedQuery("User.byEmail", UserEmail.class)
                 .setParameter("email", session.getEmail())
                 .setMaxResults(1)
@@ -45,8 +45,8 @@ public class UserService {
         return user;
     }
 
-    private User newUserFromSession(UserSession session) {
-        var user = User.of(session);
+    private Person newUserFromSession(UserSession session) {
+        var user = Person.of(session);
         var email = UserEmail.of(session,user);
         em.persist(user);
         em.persist(email);
@@ -54,7 +54,7 @@ public class UserService {
     }
 
     @Transactional
-    public void create(User user) {
+    public void create(Person user) {
         System.out.println(user);
         em.merge(user);
     }
@@ -65,8 +65,15 @@ public class UserService {
         return session;
     }
 
-    public Optional<User> currentUser() {
+    public Optional<Person> currentUser() {
         var session = currentSession();
         return session.getUser();
+    }
+
+    @Transactional
+    public Person of() {
+        var person = Person.of();
+        em.persist(person);
+        return person;
     }
 }

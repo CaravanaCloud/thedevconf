@@ -5,7 +5,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "User_tdc")
-public class User {
+public class Person {
     //TODO:
     // Make relation between User and UserSession
     // Add data validation
@@ -29,10 +29,10 @@ public class User {
     @Transient
     UserSession session;
 
-    public User() {
+    public Person() {
     }
 
-    public User(String language, String phone, String company, String occupation, String country, String city, String gender, String ethnicity, String pcd, AcceptedTerms acceptedTerms) {
+    public Person(String language, String phone, String company, String occupation, String country, String city, String gender, String ethnicity, String pcd, AcceptedTerms acceptedTerms) {
         this.language = language;
         this.phone = phone;
         this.company = company;
@@ -45,12 +45,16 @@ public class User {
         this.acceptedTerms = acceptedTerms;
     }
 
+    public static Person of() {
+        return new Person();
+    }
+
     public String getName() {
         return name;
     }
 
-    public static User of(UserSession session) {
-        var user = new User();
+    public static Person of(UserSession session) {
+        var user = new Person();
         user.name = session.getName();
         return user;
     }
@@ -149,7 +153,7 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
+        Person user = (Person) o;
         return Objects.equals(id, user.id) && Objects.equals(language, user.language) && Objects.equals(phone, user.phone) && Objects.equals(company, user.company) && Objects.equals(occupation, user.occupation) && Objects.equals(country, user.country) && Objects.equals(city, user.city) && Objects.equals(gender, user.gender) && Objects.equals(ethnicity, user.ethnicity) && Objects.equals(pcd, user.pcd) && acceptedTerms == user.acceptedTerms;
     }
 

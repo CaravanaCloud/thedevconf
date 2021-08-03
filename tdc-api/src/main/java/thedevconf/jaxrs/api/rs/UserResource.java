@@ -13,10 +13,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
 import thedevconf.jaxrs.api.blueprints.poke.entity.Pokemon;
-import thedevconf.jaxrs.api.entity.Mode;
-import thedevconf.jaxrs.api.entity.User;
+import thedevconf.jaxrs.api.entity.Person;
 import thedevconf.jaxrs.api.services.RegistrationService;
-import thedevconf.jaxrs.api.services.UserService;
+import thedevconf.jaxrs.api.services.PersonService;
 import thedevconf.jaxrs.api.vo.RegistrationVO;
 import thedevconf.jaxrs.api.entity.UserSession;
 
@@ -39,7 +38,7 @@ public class UserResource {
     DataSource ds;
 
     @Inject
-    UserService userService;
+    PersonService userService;
 
     @Inject
     RegistrationService registrationService;
@@ -74,7 +73,7 @@ public class UserResource {
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    public User create(User user) {
+    public Person create(Person user) {
         userService.create(user);
         System.out.println(user);
         return user;

@@ -12,7 +12,7 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "User_tdc")
-public class User extends PanacheEntityBase {
+public class Person extends PanacheEntityBase {
     //TODO:
     // Make relation between User and UserSession
     // Add data validation
@@ -35,10 +35,10 @@ public class User extends PanacheEntityBase {
     @Transient
     UserSession session;
 
-    public User() {
+    public Person() {
     }
 
-    public User(String language, String phone, String company, String occupation, String country, String city, String gender, String ethnicity, String pcd, AcceptedTerms acceptedTerms) {
+    public Person(String language, String phone, String company, String occupation, String country, String city, String gender, String ethnicity, String pcd, AcceptedTerms acceptedTerms) {
         this.language = language;
         this.phone = phone;
         this.company = company;
@@ -51,24 +51,34 @@ public class User extends PanacheEntityBase {
         this.acceptedTerms = acceptedTerms;
     }
 
+    public static Person of() {
+        return new Person();
+    }
+
     public String getName() {
         return name;
     }
 
-    public static User newFromSession(UserSession session) {
-        var user = User.newFromName(session.getName());
+    public static Person of(UserSession session) {
+        var user = new Person();
+        user.name = session.getName();
+        return user;
+    }
+
+    public static Person newFromSession(UserSession session) {
+        var user = Person.newFromName(session.getName());
         UserEmail.newFromSessionAndUser(session, user);
         return user;
     }
 
-    public static User newFromName(String name) {
-        User user = newTransientFromName(name);
+    public static Person newFromName(String name) {
+        Person user = newTransientFromName(name);
         user.persist();
         return user;
     }
 
-    public static User newTransientFromName(final String name) {
-        var user = new User();
+    public static Person newTransientFromName(final String name) {
+        var user = new Person();
         user.name = name;
         return user;
     }
@@ -166,7 +176,7 @@ public class User extends PanacheEntityBase {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
+        Person user = (Person) o;
         return Objects.equals(id, user.id) && Objects.equals(language, user.language) && Objects.equals(phone, user.phone) && Objects.equals(company, user.company) && Objects.equals(occupation, user.occupation) && Objects.equals(country, user.country) && Objects.equals(city, user.city) && Objects.equals(gender, user.gender) && Objects.equals(ethnicity, user.ethnicity) && Objects.equals(pcd, user.pcd) && acceptedTerms == user.acceptedTerms;
     }
 

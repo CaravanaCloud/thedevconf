@@ -1,11 +1,9 @@
 package thedevconf.jaxrs.api.services;
 
-import io.quarkus.flyway.FlywayDataSource;
-import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 import thedevconf.jaxrs.api.entity.AcceptedTerms;
-import thedevconf.jaxrs.api.entity.User;
+import thedevconf.jaxrs.api.entity.Person;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -17,14 +15,14 @@ public class UserServiceTest {
 //TODO: Clean database after each test
 
     @Inject
-    UserService userService;
+    PersonService userService;
 
     @Inject
     EntityManager em;
 
     @Test
     public void testShouldCreateAnUser() {
-        User user = new User(
+        Person user = new Person(
                 "Português-BR",
                 "123456789",
                 "Caravana Cloud",
@@ -37,7 +35,7 @@ public class UserServiceTest {
                 AcceptedTerms.TRUE
         );
         userService.create(user);
-        User userFromDatabase = em.find(User.class, 1L);
+        Person userFromDatabase = em.find(Person.class, 1L);
 
         assertEquals(user.getLanguage(), userFromDatabase.getLanguage());
         assertEquals(user.getPhone(), userFromDatabase.getPhone());

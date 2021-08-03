@@ -17,7 +17,14 @@ public class UserEmail extends PanacheEntityBase {
     String email;
     LocalDateTime validatedAt;
     @ManyToOne
-    User user;
+    Person person;
+
+    public static UserEmail of(UserSession session, Person user) {
+        var email = new UserEmail();
+        email.email = session.getEmail();
+        email.validatedAt = LocalDateTime.now(); //TODO: Actually check
+        return email;
+    }
 
     public static boolean containsByEmail(String email) {
         return UserEmail.count("email", email) > 0;
@@ -27,23 +34,23 @@ public class UserEmail extends PanacheEntityBase {
         return UserEmail.findByIdOptional(email);
     }
 
-    public static UserEmail newFromSessionAndUser(UserSession session, User user) {
+    public static UserEmail newFromSessionAndUser(UserSession session, Person user) {
         final var emailAddress = session.getEmail();
         return newFromEmailAndUser(emailAddress, user);
     }
 
-    public static UserEmail newFromEmailAndUser(final String emailAddress, final User user) {
+    public static UserEmail newFromEmailAndUser(final String emailAddress, final Person user) {
         var emailRef = UserEmail.findByEmail(emailAddress);
         if (emailRef.isPresent()) {
             final var userEmail = emailRef.get();
-            if (Objects.equals(userEmail.user, user)) {
+            if (Objects.equals(userEmail.person, user)) {
                 return userEmail;
             }
             throw new IllegalArgumentException("email already registered by another user");
         }
         UserEmail email = new UserEmail();
         email.email = emailAddress;
-        email.user = user;
+        email.person = user;
         email.validatedAt = LocalDateTime.now(); //TODO: Actually check
         email.persist();
         return email;
@@ -57,7 +64,7 @@ public class UserEmail extends PanacheEntityBase {
         return validatedAt;
     }
 
-    public User getUser() {
-        return user;
+    public Person getPerson() {
+        return person;
     }
 }

@@ -28,9 +28,9 @@ public class UserSession {
     LocalDateTime modifiedTime;
 
     @Transient
-    Optional<User> user;
+    Optional<Person> user;
 
-    public Optional<User> getUser() {
+    public Optional<Person> getUser() {
         return user;
     }
 
@@ -159,7 +159,7 @@ public class UserSession {
         return email != null && ! email.isEmpty();
     }
 
-    public void setUser(User user) {
+    public void setUser(Person user) {
         this.user = Optional.ofNullable(user);
     }
 }

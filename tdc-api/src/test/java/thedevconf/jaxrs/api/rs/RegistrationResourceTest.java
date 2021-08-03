@@ -17,7 +17,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import thedevconf.jaxrs.api.RegistrationServiceTestProfile;
-import thedevconf.jaxrs.api.entity.User;
+import thedevconf.jaxrs.api.entity.Person;
 import thedevconf.jaxrs.api.entity.UserEmail;
 import thedevconf.jaxrs.api.entity.UserEmailPassword;
 import thedevconf.jaxrs.api.services.PasswordGeneratorService;
@@ -53,7 +53,7 @@ class RegistrationResourceTest {
     public void afterEach() {
         UserEmail.deleteAll();
         UserEmailPassword.deleteAll();
-        User.deleteAll();
+        Person.deleteAll();
     }
 
     @Order(1)
@@ -162,7 +162,7 @@ class RegistrationResourceTest {
                     "must be registered an UserEmail entity"
                 );
                 assertNotNull(UserEmail.findByEmail(johnDoeEmailAndPassword.getEmail()).get()
-                                  .getUser(), "must be registered an User entity");
+                                  .getPerson(), "must be registered an User entity");
             },
             () ->
                 fail("must be registered an UserEmailPassword entity " +

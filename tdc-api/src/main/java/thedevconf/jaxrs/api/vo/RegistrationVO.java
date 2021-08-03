@@ -1,12 +1,23 @@
 package thedevconf.jaxrs.api.vo;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import javax.validation.Valid;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import thedevconf.jaxrs.api.services.RegistrationService;
+import thedevconf.jaxrs.validation.CustomConstraint;
 
+@CustomConstraint(
+    message = "{thedevconf.jaxrs.api.vo.RegistrationVO.emailRegisteredAlready}",
+    delegateTo = RegistrationService.RegistrationValidator.class
+)
 public class RegistrationVO {
-    String userId;
-    String clientId;
+    @NotEmpty
     String name;
     @NotNull
     @Valid
@@ -14,20 +25,28 @@ public class RegistrationVO {
     @NotNull
     @Valid
     PasswordWithConfirmationVO passwordWithConfirmation;
+    @NotNull
+    @AssertTrue
     Boolean acceptedTerms;
     LocalDateTime createTime;
 
+    public RegistrationVO() {
+        this(
+            null,
+            new EmailWithConfirmationVO(),
+            new PasswordWithConfirmationVO(),
+            Boolean.FALSE,
+            null
+        );
+    }
+
     public RegistrationVO(
-            String userId,
-            String clientId,
-            String name,
-            EmailWithConfirmationVO emailWithConfirmation,
-            PasswordWithConfirmationVO passwordWithConfirmation,
-            Boolean acceptedTerms,
-            LocalDateTime createTime
+        String name,
+        EmailWithConfirmationVO emailWithConfirmation,
+        PasswordWithConfirmationVO passwordWithConfirmation,
+        boolean acceptedTerms,
+        LocalDateTime createTime
     ) {
-        this.userId = userId;
-        this.clientId = clientId;
         this.name = name;
         this.emailWithConfirmation = emailWithConfirmation;
         this.passwordWithConfirmation = passwordWithConfirmation;
@@ -35,32 +54,8 @@ public class RegistrationVO {
         this.createTime = createTime;
     }
 
-    public static RegistrationVO of(String clientId) {
-        return new RegistrationVO(
-                null,
-                clientId,
-                null,
-                new EmailWithConfirmationVO(),
-                new PasswordWithConfirmationVO(),
-                false,
-                LocalDateTime.now()
-        );
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(final String userId) {
-        this.userId = userId;
-    }
-
-    public String getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(final String clientId) {
-        this.clientId = clientId;
+    public static RegistrationVO of(final String clientId) {
+        return new RegistrationVO();
     }
 
     public String getName() {
@@ -76,7 +71,8 @@ public class RegistrationVO {
     }
 
     public void setEmailWithConfirmation(final EmailWithConfirmationVO emailWithConfirmation) {
-        this.emailWithConfirmation = emailWithConfirmation;
+        this.emailWithConfirmation = Optional.ofNullable(emailWithConfirmation).orElseGet(
+            EmailWithConfirmationVO::new);
     }
 
     public PasswordWithConfirmationVO getPasswordWithConfirmation() {
@@ -84,11 +80,12 @@ public class RegistrationVO {
     }
 
     public void setPasswordWithConfirmation(final PasswordWithConfirmationVO passwordWithConfirmation) {
-        this.passwordWithConfirmation = passwordWithConfirmation;
+        this.passwordWithConfirmation = Optional.ofNullable(passwordWithConfirmation).orElseGet(
+            PasswordWithConfirmationVO::new);
     }
 
     public Boolean getAcceptedTerms() {
-        return acceptedTerms;
+        return Optional.ofNullable(acceptedTerms).orElse(Boolean.FALSE);
     }
 
     public void setAcceptedTerms(final Boolean acceptedTerms) {
@@ -106,13 +103,11 @@ public class RegistrationVO {
     @Override
     public String toString() {
         return "RegistrationVO{" +
-                "userId='" + userId + '\'' +
-                ", clientId='" + clientId + '\'' +
-                ", name='" + name + '\'' +
-                ", emailWithConfirmation='" + emailWithConfirmation + '\'' +
-                ", passwordWithConfirmation='" + passwordWithConfirmation + '\'' +
-                ", acceptedTerms=" + acceptedTerms +
-                ", createTime=" + createTime +
-                '}';
+            ", name='" + name + '\'' +
+            ", emailWithConfirmation='" + emailWithConfirmation + '\'' +
+            ", passwordWithConfirmation='" + passwordWithConfirmation + '\'' +
+            ", acceptedTerms=" + acceptedTerms +
+            ", createTime=" + createTime +
+            '}';
     }
 }

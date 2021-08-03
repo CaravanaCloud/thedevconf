@@ -38,7 +38,7 @@ public class PersonService {
                 .getResultStream()
                 .findFirst();
         if (email.isPresent()){
-            user = email.get().getUser();
+            user = email.get().getPerson();
         }else {
             user = newUserFromSession(session);
         }

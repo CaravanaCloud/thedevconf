@@ -1,5 +1,5 @@
 function getAcceptedTermsValue() {
-    const element = document.getElementById("vo_accepted_terms_to_grant_basic_pass");
+    const element = document.getElementById("vo_accepted_terms_basic_pass_contact_request");
 
     if (element.checked) {
         return true;
@@ -10,25 +10,26 @@ function getAcceptedTermsValue() {
 
 const getValueOf = (id) => document.getElementById(id).value;
 
-function postDataToGrantBasicPassThroughEmail() {
+function postBasicPassContactRequestData() {
     console.log("Post data to grant basic pass trough email");
-    const url = '/api/user/grant-basic-pass-data';
+    const url = '/api/basic-pass/grant-basic-pass-data';
 
-    const user = {
-        name: getValueOf("vo_name_to_grant_basic_pass"),
-        email: getValueOf("vo_email_to_grant_basic_pass"),
+    const data = {
+        name: getValueOf("vo_name_basic_pass_contact_request"),
+        email: getValueOf("vo_email_basic_pass_contact_request"),
+        emailConfirmation: getValueOf("vo_email_confirmation_basic_pass_contact_request"),
         acceptedTerms: getAcceptedTermsValue(),
         emailSendingStatus: false
     }
 
-    console.log("fetch data=> " + JSON.stringify(user));
+    console.log("fetch data=> " + JSON.stringify(data));
 
     fetch(url, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(user)
+        body: JSON.stringify(data)
     }).then(response => {
         if (response.ok) {
             console.log("Dados para receber email e garantir o basic pass enviados com sucesso!");

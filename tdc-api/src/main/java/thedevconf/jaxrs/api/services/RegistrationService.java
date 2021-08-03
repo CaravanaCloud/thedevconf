@@ -1,5 +1,6 @@
 package thedevconf.jaxrs.api.services;
 
+import org.checkerframework.common.value.qual.IntRangeFromGTENegativeOne;
 import thedevconf.jaxrs.api.entity.Person;
 import thedevconf.jaxrs.api.entity.Registration;
 
@@ -7,9 +8,22 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.Optional;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.transaction.Transactional;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import thedevconf.jaxrs.api.entity.UserEmail;
+import thedevconf.jaxrs.api.entity.UserEmailPassword;
+import thedevconf.jaxrs.api.vo.RegistrationVO;
+import thedevconf.jaxrs.validation.CustomConstraint;
 
 @ApplicationScoped
 public class RegistrationService extends BaseService {
+
     @Inject
     ModesService modes;
 
@@ -19,10 +33,13 @@ public class RegistrationService extends BaseService {
     @Inject
     PersonService users;
 
-    public Optional<Registration> doRegistration(String editionCode, String modeCode){
+    @Inject
+    PasswordGeneratorService passwordGeneratorService;
+
+    public Optional<Registration> doRegistration(String editionCode, String modeCode) {
         var user = users.currentUser();
-        if (user.isPresent()){
-            return  doRegistration(user.get(), editionCode, modeCode);
+        if (user.isPresent()) {
+            return doRegistration(user.get(), editionCode, modeCode);
         }
         return Optional.empty();
     }
@@ -34,7 +51,7 @@ public class RegistrationService extends BaseService {
         var edition = editions.byCode(editionCode);
         var mode = modes.byCode(modeCode);
         var arePresent = edition.isPresent() && mode.isPresent();
-        if (arePresent){
+        if (arePresent) {
             var reg = Registration.of(
                     person,
                     edition.get(),
@@ -47,8 +64,8 @@ public class RegistrationService extends BaseService {
 
     public boolean isRegistered(String editionCode, String modeCode) {
         var user = users.currentUser();
-        if (user.isPresent()){
-            var registered = isRegistered(user.get(),editionCode, modeCode);
+        if (user.isPresent()) {
+            var registered = isRegistered(user.get(), editionCode, modeCode);
             return registered;
         }
         return false;
@@ -67,5 +84,72 @@ public class RegistrationService extends BaseService {
                 .getResultStream()
                 .findFirst();
     }
+
+    @Transactional
+    public void register(@NotNull @Valid RegistrationVO registration) {
+        if (UserEmail.containsByEmail(registration
+                .getEmailWithConfirmation().email)) {
+            // defensive programming
+            throw new IllegalStateException("this method should be not executed 'cause " +
+                    "the parameter should be validated by " +
+                    "the Bean Validation API. " +
+                    "Check the application configuration.");
+        }
+        Person user = Person.newTransientFromName(registration.getName());
+        user.setAcceptedTerms(registration.getAcceptedTerms());
+        user.persist();
+        UserEmail userEmail = UserEmail.newFromEmailAndUser(
+                registration.getEmailWithConfirmation().email,
+                user
+        );
+        UserEmailPassword.createFrom(
+                userEmail.getEmail(),
+                registration.getPasswordWithConfirmation().password,
+                passwordGeneratorService
+        );
+    }
+
+    /*
+    @Transactional
+    public void register(@NotNull @Valid RegistrationVO registration) {
+        if (UserEmail.containsByEmail(registration
+                .getEmailWithConfirmation().email)) {
+            // defensive programming
+            throw new IllegalStateException("this method should be not executed 'cause " +
+                    "the parameter should be validated by " +
+                    "the Bean Validation API. " +
+                    "Check the application configuration.");
+        }
+        Person user = Person.newTransientFromName(registration.getName());
+        user.setAcceptedTerms(registration.getAcceptedTerms());
+        user.persist();
+        UserEmail userEmail = UserEmail.newFromEmailAndUser(
+                registration.getEmailWithConfirmation().email,
+                user
+        );
+        UserEmailPassword.createFrom(
+                userEmail.getEmail(),
+                registration.getPasswordWithConfirmation().password,
+                passwordGeneratorService
+        );
+    }
+    */
+
+    public static class RegistrationValidator
+            implements ConstraintValidator<CustomConstraint, RegistrationVO> {
+        @Override
+        public boolean isValid(
+                final RegistrationVO registration,
+                final ConstraintValidatorContext context
+        ) {
+            if (registration == null) {
+                return true;
+            }
+            boolean alreadyRegistered = UserEmail
+                    .containsByEmail(registration.getEmailWithConfirmation().email);
+            return !alreadyRegistered;
+        }
+    }
+
 
 }

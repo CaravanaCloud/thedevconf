@@ -21,23 +21,34 @@ function handleFormSubmit(formType) {
 
     Array.prototype.slice.call(forms)
         .forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-                event.preventDefault();
-                form.classList.add('was-validated');
-                if (form.checkValidity()) {
-                    if (formType === 'grant-basic-pass-through-email-form') {
-                        postDataToGrantBasicPassThroughEmail();
+            const fnRef = [];
+            const fn = function (event) {
+                try{
+                    event.preventDefault();
+                    form.classList.add('was-validated');
+                    if (form.checkValidity()) {
+                        if (formType === 'basic-pass-contact-request-form') {
+                            postBasicPassContactRequestData();
+                        }
+                        if (formType === 'registration-form') {
+                            postRegistrationForm();
+                        }
+                        if (formType === 'user-data-form') {
+                            postUserDataForm();
+                        }
+                        //event.stopPropagation();
+                    } else {
+                        console.log("invalid data");
+                        event.stopPropagation();
                     }
-                    if (formType === 'registration-form') {
-                        postRegistrationForm();
+                }finally{
+                    if(fnRef[0]){
+                        form.removeEventListener('submit', fnRef[0]);
                     }
-                    if (formType === 'user-data-form') {
-                        postUserDataForm();
-                    }
-                } else {
-                    console.log("invalid data")
-                    event.stopPropagation();
                 }
-            }, false)
-        })
+            };
+            fnRef.push(fn);
+            form.addEventListener('submit', fn , false);
+        });
+
 }

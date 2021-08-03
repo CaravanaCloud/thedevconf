@@ -4,21 +4,19 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.sql.DataSource;
-import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-
 import thedevconf.jaxrs.api.blueprints.poke.entity.Pokemon;
 import thedevconf.jaxrs.api.entity.Person;
 import thedevconf.jaxrs.api.services.RegistrationService;
 import thedevconf.jaxrs.api.services.PersonService;
 import thedevconf.jaxrs.api.vo.RegistrationVO;
+import thedevconf.jaxrs.api.entity.Person;
 import thedevconf.jaxrs.api.entity.UserSession;
-
+import thedevconf.jaxrs.api.services.PersonService;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 /**
@@ -28,20 +26,17 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 public class UserResource {
     @Inject
     SummaryResource summary;
-
     //hibernate
     @Inject
     EntityManager em;
-
     //jdbc
     @Inject
     DataSource ds;
-
     @Inject
     PersonService userService;
 
     @Inject
-    RegistrationService registrationService;
+    RegistrationResource registrationResource;
 
     @Path("summary")
     public SummaryResource getSummary() {
@@ -49,24 +44,8 @@ public class UserResource {
     }
 
     @Path("registration")
-    @GET
-    @Produces(APPLICATION_JSON)
-    public RegistrationVO getRegistrationVO(@QueryParam("clientId") String clientId) {
-        return RegistrationVO.of(clientId);
-    }
-
-    @Path("registration")
-    @POST
-    @Produces(APPLICATION_JSON)
-    @Consumes(APPLICATION_JSON)
-    public RegistrationVO getRegistrationVO(
-            @QueryParam("clientId") String clientId,
-            @Valid RegistrationVO vo
-    ) {
-        System.out.println(vo);
-        //em.merge()...
-        //ds.getConnection().createStatement()
-        return vo;
+    public RegistrationResource getRegistrationResource() {
+        return registrationResource;
     }
 
     @Path("user-data")
@@ -86,7 +65,7 @@ public class UserResource {
         return userService.currentSession();
     }
 
-    public Pokemon updateEmpresa(Pokemon p){
+    public Pokemon updateEmpresa(Pokemon p) {
         var session = userService.currentSession();
         var canUpdate = session.isAuthenticated(); // && isSameTrainer
         if (canUpdate) {

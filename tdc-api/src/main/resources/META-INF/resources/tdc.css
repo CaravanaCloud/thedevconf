@@ -36,7 +36,7 @@ h2, .coupon-code span, .confirmation-message p {
     font-size: 1.8em;
 }
 
-.summary, .summary-value, .confirmation-message, .form-to-grant-basic-pass {
+.summary, .summary-value, .confirmation-message, .form-basic-pass-contact-request {
     background-color: #C4C4C4;
     color: #525252;
     border: none;
@@ -125,4 +125,8 @@ section {
 
 .sign-out-div {
     display: none;
+}
+
+#logout-header-tab {
+    cursor: pointer;
 }

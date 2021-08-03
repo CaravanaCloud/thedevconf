@@ -1,16 +1,22 @@
 package thedevconf.jaxrs.api.entity;
 
-import javax.persistence.*;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "User_tdc")
-public class Person {
+public class Person extends PanacheEntityBase {
     //TODO:
     // Make relation between User and UserSession
     // Add data validation
     // maybe transform each user property in a type?)
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,6 +65,23 @@ public class Person {
         return user;
     }
 
+    public static Person newFromSession(UserSession session) {
+        var user = Person.newFromName(session.getName());
+        UserEmail.newFromSessionAndUser(session, user);
+        return user;
+    }
+
+    public static Person newFromName(String name) {
+        Person user = newTransientFromName(name);
+        user.persist();
+        return user;
+    }
+
+    public static Person newTransientFromName(final String name) {
+        var user = new Person();
+        user.name = name;
+        return user;
+    }
 
     public Long getId() {
         return id;

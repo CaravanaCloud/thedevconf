@@ -25,8 +25,8 @@ function handleFormSubmit(formType) {
                 event.preventDefault();
                 form.classList.add('was-validated');
                 if (form.checkValidity()) {
-                    if (formType === 'grant-basic-pass-through-email-form') {
-                        postDataToGrantBasicPassThroughEmail();
+                    if(formType === 'basic-pass-contact-request-form') {
+                        postBasicPassContactRequestData();
                     }
                     if (formType === 'registration-form') {
                         postRegistrationForm();

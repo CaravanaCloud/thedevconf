@@ -2,47 +2,29 @@ package thedevconf.jaxrs.api.services;
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.junit.QuarkusTestProfile;
-import io.quarkus.test.junit.TestProfile;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import thedevconf.jaxrs.api.entity.Registration;
 import thedevconf.jaxrs.api.entity.UserEmail;
 import thedevconf.jaxrs.api.entity.UserEmailPassword;
-import thedevconf.jaxrs.api.vo.RegistrationVO;
+import thedevconf.jaxrs.api.vo.UserRegistrationByEmailAndPasswordRequest;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import thedevconf.jaxrs.api.entity.Edition;
-import thedevconf.jaxrs.api.entity.Mode;
 import thedevconf.jaxrs.api.entity.Person;
-
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-
-import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -75,7 +57,7 @@ class RegistrationServiceTest {
     @DisplayName("Given an null argument then the register method must fail")
     void givenAnNullParameterThenRegisterMethodMustFail() {
         assertThrows(ConstraintViolationException.class, () -> {
-            registrationService.register(null);
+            registrationService.registerUserByEmailAndPassword(null);
         });
     }
 
@@ -110,7 +92,7 @@ class RegistrationServiceTest {
         String acceptTerms
     ) {
         assertThrows(ConstraintViolationException.class, () -> {
-            RegistrationVO registration = new RegistrationVO();
+            UserRegistrationByEmailAndPasswordRequest registration = new UserRegistrationByEmailAndPasswordRequest();
             registration.setName(valueOf(name));
             registration.getEmailWithConfirmation().email = valueOf(email);
             registration.getEmailWithConfirmation().emailConfirmation = valueOf(
@@ -119,7 +101,8 @@ class RegistrationServiceTest {
             registration.getPasswordWithConfirmation().passwordConfirmation = valueOf(
                 passwordConfirmation);
             registration.setAcceptedTerms(Boolean.valueOf(valueOf(acceptTerms)));
-            registrationService.register(registration);
+            final var userRegistration = registrationService.registerUserByEmailAndPassword(registration);
+            assertNotNull(userRegistration);
         }, "must fail when the given invalid registration comes " + scenario);
     }
 
@@ -132,7 +115,7 @@ class RegistrationServiceTest {
     @Order(3)
     @Test
     void testHappyScenarios() {
-        var johnDoeRegistration = new RegistrationVO();
+        var johnDoeRegistration = new UserRegistrationByEmailAndPasswordRequest();
         johnDoeRegistration.setName("John Doe");
         johnDoeRegistration.getEmailWithConfirmation().email = "johndoe@johndoe.com";
         johnDoeRegistration
@@ -140,7 +123,7 @@ class RegistrationServiceTest {
         johnDoeRegistration.getPasswordWithConfirmation().password = "test123";
         johnDoeRegistration.getPasswordWithConfirmation().passwordConfirmation = "test123";
         johnDoeRegistration.setAcceptedTerms(Boolean.TRUE);
-        registrationService.register(johnDoeRegistration);
+        assertNotNull(registrationService.registerUserByEmailAndPassword(johnDoeRegistration));
         final var johnDoeEmailAndPasswordRef =
             UserEmailPassword.findByEmail(johnDoeRegistration.getEmailWithConfirmation().email);
         johnDoeEmailAndPasswordRef.ifPresentOrElse(
@@ -158,7 +141,7 @@ class RegistrationServiceTest {
                     "must be registered an UserEmail entity"
                 );
                 assertNotNull(UserEmail.findByEmail(johnDoeEmailAndPassword.getEmail()).get()
-                                  .getPerson(), "must be registered an User entity");
+                                  .getUser(), "must be registered an User entity");
             },
             () ->
                 fail("must be registered an UserEmailPassword entity " +
@@ -167,11 +150,11 @@ class RegistrationServiceTest {
         assertThrows(
             ConstraintViolationException.class,
             () -> {
-                registrationService.register(johnDoeRegistration);
+                registrationService.registerUserByEmailAndPassword(johnDoeRegistration);
             },
             "must fail when the registrationService receive a registration's email already registered"
         );
-        var maryDoeRegistration = new RegistrationVO();
+        var maryDoeRegistration = new UserRegistrationByEmailAndPasswordRequest();
         maryDoeRegistration.setName("Mary Doe");
         maryDoeRegistration.getEmailWithConfirmation().email = "johndoe@johndoe.com";
         maryDoeRegistration
@@ -182,7 +165,7 @@ class RegistrationServiceTest {
         assertThrows(
             ConstraintViolationException.class,
             () -> {
-                registrationService.register(maryDoeRegistration);
+                registrationService.registerUserByEmailAndPassword(maryDoeRegistration);
             },
             "must fail when the registrationService receive a registration's email already registered"
         );

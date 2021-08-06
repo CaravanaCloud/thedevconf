@@ -21,25 +21,24 @@ public class PersonService {
     public Optional<Person> findBySession(UserSession session) {
         var user = (Person) null;
         if (session.isAuthenticated()) {
-            user = findByEmail(session);
+            user = findByEmail(session.getEmail())
+                .orElseGet(() -> newUserFromSession(session));
             session.setUser(user);
         }
         return Optional.ofNullable(user);
     }
 
-    private Person findByEmail(UserSession session) {
-        Person user;
-        var email = em.createNamedQuery(UserEmail.FIND_BY_EMAIL, UserEmail.class)
-            .setParameter("email", session.getEmail())
+    private Optional<Person> findByEmail(String email) {
+        Optional<Person> userRef = Optional.empty();
+        var emailRef = em.createNamedQuery(UserEmail.FIND_BY_EMAIL, UserEmail.class)
+            .setParameter("email", email)
             .setMaxResults(1)
             .getResultStream()
             .findFirst();
-        if (email.isPresent()) {
-            user = email.get().getPerson();
-        } else {
-            user = newUserFromSession(session);
+        if (emailRef.isPresent()) {
+            userRef = Optional.ofNullable(emailRef.get().getUser());
         }
-        return user;
+        return userRef;
     }
 
     private Person newUserFromSession(UserSession session) {

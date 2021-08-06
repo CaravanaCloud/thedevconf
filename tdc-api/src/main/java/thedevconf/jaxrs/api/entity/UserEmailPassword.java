@@ -1,6 +1,7 @@
 package thedevconf.jaxrs.api.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 import javax.persistence.Entity;
@@ -24,6 +25,7 @@ public class UserEmailPassword extends PanacheEntityBase {
     @NotEmpty
     @Lob
     private String hash;
+    private LocalDateTime createTime;
 
     public static UserEmailPassword createFrom(
         final String email,
@@ -71,6 +73,7 @@ public class UserEmailPassword extends PanacheEntityBase {
         entity.email = email;
         entity.salt = salt;
         entity.hash = hash;
+        entity.createTime = LocalDateTime.now();
         return entity;
     }
 
@@ -86,12 +89,8 @@ public class UserEmailPassword extends PanacheEntityBase {
         return email;
     }
 
-    public String getHash() {
-        return hash;
-    }
-
-    public String getSalt() {
-        return salt;
+    public LocalDateTime getCreateTime() {
+        return this.createTime;
     }
 
     public boolean matches(final UserEmailPassword other) {

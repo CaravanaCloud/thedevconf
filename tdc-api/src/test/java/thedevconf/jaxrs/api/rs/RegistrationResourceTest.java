@@ -1,8 +1,8 @@
 package thedevconf.jaxrs.api.rs;
 
 import io.quarkus.test.junit.QuarkusTest;
-import io.quarkus.test.junit.TestProfile;
 import io.restassured.http.ContentType;
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Optional;
 import javax.inject.Inject;
@@ -16,17 +16,19 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import thedevconf.jaxrs.api.RegistrationServiceTestProfile;
 import thedevconf.jaxrs.api.entity.Person;
 import thedevconf.jaxrs.api.entity.Registration;
 import thedevconf.jaxrs.api.entity.UserEmail;
 import thedevconf.jaxrs.api.entity.UserEmailPassword;
 import thedevconf.jaxrs.api.services.PasswordGeneratorService;
-import thedevconf.jaxrs.api.vo.RegistrationVO;
+import thedevconf.jaxrs.api.vo.UserRegistrationByEmailAndPasswordRequest;
+import thedevconf.jaxrs.api.vo.UserRegistrationByEmailAndPasswordResponse;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 @QuarkusTest
 @TestMethodOrder(OrderAnnotation.class)
@@ -35,10 +37,12 @@ class RegistrationResourceTest {
     @DisplayName("GET  /api/user/registration must return 200")
     void get() {
         given()
+            .log().ifValidationFails()
             .when()
             .contentType(ContentType.JSON)
             .get("/api/user/registration")
             .then()
+            .log().ifValidationFails()
             .statusCode(200);
     }
 
@@ -61,12 +65,14 @@ class RegistrationResourceTest {
     @Test
     @DisplayName("POST  /api/user/registration with a empty payload return 400")
     void postAnEmptyParamThenMustFail() {
-       given()
+        given()
+            .log().ifValidationFails()
             .when()
             .contentType(ContentType.JSON)
             .body(Map.of())
             .post("/api/user/registration")
             .then()
+            .log().ifValidationFails()
             .statusCode(400);
     }
 
@@ -100,7 +106,7 @@ class RegistrationResourceTest {
         String passwordConfirmation,
         String acceptTerms
     ) {
-        RegistrationVO registration = new RegistrationVO();
+        UserRegistrationByEmailAndPasswordRequest registration = new UserRegistrationByEmailAndPasswordRequest();
         registration.setName(valueOf(name));
         registration.getEmailWithConfirmation().email = valueOf(email);
         registration.getEmailWithConfirmation().emailConfirmation = valueOf(
@@ -129,7 +135,7 @@ class RegistrationResourceTest {
     @DisplayName("POST /api/user/registration - happy scenario")
     @Test
     void testHappyScenarios() {
-        var johnDoeRegistration = new RegistrationVO();
+        var johnDoeRegistration = new UserRegistrationByEmailAndPasswordRequest();
         johnDoeRegistration.setName("John Doe");
         johnDoeRegistration.getEmailWithConfirmation().email = "johndoe@johndoe.com";
         johnDoeRegistration
@@ -138,13 +144,22 @@ class RegistrationResourceTest {
         johnDoeRegistration.getPasswordWithConfirmation().passwordConfirmation = "test123";
         johnDoeRegistration.setAcceptedTerms(Boolean.TRUE);
 
-        given()
-            .when()
-            .contentType(ContentType.JSON)
-            .body(johnDoeRegistration)
-            .post("/api/user/registration")
-            .then()
-            .statusCode(200);
+        var userRegistration =
+            given()
+                .log().ifValidationFails()
+                .when()
+                .contentType(ContentType.JSON)
+                .body(johnDoeRegistration)
+                .post("/api/user/registration")
+                .then()
+                .log().ifValidationFails()
+                .statusCode(200)
+                .extract()
+                .as(UserRegistrationByEmailAndPasswordResponse.class);
+
+        assertThat(userRegistration,notNullValue(UserRegistrationByEmailAndPasswordResponse.class));
+        assertThat(userRegistration.getEmail(),equalTo(johnDoeRegistration.getEmailWithConfirmation().email));
+        assertThat(userRegistration.getCreateTime(),notNullValue(LocalDateTime.class));
 
         final var johnDoeEmailAndPasswordRef =
             UserEmailPassword.findByEmail(johnDoeRegistration.getEmailWithConfirmation().email);
@@ -163,13 +178,12 @@ class RegistrationResourceTest {
                     "must be registered an UserEmail entity"
                 );
                 assertNotNull(UserEmail.findByEmail(johnDoeEmailAndPassword.getEmail()).get()
-                                  .getPerson(), "must be registered an User entity");
+                                  .getUser(), "must be registered an User entity");
             },
             () ->
                 fail("must be registered an UserEmailPassword entity " +
                          "for a valid registration with a non registered email")
         );
-
         given()
             .when()
             .contentType(ContentType.JSON)
@@ -178,7 +192,7 @@ class RegistrationResourceTest {
             .then()
             .statusCode(400);
         //            "must fail when the registrationService receive a registration's email already registered"
-        var maryDoeRegistration = new RegistrationVO();
+        var maryDoeRegistration = new UserRegistrationByEmailAndPasswordRequest();
         maryDoeRegistration.setName("Mary Doe");
         maryDoeRegistration.getEmailWithConfirmation().email = "johndoe@johndoe.com";
         maryDoeRegistration
@@ -186,7 +200,6 @@ class RegistrationResourceTest {
         maryDoeRegistration.getPasswordWithConfirmation().password = "test123";
         maryDoeRegistration.getPasswordWithConfirmation().passwordConfirmation = "test123";
         maryDoeRegistration.setAcceptedTerms(Boolean.TRUE);
-
         given()
             .when()
             .contentType(ContentType.JSON)
@@ -194,8 +207,6 @@ class RegistrationResourceTest {
             .post("/api/user/registration")
             .then()
             .statusCode(400);
-
-//            "must fail when the registrationService receive a registration's email already registered"
-
+        //            "must fail when the registrationService receive a registration's email already registered"
     }
 }

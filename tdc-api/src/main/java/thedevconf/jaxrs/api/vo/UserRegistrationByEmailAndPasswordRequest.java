@@ -6,41 +6,41 @@ import javax.validation.Valid;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import thedevconf.jaxrs.api.services.RegistrationService;
+import thedevconf.jaxrs.api.services.RegistrationService.UserRegistrationByEmailAndPasswordRequestValidator;
 import thedevconf.jaxrs.validation.CustomConstraint;
 
 @CustomConstraint(
-    message = "{thedevconf.jaxrs.api.vo.RegistrationVO.emailRegisteredAlready}",
-    delegateTo = RegistrationService.RegistrationValidator.class
+    message = "{thedevconf.jaxrs.api.vo.UserRegistrationByEmailAndPasswordRequest.emailRegisteredAlready}",
+    delegateTo = UserRegistrationByEmailAndPasswordRequestValidator.class
 )
-public class RegistrationVO {
+public class UserRegistrationByEmailAndPasswordRequest {
     @NotEmpty
     String name;
     @NotNull
     @Valid
-    EmailWithConfirmationVO emailWithConfirmation;
+    EmailWithConfirmation emailWithConfirmation;
     @NotNull
     @Valid
-    PasswordWithConfirmationVO passwordWithConfirmation;
+    PasswordWithConfirmation passwordWithConfirmation;
     @NotNull
     @AssertTrue
     Boolean acceptedTerms;
     LocalDateTime createTime;
 
-    public RegistrationVO() {
+    public UserRegistrationByEmailAndPasswordRequest() {
         this(
             null,
-            new EmailWithConfirmationVO(),
-            new PasswordWithConfirmationVO(),
+            new EmailWithConfirmation(),
+            new PasswordWithConfirmation(),
             Boolean.FALSE,
             null
         );
     }
 
-    public RegistrationVO(
+    public UserRegistrationByEmailAndPasswordRequest(
         String name,
-        EmailWithConfirmationVO emailWithConfirmation,
-        PasswordWithConfirmationVO passwordWithConfirmation,
+        EmailWithConfirmation emailWithConfirmation,
+        PasswordWithConfirmation passwordWithConfirmation,
         boolean acceptedTerms,
         LocalDateTime createTime
     ) {
@@ -51,10 +51,6 @@ public class RegistrationVO {
         this.createTime = createTime;
     }
 
-    public static RegistrationVO of(final String clientId) {
-        return new RegistrationVO();
-    }
-
     public String getName() {
         return name;
     }
@@ -63,22 +59,22 @@ public class RegistrationVO {
         this.name = name;
     }
 
-    public EmailWithConfirmationVO getEmailWithConfirmation() {
+    public EmailWithConfirmation getEmailWithConfirmation() {
         return emailWithConfirmation;
     }
 
-    public void setEmailWithConfirmation(final EmailWithConfirmationVO emailWithConfirmation) {
+    public void setEmailWithConfirmation(final EmailWithConfirmation emailWithConfirmation) {
         this.emailWithConfirmation = Optional.ofNullable(emailWithConfirmation).orElseGet(
-            EmailWithConfirmationVO::new);
+            EmailWithConfirmation::new);
     }
 
-    public PasswordWithConfirmationVO getPasswordWithConfirmation() {
+    public PasswordWithConfirmation getPasswordWithConfirmation() {
         return passwordWithConfirmation;
     }
 
-    public void setPasswordWithConfirmation(final PasswordWithConfirmationVO passwordWithConfirmation) {
+    public void setPasswordWithConfirmation(final PasswordWithConfirmation passwordWithConfirmation) {
         this.passwordWithConfirmation = Optional.ofNullable(passwordWithConfirmation).orElseGet(
-            PasswordWithConfirmationVO::new);
+            PasswordWithConfirmation::new);
     }
 
     public Boolean getAcceptedTerms() {

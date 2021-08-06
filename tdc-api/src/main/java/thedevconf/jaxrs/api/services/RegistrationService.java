@@ -1,6 +1,5 @@
 package thedevconf.jaxrs.api.services;
 
-import org.checkerframework.common.value.qual.IntRangeFromGTENegativeOne;
 import thedevconf.jaxrs.api.entity.Person;
 import thedevconf.jaxrs.api.entity.Registration;
 
@@ -8,9 +7,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.Optional;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.transaction.Transactional;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import javax.validation.Valid;
@@ -18,7 +14,8 @@ import javax.validation.constraints.NotNull;
 
 import thedevconf.jaxrs.api.entity.UserEmail;
 import thedevconf.jaxrs.api.entity.UserEmailPassword;
-import thedevconf.jaxrs.api.vo.RegistrationVO;
+import thedevconf.jaxrs.api.vo.UserRegistrationByEmailAndPasswordRequest;
+import thedevconf.jaxrs.api.vo.UserRegistrationByEmailAndPasswordResponse;
 import thedevconf.jaxrs.validation.CustomConstraint;
 
 @ApplicationScoped
@@ -86,8 +83,10 @@ public class RegistrationService extends BaseService {
     }
 
     @Transactional
-    public void register(@NotNull @Valid RegistrationVO registration) {
-        if (UserEmail.containsByEmail(registration
+    public UserRegistrationByEmailAndPasswordResponse registerUserByEmailAndPassword(
+        @NotNull @Valid final UserRegistrationByEmailAndPasswordRequest registrationRequest
+    ) {
+        if (UserEmail.containsByEmail(registrationRequest
                                           .getEmailWithConfirmation().email)) {
             // defensive programming
             throw new IllegalStateException("this method should be not executed 'cause " +
@@ -95,25 +94,30 @@ public class RegistrationService extends BaseService {
                                                 "the Bean Validation API. " +
                                                 "Check the application configuration.");
         }
-        Person user = Person.newTransientFromName(registration.getName());
-        user.setAcceptedTerms(registration.getAcceptedTerms());
+        Person user = Person.newTransientFromName(registrationRequest.getName());
+        user.setAcceptedTerms(registrationRequest.getAcceptedTerms());
         user.persist();
         UserEmail userEmail = UserEmail.newFromEmailAndUser(
-            registration.getEmailWithConfirmation().email,
+            registrationRequest.getEmailWithConfirmation().email,
             user
         );
-        UserEmailPassword.createFrom(
+        var userEmailPassword= UserEmailPassword.createFrom(
             userEmail.getEmail(),
-            registration.getPasswordWithConfirmation().password,
+            registrationRequest.getPasswordWithConfirmation().password,
             passwordGeneratorService
+        );
+
+        return new UserRegistrationByEmailAndPasswordResponse(
+            userEmailPassword.getEmail(),
+            userEmailPassword.getCreateTime()
         );
     }
 
-    public static class RegistrationValidator
-            implements ConstraintValidator<CustomConstraint, RegistrationVO> {
+    public static class UserRegistrationByEmailAndPasswordRequestValidator
+            implements ConstraintValidator<CustomConstraint, UserRegistrationByEmailAndPasswordRequest> {
         @Override
         public boolean isValid(
-                final RegistrationVO registration,
+                final UserRegistrationByEmailAndPasswordRequest registration,
                 final ConstraintValidatorContext context
         ) {
             if (registration == null) {

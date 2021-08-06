@@ -10,7 +10,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import thedevconf.jaxrs.api.services.RegistrationService;
-import thedevconf.jaxrs.api.vo.RegistrationVO;
+import thedevconf.jaxrs.api.vo.UserRegistrationByEmailAndPasswordRequest;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @ApplicationScoped
@@ -20,8 +20,8 @@ public class RegistrationResource {
 
     @GET
     @Produces(APPLICATION_JSON)
-    public RegistrationVO get() {
-        return new RegistrationVO();
+    public UserRegistrationByEmailAndPasswordRequest get() {
+        return new UserRegistrationByEmailAndPasswordRequest();
     }
 
     @POST
@@ -29,9 +29,9 @@ public class RegistrationResource {
     @Consumes(APPLICATION_JSON)
     public Response post(
         @NotNull
-        @Valid RegistrationVO registration
+        @Valid UserRegistrationByEmailAndPasswordRequest registration
     ) {
-        registrationService.register(registration);
-        return Response.ok().build();
+        final var userRegistration = registrationService.registerUserByEmailAndPassword(registration);
+        return Response.ok(userRegistration).build();
     }
 }

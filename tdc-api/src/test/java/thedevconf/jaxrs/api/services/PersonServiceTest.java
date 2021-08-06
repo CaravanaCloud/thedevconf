@@ -16,7 +16,7 @@ import thedevconf.jaxrs.api.entity.UserEmailPassword;
 import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
-public class UserServiceTest {
+public class PersonServiceTest {
 //TODO: Clean database after each test
 
     @Inject

@@ -9,11 +9,11 @@ import javax.validation.constraints.NotEmpty;
 import thedevconf.jaxrs.validation.CustomConstraint;
 
 @CustomConstraint(
-        delegateTo = EmailWithConfirmationVO.Validator.class,
-        message = EmailWithConfirmationVO.ERROR_MESSAGE
+        delegateTo = EmailWithConfirmation.Validator.class,
+        message = EmailWithConfirmation.ERROR_MESSAGE
 )
-public class EmailWithConfirmationVO {
-    static final String ERROR_MESSAGE = "{thedevconf.jaxrs.api.vo.EmailWithConfirmationVO.message}";
+public class EmailWithConfirmation {
+    static final String ERROR_MESSAGE = "{thedevconf.jaxrs.api.vo.EmailWithConfirmation.message}";
     @NotEmpty
     @Email
     public String email;
@@ -21,7 +21,7 @@ public class EmailWithConfirmationVO {
     @Email
     public String emailConfirmation;
 
-    public static boolean isValid(EmailWithConfirmationVO emailWithConfirmationVO) {
+    public static boolean isValid(EmailWithConfirmation emailWithConfirmationVO) {
         if (emailWithConfirmationVO.email == null ||
                 emailWithConfirmationVO.emailConfirmation == null) {
             return false;
@@ -33,18 +33,18 @@ public class EmailWithConfirmationVO {
     }
 
     public static class Validator
-            implements ConstraintValidator<CustomConstraint, EmailWithConfirmationVO> {
+            implements ConstraintValidator<CustomConstraint, EmailWithConfirmation> {
         @Override
         public boolean isValid(
-                final EmailWithConfirmationVO value, final ConstraintValidatorContext context
+            final EmailWithConfirmation value, final ConstraintValidatorContext context
         ) {
-            return EmailWithConfirmationVO.isValid(value);
+            return EmailWithConfirmation.isValid(value);
         }
     }
 
     @Override
     public String toString() {
-        return "EmailWithConfirmationVO{" +
+        return "EmailWithConfirmation{" +
                 "email='" + email + '\'' +
                 ", emailConfirmation='" + emailConfirmation + '\'' +
                 '}';

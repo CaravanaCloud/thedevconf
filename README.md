@@ -84,6 +84,29 @@ mysql> show databases;
 +--------------------+
 5 rows in set (0.01 sec)
 ```
+## Install the CheckStyle on the IntelliJ
+
+Find and Install the [CheckStyle-IDEA](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea) plugin clicking on **File -> Settings -> Plugins**:
+
+![Report](imgs/checkstyle-idea-plugin-intellij.png)
+
+After that, it's needed to import the configuration on the [**checkstyle.xml**]((checkstyle.xml)) on the root directory of the project. Go to **File -> Settings -> Tools -> Checkstyle** and go to **Configuration File** then click on the **Add** button (**+** signal at right), browse to the **checkstyle.xml** file. Mark the **"Store relative to project location"** checkbox and click on **"Next"** button.
+
+![Report](imgs/checkstyle-idea-plugin-settings-01.png)
+
+It will ask you to provide some properties, you don't need it then click on **"Next"** button to finish the setup.
+
+![Report](imgs/checkstyle-idea-plugin-settings-02.png)
+
+Don't forget to mark this file as the "Active" one. Also, choose the "8.32" CheckStyle version like the image below:
+
+![Report](imgs/checkstyle-idea-plugin-settings-03.png)
+
+Now, you'll need to import the "checkstyle.xml" file configuration at **Editor -> Code Style -> Java** like the image below:
+
+![Report](imgs/checkstyle-idea-plugin-settings-04.png)
+
+It's done! On the IntelliJ footer, you will be able to find out the ***CheckSyle*** plugin tab. There you will be able to run the code checking process (on the project or module levels or in the opened file).
 
 ## Compile everything
 ```

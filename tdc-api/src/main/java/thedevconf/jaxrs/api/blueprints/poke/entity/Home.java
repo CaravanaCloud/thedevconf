@@ -1,8 +1,7 @@
 package thedevconf.jaxrs.api.blueprints.poke.entity;
 
-import thedevconf.jaxrs.api.blueprints.dnc.Role;
-
 import java.math.BigDecimal;
+import thedevconf.jaxrs.api.blueprints.dnc.Role;
 
 @Role
 public class Home {

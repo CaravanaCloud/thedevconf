@@ -2,11 +2,11 @@ package thedevconf.jaxrs.ui;
 
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
+import javax.inject.Inject;
 import thedevconf.jaxrs.Configuration;
 
-import javax.inject.Inject;
-
 public class BaseResource {
+
     @Inject
     Configuration cfg;
 

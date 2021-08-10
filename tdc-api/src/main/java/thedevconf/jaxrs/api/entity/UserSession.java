@@ -1,10 +1,15 @@
 package thedevconf.jaxrs.api.entity;
 
-import thedevconf.jaxrs.auth.ThreadLocalUserInfo;
-
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Optional;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import thedevconf.jaxrs.auth.ThreadLocalUserInfo;
 
 @Entity
 @Table(name = "UserSession_tdc")
@@ -156,7 +161,7 @@ public class UserSession {
     }
 
     public boolean isAuthenticated() {
-        return email != null && ! email.isEmpty();
+        return email != null && !email.isEmpty();
     }
 
     public void setUser(Person user) {

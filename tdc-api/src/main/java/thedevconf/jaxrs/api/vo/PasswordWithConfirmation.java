@@ -4,7 +4,6 @@ import java.util.Objects;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import javax.validation.constraints.NotEmpty;
-
 import thedevconf.jaxrs.validation.CustomConstraint;
 
 @CustomConstraint(
@@ -19,8 +18,8 @@ public class PasswordWithConfirmation {
     public String passwordConfirmation;
 
     public static boolean isValid(PasswordWithConfirmation emailWithConfirmationVO) {
-        if (emailWithConfirmationVO.password == null ||
-                emailWithConfirmationVO.passwordConfirmation == null) {
+        if (emailWithConfirmationVO.password == null
+                || emailWithConfirmationVO.passwordConfirmation == null) {
             return false;
         }
         return Objects.equals(
@@ -33,7 +32,7 @@ public class PasswordWithConfirmation {
             implements ConstraintValidator<CustomConstraint, PasswordWithConfirmation> {
         @Override
         public boolean isValid(
-            final PasswordWithConfirmation value, final ConstraintValidatorContext context
+                final PasswordWithConfirmation value, final ConstraintValidatorContext context
         ) {
             return PasswordWithConfirmation.isValid(value);
         }
@@ -41,9 +40,9 @@ public class PasswordWithConfirmation {
 
     @Override
     public String toString() {
-        return "PasswordWithConfirmation{" +
-                "password='" + password + '\'' +
-                ", passwordConfirmation='" + passwordConfirmation + '\'' +
-                '}';
+        return "PasswordWithConfirmation{"
+                + "password='" + password + '\''
+                + ", passwordConfirmation='" + passwordConfirmation + "\'"
+                + "}";
     }
 }

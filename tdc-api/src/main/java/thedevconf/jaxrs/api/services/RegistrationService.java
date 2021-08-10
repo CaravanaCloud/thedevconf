@@ -1,17 +1,15 @@
 package thedevconf.jaxrs.api.services;
 
-import thedevconf.jaxrs.api.entity.Person;
-import thedevconf.jaxrs.api.entity.Registration;
-
+import java.util.Optional;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import java.util.Optional;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-
+import thedevconf.jaxrs.api.entity.Person;
+import thedevconf.jaxrs.api.entity.Registration;
 import thedevconf.jaxrs.api.entity.UserEmail;
 import thedevconf.jaxrs.api.entity.UserEmailPassword;
 import thedevconf.jaxrs.api.vo.UserRegistrationByEmailAndPasswordRequest;
@@ -44,7 +42,9 @@ public class RegistrationService extends BaseService {
     @Transactional
     public Optional<Registration> doRegistration(Person person, String editionCode, String modeCode) {
         Optional<Registration> registration = findFirst(person, editionCode, modeCode);
-        if (registration.isPresent()) return registration;
+        if (registration.isPresent()) {
+            return registration;
+        }
         var edition = editions.byCode(editionCode);
         var mode = modes.byCode(modeCode);
         var arePresent = edition.isPresent() && mode.isPresent();
@@ -56,7 +56,9 @@ public class RegistrationService extends BaseService {
             );
             reg = em.merge(reg);
             return Optional.of(reg);
-        } else throw new IllegalArgumentException();
+        } else {
+            throw new IllegalArgumentException();
+        }
     }
 
     public boolean isRegistered(String editionCode, String modeCode) {
@@ -84,32 +86,32 @@ public class RegistrationService extends BaseService {
 
     @Transactional
     public UserRegistrationByEmailAndPasswordResponse registerUserByEmailAndPassword(
-        @NotNull @Valid final UserRegistrationByEmailAndPasswordRequest registrationRequest
+            @NotNull @Valid final UserRegistrationByEmailAndPasswordRequest registrationRequest
     ) {
         if (UserEmail.containsByEmail(registrationRequest
-                                          .getEmailWithConfirmation().email)) {
+                .getEmailWithConfirmation().email)) {
             // defensive programming
-            throw new IllegalStateException("this method should be not executed 'cause " +
-                                                "the parameter should be validated by " +
-                                                "the Bean Validation API. " +
-                                                "Check the application configuration.");
+            throw new IllegalStateException("this method should be not executed 'cause "
+                    + "the parameter should be validated by "
+                    + "the Bean Validation API. "
+                    + "Check the application configuration.");
         }
         Person user = Person.newTransientFromName(registrationRequest.getName());
         user.setAcceptedTerms(registrationRequest.getAcceptedTerms());
         user.persist();
         UserEmail userEmail = UserEmail.newFromEmailAndUser(
-            registrationRequest.getEmailWithConfirmation().email,
-            user
+                registrationRequest.getEmailWithConfirmation().email,
+                user
         );
-        var userEmailPassword= UserEmailPassword.createFrom(
-            userEmail.getEmail(),
-            registrationRequest.getPasswordWithConfirmation().password,
-            passwordGeneratorService
+        var userEmailPassword = UserEmailPassword.createFrom(
+                userEmail.getEmail(),
+                registrationRequest.getPasswordWithConfirmation().password,
+                passwordGeneratorService
         );
 
         return new UserRegistrationByEmailAndPasswordResponse(
-            userEmailPassword.getEmail(),
-            userEmailPassword.getCreateTime()
+                userEmailPassword.getEmail(),
+                userEmailPassword.getCreateTime()
         );
     }
 

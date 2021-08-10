@@ -1,25 +1,23 @@
 package cloud.caravana.vo;
 
-import java.text.SimpleDateFormat;
-
 public class Track {
-  private String name;
-  private String date;
+    private String name;
+    private String date;
 
-  public Track () {
-    this("", "");
-  }
+    public Track() {
+        this("", "");
+    }
 
-  public Track (String name, String date){
-    this.name = name;
-    this.date = date;
-  }
+    public Track(String name, String date) {
+        this.name = name;
+        this.date = date;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public String getDate() {
-    return date;
-  }
+    public String getDate() {
+        return date;
+    }
 }

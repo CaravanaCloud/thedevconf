@@ -9,7 +9,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.Payload;
 
 /**
- * Custom Constraint to allow the custom validation
+ * Custom Constraint to allow the custom validation.
  */
 @Constraint
         (validatedBy = CustomConstraintValidator.class)

@@ -1,14 +1,5 @@
 package thedevconf.jaxrs.api.rs;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.json.JsonObject;
-import javax.ws.rs.*;
-
-import java.util.Collections;
-import java.util.Map;
-import java.util.logging.Logger;
-
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
@@ -18,6 +9,16 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson.JacksonFactory;
+import java.util.Collections;
+import java.util.Map;
+import java.util.logging.Logger;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.json.JsonObject;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import thedevconf.jaxrs.Configuration;
 import thedevconf.jaxrs.auth.UserSessionService;
 

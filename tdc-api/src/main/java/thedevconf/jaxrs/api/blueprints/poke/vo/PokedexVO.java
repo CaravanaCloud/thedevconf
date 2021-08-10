@@ -1,8 +1,7 @@
 package thedevconf.jaxrs.api.blueprints.poke.vo;
 
-import thedevconf.jaxrs.api.blueprints.poke.entity.Pokemon;
-
 import java.util.List;
+import thedevconf.jaxrs.api.blueprints.poke.entity.Pokemon;
 
 public class PokedexVO {
     List<Pokemon> pokemons;

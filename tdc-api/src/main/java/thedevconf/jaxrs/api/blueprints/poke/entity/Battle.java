@@ -1,10 +1,9 @@
 package thedevconf.jaxrs.api.blueprints.poke.entity;
 
-import thedevconf.jaxrs.api.blueprints.dnc.Moment;
+import static thedevconf.jaxrs.api.blueprints.dnc.MIType.Interval;
 
 import java.time.LocalDateTime;
-
-import static thedevconf.jaxrs.api.blueprints.dnc.MIType.Interval;
+import thedevconf.jaxrs.api.blueprints.dnc.Moment;
 
 @Moment(Interval)
 public class Battle {

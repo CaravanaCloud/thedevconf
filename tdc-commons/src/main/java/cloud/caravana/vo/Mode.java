@@ -1,8 +1,10 @@
 package cloud.caravana.vo;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Mode {
+
     private String name;
     private List<Edition> editions;
 
@@ -13,23 +15,24 @@ public class Mode {
         return outraCoisa;
     }
 
-    public Mode(){
+    public Mode() {
         this("");
     }
-    public Mode(String name){
+
+    public Mode(String name) {
         this(name, new ArrayList<>());
     }
-    
-    public Mode(String name, List<Edition> editions){
+
+    public Mode(String name, List<Edition> editions) {
         this.name = name;
         this.editions = editions;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public List<Edition> getEditions(){
+    public List<Edition> getEditions() {
         return editions;
     }
 

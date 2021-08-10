@@ -1,8 +1,13 @@
 package thedevconf.jaxrs.api.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "tdc_registration",
@@ -11,8 +16,10 @@ import javax.persistence.*;
         }
 )
 @NamedQueries({
-        @NamedQuery(name = "registration.byPersonAndMode",
-                query = "select r from Registration r where r.person = :person and r.mode.code = :modeCode and r.edition.code = :editionCode")
+        @NamedQuery(
+                name = "registration.byPersonAndMode",
+                query = "select r from Registration r "
+                        + "where r.person = :person and r.mode.code = :modeCode and r.edition.code = :editionCode")
 })
 public class Registration extends PanacheEntity {
     @ManyToOne

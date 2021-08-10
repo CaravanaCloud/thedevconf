@@ -4,6 +4,6 @@ import thedevconf.jaxrs.api.blueprints.dnc.Description;
 
 @Description
 public class Season {
-    Integer Id;
+    Integer id;
     String description;
 }

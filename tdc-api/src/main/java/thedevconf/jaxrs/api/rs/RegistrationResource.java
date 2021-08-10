@@ -1,5 +1,7 @@
 package thedevconf.jaxrs.api.rs;
 
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -11,7 +13,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import thedevconf.jaxrs.api.services.RegistrationService;
 import thedevconf.jaxrs.api.vo.UserRegistrationByEmailAndPasswordRequest;
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @ApplicationScoped
 public class RegistrationResource {
@@ -28,10 +29,11 @@ public class RegistrationResource {
     @Produces(APPLICATION_JSON)
     @Consumes(APPLICATION_JSON)
     public Response post(
-        @NotNull
-        @Valid UserRegistrationByEmailAndPasswordRequest registration
+            @NotNull
+            @Valid UserRegistrationByEmailAndPasswordRequest registration
     ) {
-        final var userRegistration = registrationService.registerUserByEmailAndPassword(registration);
+        final var userRegistration =
+                registrationService.registerUserByEmailAndPassword(registration);
         return Response.ok(userRegistration).build();
     }
 }

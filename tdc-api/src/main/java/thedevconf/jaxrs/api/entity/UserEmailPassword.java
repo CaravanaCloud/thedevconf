@@ -28,13 +28,13 @@ public class UserEmailPassword extends PanacheEntityBase {
     private LocalDateTime createTime;
 
     public static UserEmailPassword createFrom(
-        final String email,
-        final String plainTextPassword,
-        final PasswordGeneratorService passwordGeneratorService
+            final String email,
+            final String plainTextPassword,
+            final PasswordGeneratorService passwordGeneratorService
     ) {
         if (UserEmailPassword.containsByEmail(email)) {
             throw new IllegalArgumentException(
-                "email already registered"
+                    "email already registered"
             );
         }
         final var salt = passwordGeneratorService.generateSalt();
@@ -45,9 +45,9 @@ public class UserEmailPassword extends PanacheEntityBase {
     }
 
     public static boolean matches(
-        final String email,
-        final String plainTextPassword,
-        final PasswordGeneratorService passwordGeneratorService
+            final String email,
+            final String plainTextPassword,
+            final PasswordGeneratorService passwordGeneratorService
     ) {
         final var entityRef = UserEmailPassword.findByEmail(email);
         if (email.isEmpty()) {
@@ -55,19 +55,29 @@ public class UserEmailPassword extends PanacheEntityBase {
         }
         final var targetUserEmailPassword = entityRef.get();
         return targetUserEmailPassword
-            .matches(
-                UserEmailPassword.createTransientFrom(
-                    email,
-                    plainTextPassword,
-                    passwordGeneratorService
-                        .generatePassword(plainTextPassword, targetUserEmailPassword.salt)
-                ));
+                .matches(
+                        UserEmailPassword.createTransientFrom(
+                                email,
+                                plainTextPassword,
+                                passwordGeneratorService
+                                        .generatePassword(plainTextPassword, targetUserEmailPassword.salt)
+                        ));
+    }
+
+    public boolean matches(final UserEmailPassword other) {
+        if (this == other) {
+            return true;
+        }
+        if (other == null) {
+            return false;
+        }
+        return Objects.equals(hash, other.hash);
     }
 
     public static UserEmailPassword createTransientFrom(
-        final String email,
-        final String salt,
-        final String hash
+            final String email,
+            final String salt,
+            final String hash
     ) {
         UserEmailPassword entity = new UserEmailPassword();
         entity.email = email;
@@ -93,13 +103,4 @@ public class UserEmailPassword extends PanacheEntityBase {
         return this.createTime;
     }
 
-    public boolean matches(final UserEmailPassword other) {
-        if (this == other) {
-            return true;
-        }
-        if (other == null) {
-            return false;
-        }
-        return Objects.equals(hash, other.hash);
-    }
 }

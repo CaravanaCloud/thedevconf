@@ -38,7 +38,8 @@ public class Person extends PanacheEntityBase {
     public Person() {
     }
 
-    public Person(String language, String phone, String company, String occupation, String country, String city, String gender, String ethnicity, String pcd, AcceptedTerms acceptedTerms) {
+    public Person(String language, String phone, String company, String occupation, String country, String city,
+                  String gender, String ethnicity, String pcd, AcceptedTerms acceptedTerms) {
         this.language = language;
         this.phone = phone;
         this.company = company;
@@ -168,15 +169,25 @@ public class Person extends PanacheEntityBase {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Person user = (Person) o;
-        return Objects.equals(id, user.id) && Objects.equals(language, user.language) && Objects.equals(phone, user.phone) && Objects.equals(company, user.company) && Objects.equals(occupation, user.occupation) && Objects.equals(country, user.country) && Objects.equals(city, user.city) && Objects.equals(gender, user.gender) && Objects.equals(ethnicity, user.ethnicity) && Objects.equals(pcd, user.pcd) && acceptedTerms == user.acceptedTerms;
+        return Objects.equals(id, user.id) && Objects.equals(language, user.language)
+                && Objects.equals(phone, user.phone) && Objects.equals(company, user.company)
+                && Objects.equals(occupation, user.occupation) && Objects.equals(country, user.country)
+                && Objects.equals(city, user.city) && Objects.equals(gender, user.gender)
+                && Objects.equals(ethnicity, user.ethnicity) && Objects.equals(pcd, user.pcd)
+                && acceptedTerms == user.acceptedTerms;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, language, phone, company, occupation, country, city, gender, ethnicity, pcd, acceptedTerms);
+        return Objects.hash(id, language, phone, company, occupation, country, city, gender, ethnicity, pcd,
+                acceptedTerms);
     }
 
     public void setSession(UserSession session) {

@@ -1,13 +1,13 @@
 package thedevconf.jaxrs.api.services;
 
-import thedevconf.jaxrs.api.entity.Person;
-import thedevconf.jaxrs.api.entity.UserEmail;
-import thedevconf.jaxrs.api.entity.UserSession;
+import java.util.Optional;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import java.util.Optional;
+import thedevconf.jaxrs.api.entity.Person;
+import thedevconf.jaxrs.api.entity.UserEmail;
+import thedevconf.jaxrs.api.entity.UserSession;
 
 @ApplicationScoped
 public class PersonService {
@@ -22,7 +22,7 @@ public class PersonService {
         var user = (Person) null;
         if (session.isAuthenticated()) {
             user = findByEmail(session.getEmail())
-                .orElseGet(() -> newUserFromSession(session));
+                    .orElseGet(() -> newUserFromSession(session));
             session.setUser(user);
         }
         return Optional.ofNullable(user);
@@ -31,10 +31,10 @@ public class PersonService {
     private Optional<Person> findByEmail(String email) {
         Optional<Person> userRef = Optional.empty();
         var emailRef = em.createNamedQuery(UserEmail.FIND_BY_EMAIL, UserEmail.class)
-            .setParameter("email", email)
-            .setMaxResults(1)
-            .getResultStream()
-            .findFirst();
+                .setParameter("email", email)
+                .setMaxResults(1)
+                .getResultStream()
+                .findFirst();
         if (emailRef.isPresent()) {
             userRef = Optional.ofNullable(emailRef.get().getUser());
         }

@@ -1,9 +1,8 @@
 package thedevconf.jaxrs.api.rs;
 
-import thedevconf.jaxrs.api.entity.Heartbeat;
-
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
+import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
@@ -12,7 +11,7 @@ import javax.transaction.Transactional;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import java.util.logging.Logger;
+import thedevconf.jaxrs.api.entity.Heartbeat;
 
 @ApplicationScoped
 public class HealthCheckResource {

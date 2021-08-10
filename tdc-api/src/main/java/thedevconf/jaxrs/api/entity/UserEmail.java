@@ -1,18 +1,24 @@
 package thedevconf.jaxrs.api.entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
-import javax.persistence.*;
-import java.time.LocalDateTime;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "UserEmail_tdc")
 @NamedQueries({
-    @NamedQuery(name = UserEmail.FIND_BY_EMAIL,
-        query = "select us from UserEmail us where us.email = :email")
+        @NamedQuery(name = UserEmail.FIND_BY_EMAIL,
+                query = "select us from UserEmail us where us.email = :email")
 })
 public class UserEmail extends PanacheEntityBase {
     public static final String FIND_BY_EMAIL = "UserEmail.byEmail";

@@ -10,8 +10,8 @@ import thedevconf.jaxrs.api.services.RegistrationService.UserRegistrationByEmail
 import thedevconf.jaxrs.validation.CustomConstraint;
 
 @CustomConstraint(
-    message = "{thedevconf.jaxrs.api.vo.UserRegistrationByEmailAndPasswordRequest.emailRegisteredAlready}",
-    delegateTo = UserRegistrationByEmailAndPasswordRequestValidator.class
+        message = "{thedevconf.jaxrs.api.vo.UserRegistrationByEmailAndPasswordRequest.emailRegisteredAlready}",
+        delegateTo = UserRegistrationByEmailAndPasswordRequestValidator.class
 )
 public class UserRegistrationByEmailAndPasswordRequest {
     @NotEmpty
@@ -29,20 +29,20 @@ public class UserRegistrationByEmailAndPasswordRequest {
 
     public UserRegistrationByEmailAndPasswordRequest() {
         this(
-            null,
-            new EmailWithConfirmation(),
-            new PasswordWithConfirmation(),
-            Boolean.FALSE,
-            null
+                null,
+                new EmailWithConfirmation(),
+                new PasswordWithConfirmation(),
+                Boolean.FALSE,
+                null
         );
     }
 
     public UserRegistrationByEmailAndPasswordRequest(
-        String name,
-        EmailWithConfirmation emailWithConfirmation,
-        PasswordWithConfirmation passwordWithConfirmation,
-        boolean acceptedTerms,
-        LocalDateTime createTime
+            String name,
+            EmailWithConfirmation emailWithConfirmation,
+            PasswordWithConfirmation passwordWithConfirmation,
+            boolean acceptedTerms,
+            LocalDateTime createTime
     ) {
         this.name = name;
         this.emailWithConfirmation = emailWithConfirmation;
@@ -65,7 +65,7 @@ public class UserRegistrationByEmailAndPasswordRequest {
 
     public void setEmailWithConfirmation(final EmailWithConfirmation emailWithConfirmation) {
         this.emailWithConfirmation = Optional.ofNullable(emailWithConfirmation).orElseGet(
-            EmailWithConfirmation::new);
+                EmailWithConfirmation::new);
     }
 
     public PasswordWithConfirmation getPasswordWithConfirmation() {
@@ -74,7 +74,7 @@ public class UserRegistrationByEmailAndPasswordRequest {
 
     public void setPasswordWithConfirmation(final PasswordWithConfirmation passwordWithConfirmation) {
         this.passwordWithConfirmation = Optional.ofNullable(passwordWithConfirmation).orElseGet(
-            PasswordWithConfirmation::new);
+                PasswordWithConfirmation::new);
     }
 
     public Boolean getAcceptedTerms() {
@@ -95,12 +95,12 @@ public class UserRegistrationByEmailAndPasswordRequest {
 
     @Override
     public String toString() {
-        return "RegistrationVO{" +
-            ", name='" + name + '\'' +
-            ", emailWithConfirmation='" + emailWithConfirmation + '\'' +
-            ", passwordWithConfirmation='" + passwordWithConfirmation + '\'' +
-            ", acceptedTerms=" + acceptedTerms +
-            ", createTime=" + createTime +
-            '}';
+        return "RegistrationVO{"
+                + ", name='" + name + '\''
+                + ", emailWithConfirmation='" + emailWithConfirmation + '\''
+                + ", passwordWithConfirmation='" + passwordWithConfirmation + '\''
+                + ", acceptedTerms=" + acceptedTerms
+                + ", createTime=" + createTime
+                + '}';
     }
 }

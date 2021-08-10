@@ -6,7 +6,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 /**
- * ConstraintValidator responsible to perform the validation according to the {@link CustomConstraint} annotation
+ * ConstraintValidator responsible to perform the validation according to the {@link CustomConstraint} annotation.
  */
 public class CustomConstraintValidator implements ConstraintValidator<CustomConstraint, Object> {
 
@@ -28,7 +28,11 @@ public class CustomConstraintValidator implements ConstraintValidator<CustomCons
             final ConstraintValidator constraintValidator =
                     constructor.newInstance(new Object[0]);
             return constraintValidator.isValid(value, context);
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+        } catch (NoSuchMethodException
+                | IllegalAccessException
+                | InvocationTargetException
+                | InstantiationException e
+        ) {
             throw new RuntimeException(e);
         }
     }

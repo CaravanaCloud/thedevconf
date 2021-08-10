@@ -1,17 +1,17 @@
 package thedevconf.jaxrs.api.entity;
 
 public enum Role {
-  USER(1),
-  STAFF(2),
-  ADMIN(3);
+    USER(1),
+    STAFF(2),
+    ADMIN(3);
 
-  private final int roleID;
+    private final int roleID;
 
-  Role(int roleID) {
-    this.roleID = roleID;
-  }
+    Role(int roleID) {
+        this.roleID = roleID;
+    }
 
-  public int getRoleID() {
-    return roleID;
-  }
+    public int getRoleID() {
+        return roleID;
+    }
 }

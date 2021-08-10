@@ -1,76 +1,79 @@
 package cloud.caravana.vo;
 
-import static cloud.caravana.vo.EditionStatus.*;
+import static cloud.caravana.vo.EditionStatus.ALL_IN;
+import static cloud.caravana.vo.EditionStatus.BASIC;
+import static cloud.caravana.vo.EditionStatus.PASSED;
+import static cloud.caravana.vo.EditionStatus.SELECTED;
 
 import java.util.List;
 
 public class TDCVOs {
 
-    public Alternatives createAlternatives(){
+    public Alternatives createAlternatives() {
         return Alternatives.of(createPassVip(),
-            createPassPremium(),
-            createVIPPass(),
-            createConnectPass(),
-            createBasicPass(),
-            createCorpPass());
+                createPassPremium(),
+                createVIPPass(),
+                createConnectPass(),
+                createBasicPass(),
+                createCorpPass());
     }
 
     private Mode createPassVip() {
         var editions = List.of(
-            new Edition("Innovation", PASSED ),
-            new Edition("Connections", ALL_IN, createConnectionTracks()),
-            new Edition("Transformation", ALL_IN),
-            new Edition("Future", ALL_IN));
+                new Edition("Innovation", PASSED),
+                new Edition("Connections", ALL_IN, createConnectionTracks()),
+                new Edition("Transformation", ALL_IN),
+                new Edition("Future", ALL_IN));
         var mode = new Mode("Passport Vip", editions);
         return mode;
     }
 
     private Mode createPassPremium() {
         var editions = List.of(
-            new Edition("Innovation", PASSED ),
-            new Edition("Connections", SELECTED, createConnectionTracks()),
-            new Edition("Transformation", SELECTED),
-            new Edition("Future", SELECTED));
+                new Edition("Innovation", PASSED),
+                new Edition("Connections", SELECTED, createConnectionTracks()),
+                new Edition("Transformation", SELECTED),
+                new Edition("Future", SELECTED));
         var mode = new Mode("Passport Premium", editions);
         return mode;
     }
 
     private Mode createVIPPass() {
         var editions = List.of(
-            new Edition("Innovation", PASSED ),
-            new Edition("Connections", ALL_IN, createConnectionTracks()),
-            new Edition("Transformation", BASIC),
-            new Edition("Future", BASIC));
+                new Edition("Innovation", PASSED),
+                new Edition("Connections", ALL_IN, createConnectionTracks()),
+                new Edition("Transformation", BASIC),
+                new Edition("Future", BASIC));
         var mode = new Mode("VIP Pass", editions);
         return mode;
     }
 
     private Mode createConnectPass() {
         var editions = List.of(
-            new Edition("Innovation", PASSED ),
-            new Edition("Connections", SELECTED /*6*/, createConnectionTracks()),
-            new Edition("Transformation", BASIC),
-            new Edition("Future", BASIC));
+                new Edition("Innovation", PASSED),
+                new Edition("Connections", SELECTED /*6*/, createConnectionTracks()),
+                new Edition("Transformation", BASIC),
+                new Edition("Future", BASIC));
         var mode = new Mode("Connect Pass", editions);
         return mode;
     }
 
     private Mode createBasicPass() {
         var editions = List.of(
-            new Edition("Innovation", PASSED ),
-            new Edition("Connections", BASIC, createConnectionTracks()),
-            new Edition("Transformation", BASIC),
-            new Edition("Future", BASIC));
+                new Edition("Innovation", PASSED),
+                new Edition("Connections", BASIC, createConnectionTracks()),
+                new Edition("Transformation", BASIC),
+                new Edition("Future", BASIC));
         var mode = new Mode("Basic Pass", editions);
         return mode;
     }
 
     private Mode createCorpPass() {
         var editions = List.of(
-            new Edition("Innovation", PASSED ),
-            new Edition("Connections", SELECTED, createConnectionTracks()),
-            new Edition("Transformation", SELECTED),
-            new Edition("Future", SELECTED));
+                new Edition("Innovation", PASSED),
+                new Edition("Connections", SELECTED, createConnectionTracks()),
+                new Edition("Transformation", SELECTED),
+                new Edition("Future", SELECTED));
         var mode = new Mode("Corp Pass", editions);
         return mode;
     }
@@ -113,9 +116,9 @@ public class TDCVOs {
         Track go = new Track("Go", thirdDay);
 
         return List.of(
-            agile, analise, api, js, ai, ux, devtest, devops, net, phyton,
-            coaching, management, microservices, dataScience, services, testes, lgpd, java, web,
-            kanban, agility, xp, mobile, dados, transformation, security, cloud, architecture, go
+                agile, analise, api, js, ai, ux, devtest, devops, net, phyton,
+                coaching, management, microservices, dataScience, services, testes, lgpd, java, web,
+                kanban, agility, xp, mobile, dados, transformation, security, cloud, architecture, go
         );
     }
 

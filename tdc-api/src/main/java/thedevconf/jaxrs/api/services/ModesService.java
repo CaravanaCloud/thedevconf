@@ -1,10 +1,9 @@
 package thedevconf.jaxrs.api.services;
 
-import thedevconf.jaxrs.api.entity.Mode;
-
+import java.util.Optional;
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
-import java.util.Optional;
+import thedevconf.jaxrs.api.entity.Mode;
 
 @ApplicationScoped
 public class ModesService extends BaseService {

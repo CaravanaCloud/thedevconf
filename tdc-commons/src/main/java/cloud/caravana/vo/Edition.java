@@ -8,25 +8,25 @@ public class Edition {
     EditionStatus status;
     List<Track> tracks;
 
-    public Edition(){
-        this("",null);
+    public Edition() {
+        this("", null);
     }
 
-    public Edition(String name, EditionStatus status){
+    public Edition(String name, EditionStatus status) {
         this(name, status, new ArrayList<>());
     }
 
-    public Edition(String name, EditionStatus status, List<Track> tracks){
+    public Edition(String name, EditionStatus status, List<Track> tracks) {
         this.name = name;
         this.status = status;
         this.tracks = tracks;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public EditionStatus getStatus(){
+    public EditionStatus getStatus() {
         return status;
     }
 

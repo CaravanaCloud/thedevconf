@@ -13,6 +13,7 @@
     <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
     <quarkus.platform.version>1.13.6.Final</quarkus.platform.version>
+    <checkstyle-maven-plugin.version>3.1.1</checkstyle-maven-plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -34,6 +35,30 @@
 
   <build>
     <defaultGoal>clean install</defaultGoal>
+    <plugins>
+
+      <!-- other plugin configurations -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>${checkstyle-maven-plugin.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>8.32</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <configLocation>checkstyle.xml</configLocation>
+          <encoding>UTF-8</encoding>
+          <consoleOutput>true</consoleOutput>
+          <failsOnError>true</failsOnError>
+          <linkXRef>false</linkXRef>
+        </configuration>
+      </plugin>
+
+    </plugins>
   </build>
 
 </project>

@@ -1,14 +1,15 @@
 package thedevconf.jaxrs.auth;
 
+import java.io.IOException;
+import java.util.logging.Logger;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
 import javax.ws.rs.ext.Provider;
-import java.io.IOException;
-import java.util.logging.Logger;
 
 @Provider
 public class AuthResponseFilter implements ContainerResponseFilter {
+
     static final Logger log = Logger.getLogger("AuthResponseFilter");
 
     @Override

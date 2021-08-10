@@ -1,5 +1,7 @@
 package thedevconf.jaxrs.api.rs;
 
+import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -11,12 +13,11 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import thedevconf.jaxrs.api.blueprints.poke.entity.Pokemon;
 import thedevconf.jaxrs.api.entity.Person;
-import thedevconf.jaxrs.api.services.PersonService;
 import thedevconf.jaxrs.api.entity.UserSession;
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
+import thedevconf.jaxrs.api.services.PersonService;
 
 /**
- * API Resource for UserInformation, under Authentication
+ * API Resource for UserInformation, under Authentication.
  */
 @ApplicationScoped
 public class UserResource {

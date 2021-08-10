@@ -1,9 +1,9 @@
 package cloud.caravana.vo;
 
-import java.util.*;
-import java.util.stream.*;
-import static java.util.Arrays.*;
-import static java.util.stream.Collectors.*;
+import static java.util.Arrays.asList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Alternatives {
     List<Mode> modes = new ArrayList<>();
@@ -14,11 +14,11 @@ public class Alternatives {
         return alt;
     }
 
-    public void addAll(Mode... modes){
+    public void addAll(Mode... modes) {
         this.modes = asList(modes);
     }
 
-    public List<Mode> getModes(){
+    public List<Mode> getModes() {
         return modes;
     }
 }

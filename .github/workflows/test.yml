@@ -27,9 +27,15 @@ jobs:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
-    
-    - name: Build with maven  
+
+    - name: Check code style
+      run: mvn checkstyle:check
+      continue-on-error: false
+
+    - name: Build with maven
       run: mvn --update-snapshots clean package -DskipTests=true
+      continue-on-error: false
+      if: success()
       env:
         MAVEN_OPTS: "-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
         QUARKUS_DATASOURCE_JDBC_URL: jdbc:h2:mem:tdcdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false;MODE=MYSQL
@@ -38,6 +44,9 @@ jobs:
         QUARKUS_DATASOURCE_DB_KIND: h2
         QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION: none
         
-    - name: Run tests  
+    - name: Run tests
+      continue-on-error: false
+      if: success()
       run: mvn clean test
+
       

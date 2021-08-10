@@ -1,14 +1,13 @@
 package thedevconf.jaxrs.auth;
 
-import thedevconf.jaxrs.api.entity.UserSession;
-
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.logging.Logger;
+import thedevconf.jaxrs.api.entity.UserSession;
 
 @ApplicationScoped
 public class UserSessionService {
@@ -28,11 +27,13 @@ public class UserSessionService {
     }
 
     @Transactional
-    public UserSession authenticate(String clientId, String idTokenStr, String name, String email, boolean emailVerified,
+    public UserSession authenticate(String clientId, String idTokenStr, String name, String email,
+                                    boolean emailVerified,
                                     String pictureUrl, String locale, String familyName, String givenName) {
         var session = findByEmail(email);
-        if (session != null)
+        if (session != null) {
             return session;
+        }
         session = newUserSession(clientId,
                 idTokenStr, name, email,
                 emailVerified, pictureUrl, locale,
@@ -42,7 +43,8 @@ public class UserSessionService {
         return session;
     }
 
-    UserSession newUserSession(String clientId, String idTokenStr, String name, String email, boolean emailVerified, String pictureUrl, String locale, String familyName, String givenName) {
+    UserSession newUserSession(String clientId, String idTokenStr, String name, String email, boolean emailVerified,
+                               String pictureUrl, String locale, String familyName, String givenName) {
         log.info("updateProfile()");
         UserSession user = this.ofClientId(clientId);
         user.setIdToken(idTokenStr);

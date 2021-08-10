@@ -5,7 +5,6 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-
 import thedevconf.jaxrs.validation.CustomConstraint;
 
 @CustomConstraint(
@@ -22,8 +21,8 @@ public class EmailWithConfirmation {
     public String emailConfirmation;
 
     public static boolean isValid(EmailWithConfirmation emailWithConfirmationVO) {
-        if (emailWithConfirmationVO.email == null ||
-                emailWithConfirmationVO.emailConfirmation == null) {
+        if (emailWithConfirmationVO.email == null
+                || emailWithConfirmationVO.emailConfirmation == null) {
             return false;
         }
         return Objects.equals(
@@ -36,7 +35,7 @@ public class EmailWithConfirmation {
             implements ConstraintValidator<CustomConstraint, EmailWithConfirmation> {
         @Override
         public boolean isValid(
-            final EmailWithConfirmation value, final ConstraintValidatorContext context
+                final EmailWithConfirmation value, final ConstraintValidatorContext context
         ) {
             return EmailWithConfirmation.isValid(value);
         }
@@ -44,9 +43,9 @@ public class EmailWithConfirmation {
 
     @Override
     public String toString() {
-        return "EmailWithConfirmation{" +
-                "email='" + email + '\'' +
-                ", emailConfirmation='" + emailConfirmation + '\'' +
-                '}';
+        return String.format("EmailWithConfirmation{"
+                        + "email=\'%s\', emailConfirmation=\'%s\' }",
+                this.email,
+                this.emailConfirmation);
     }
 }

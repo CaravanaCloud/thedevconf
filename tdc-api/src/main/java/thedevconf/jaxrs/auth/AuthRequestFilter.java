@@ -1,16 +1,16 @@
 package thedevconf.jaxrs.auth;
 
-import thedevconf.jaxrs.api.entity.UserSession;
-
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.ext.Provider;
-import java.util.logging.Logger;
+import thedevconf.jaxrs.api.entity.UserSession;
 
 @Provider
 public class AuthRequestFilter implements ContainerRequestFilter {
+
     static final String CLIENT_ID = "tdc.clientId";
     static final Logger logger = Logger.getLogger("AuthRequestFilter");
 

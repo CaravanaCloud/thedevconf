@@ -1,28 +1,12 @@
 #!/bin/bash
-
+set -e
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-
-export MYSQL_ROOT_USER="root"
-export MYSQL_ROOT_PASSWORD="pass$USER$RANDOM"
-export MYSQL_HOST="127.0.0.1"
-export MYSQL_PORT="3307"
-export MYSQL_DB="thedevconf"
-export MYSQL_VERSION="5.7"
-
-echo "Generated password is $MYSQL_ROOT_PASSWORD"
-
-echo "Setting Quarkus variables"
-export DATASOURCE_URL="jdbc:mysql://$MYSQL_HOST:$MYSQL_PORT/$MYSQL_DB"
-export DATASOURCE_USERNAME=$MYSQL_ROOT_USER
-export DATASOURCE_PASSWORD=$MYSQL_ROOT_PASSWORD
-export DATASOURCE_KIND="mysql"
-export HIBERNATE_ORM_DATABASE_GENERATION="none"
 
 echo "Exporting variables to config file:"
 
-export CONFIG_FILE="$SCRIPT_DIR/tdc-api/.env"
+export CONFIG_FILE="$SCRIPT_DIR/.env"
 
-rm $CONFIG_FILE
+rm $CONFIG_FIL
 echo "QUARKUS_DATASOURCE_JDBC_URL=$DATASOURCE_URL" >> $CONFIG_FILE
 echo "QUARKUS_DATASOURCE_USERNAME=$DATASOURCE_USERNAME" >> $CONFIG_FILE
 echo "QUARKUS_DATASOURCE_PASSWORD=$DATASOURCE_PASSWORD" >> $CONFIG_FILE

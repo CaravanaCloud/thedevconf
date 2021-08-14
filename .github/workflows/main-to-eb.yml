@@ -54,6 +54,7 @@ jobs:
           QUARKUS_CONTAINER_IMAGE_NAME: tdc-api
           QUARKUS_CONTAINER_IMAGE_TAG: ${{github.sha}}
           QUARKUS_CONTAINER_IMAGE_PUSH: true
+          QUARKUS_CONTAINER_IMAGE_REGISTRY: quay.io
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1

@@ -52,7 +52,7 @@ jobs:
           QUARKUS_CONTAINER_IMAGE_PASSWORD: ${{ secrets.IMAGE_PASSWORD }}
           QUARKUS_CONTAINER_IMAGE_GROUP: caravanacloud
           QUARKUS_CONTAINER_IMAGE_NAME: tdc-api
-          QUARKUS_CONTAINER_IMAGE_TAG: latest
+          QUARKUS_CONTAINER_IMAGE_TAG: ${{github.sha}}
           QUARKUS_CONTAINER_IMAGE_PUSH: true
 
       - name: Configure AWS credentials

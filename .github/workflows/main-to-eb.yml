@@ -33,7 +33,7 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
 
       - name: Compile all modules
-        run: mvn --batch-mode --update-snapshots clean compile
+        run: mvn --batch-mode --update-snapshots clean install
         env:
           MAVEN_OPTS: "-DskipTests=true -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
           QUARKUS_DATASOURCE_JDBC_URL: jdbc:h2:mem:tdcdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false;MODE=MYSQL

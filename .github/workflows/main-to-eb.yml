@@ -19,7 +19,7 @@ jobs:
 
       - uses: DeLaGuardo/setup-graalvm@4.0
         with:
-          graalvm: '21.0.0.2'
+          graalvm: '21.2.0'
           java: 'java11'
           arch: 'amd64'
 
@@ -32,10 +32,10 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Build Maven package
-        run: mvn --batch-mode --update-snapshots clean package -DskipTests=true -Dquarkus.package.type=uber-jar
+      - name: Package API Container
+        run: mvn  clean package
         env:
-          MAVEN_OPTS: "-Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
+          MAVEN_OPTS: "-DskipTests=true --batch-mode --update-snapshots -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
           QUARKUS_DATASOURCE_JDBC_URL: jdbc:h2:mem:tdcdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false;MODE=MYSQL
           QUARKUS_DATASOURCE_USERNAME: sa
           QUARKUS_DATASOURCE_PASSWORD:
@@ -48,28 +48,13 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
+
       - name: Check AWS authentication
         run: aws sts get-caller-identity
 
       - name: Pegar o ID do commit
         run: echo "${{github.sha}}"
 
-      - name: Upload Jar to S3
-        run: aws s3 cp tdc-api-eb.zip s3://artifacts.thedevconf/tdc-api-eb-v${{github.sha}}.zip
-        working-directory: tdc-api/target
 
-      - name: Criar a versao no EB
-        run: |
-          aws elasticbeanstalk create-application-version \
-            --application-name tdc-api \
-            --version-label tdc-api-eb-v${{github.sha}} \
-            --source-bundle S3Bucket="artifacts.thedevconf",S3Key="tdc-api-eb-v${{github.sha}}.zip"
-
-      - name: Alterar o ambiente para a versao
-        run: |
-          aws elasticbeanstalk update-environment \
-            --application-name tdc-api \
-            --environment-name thedevconf-api-20210604 \
-            --version-label tdc-api-eb-v${{github.sha}}
 
 

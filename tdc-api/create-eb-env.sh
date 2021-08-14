@@ -5,7 +5,7 @@ rm options.txt
 envsubst < options.txt.env > options.txt
 cat options.txt
 
-aws elasticbeanstalk create-environment \
+echo aws elasticbeanstalk create-environment \
     --cname-prefix "$EB_CNAME" \
     --application-name "$EB_APP" \
     --template-name "$EB_TEMPLATE" \

@@ -8,7 +8,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("")
+@Path("confirmation")
 public class ConfirmationTemplate extends BaseResource {
 
     @Inject
@@ -20,4 +20,5 @@ public class ConfirmationTemplate extends BaseResource {
     public TemplateInstance getConfirmation() {
         return instanceOf(confirmation);
     }
+
 }

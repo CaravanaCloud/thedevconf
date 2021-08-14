@@ -38,7 +38,7 @@ jobs:
         env:
           MAVEN_OPTS: "-DskipTests=true -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
 
-      - name: Push API container
+      - name: Push API container image
         run: mvn --batch-mode --update-snapshots package
         working-directory: tdc-api
         env:

@@ -34,6 +34,13 @@ jobs:
 
       - name: Compile all modules
         run: mvn --batch-mode --update-snapshots clean install
+        working-directory: tdc-commons
+        env:
+          MAVEN_OPTS: "-DskipTests=true -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
+
+      - name: Push API container
+        run: mvn --batch-mode --update-snapshots package
+        working-directory: tdc-api
         env:
           MAVEN_OPTS: "-DskipTests=true -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
           QUARKUS_DATASOURCE_JDBC_URL: jdbc:h2:mem:tdcdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false;MODE=MYSQL
@@ -41,16 +48,12 @@ jobs:
           QUARKUS_DATASOURCE_PASSWORD: ""
           QUARKUS_DATASOURCE_DB_KIND: h2
           QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION: none
-
-      - name: Push API container
-        run: mvn --batch-mode --update-snapshots package
-        working-directory: tdc-api
-        env:
-          MAVEN_OPTS: "-DskipTests=true -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
           QUARKUS_CONTAINER_IMAGE_USERNAME: ${{ secrets.IMAGE_USERNAME }}
           QUARKUS_CONTAINER_IMAGE_PASSWORD: ${{ secrets.IMAGE_PASSWORD }}
           QUARKUS_CONTAINER_IMAGE_GROUP: caravanacloud
           QUARKUS_CONTAINER_IMAGE_NAME: tdc-api
+          QUARKUS_CONTAINER_IMAGE_TAG: latest
+          QUARKUS_CONTAINER_IMAGE_PUSH: true
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1

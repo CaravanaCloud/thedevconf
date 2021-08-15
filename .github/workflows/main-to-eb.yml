@@ -44,10 +44,10 @@ jobs:
         working-directory: tdc-api
         env:
           MAVEN_OPTS: "-DskipTests=true -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
-          QUARKUS_DATASOURCE_JDBC_URL: jdbc:h2:mem:tdcdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false;MODE=MYSQL
-          QUARKUS_DATASOURCE_USERNAME: sa
-          QUARKUS_DATASOURCE_PASSWORD: ""
-          QUARKUS_DATASOURCE_DB_KIND: h2
+          QUARKUS_DATASOURCE_JDBC_URL: ${{secrets.QUARKUS_DATASOURCE_JDBC_URL}}
+          QUARKUS_DATASOURCE_USERNAME: ${{secrets.QUARKUS_DATASOURCE_USERNAME}}
+          QUARKUS_DATASOURCE_PASSWORD: ${{secrets.QUARKUS_DATASOURCE_PASSWORD}}
+          QUARKUS_DATASOURCE_DB_KIND: mysql
           QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION: none
           QUARKUS_CONTAINER_IMAGE_USERNAME: ${{ secrets.IMAGE_USERNAME }}
           QUARKUS_CONTAINER_IMAGE_PASSWORD: ${{ secrets.IMAGE_PASSWORD }}

@@ -11,7 +11,12 @@ jobs:
     environment:
       name: tdc-devenv-20200814
     env:
-      AWS_REGION: "us-west-2"
+      AWS_REGION: ${{secrets.AWS_REGION}}
+      EB_APP: ${{secrets.EB_APP}}
+      EB_ENV: ${{secrets.EB_ENV}}
+      EB_VERSION: ${{github.sha}}
+      EB_BUCKET: ${{secrets.EB_BUCKET}}
+      EB_VERSION_KEY: ${{github.sha}}
 
     steps:
       - uses: actions/checkout@v2
@@ -82,9 +87,6 @@ jobs:
       - name: upload dd to s3
         run: aws s3 cp target/Dockerrun.aws.json "s3://$EB_BUCKET/$EB_VERSION_KEY/Dockerrun.aws.json"
         working-directory: tdc-api
-        env:
-          EB_BUCKET: ${{secrets.EB_BUCKET}}
-          EB_VERSION_KEY: ${{github.sha}}
 
       - name: create eb version
         run: >
@@ -92,19 +94,13 @@ jobs:
           --application-name "$EB_APP" \
           --version-label "$EB_VERSION" \
           --source-bundle S3Bucket="$EB_BUCKET",S3Key="$EB_VERSION_KEY/Dockerrun.aws.json"
-        env:
-          EB_APP: tdc-devenv-20200814-tdc-api-app
-          EB_VERSION: ${{github.sha}}
-          EB_BUCKET: ${{secrets.EB_BUCKET}}
-          EB_VERSION_KEY: ${{github.sha}}
 
       - name: update environment
         run: >
           aws elasticbeanstalk update-environment \
           --application-name "$EB_APP" \
-          [--environment-name "$EB_ENV"
+          --environment-name "$EB_ENV" \
           --version-label "$EB_VERSION"
-        env:
-          EB_APP: tdc-devenv-20200814-tdc-api-app
-          EB_ENV: tdc-devenv-20200814-tdc-api-env2
-          EB_VERSION: ${{github.sha}}
+
+      - name: say bye
+        run: echo bye

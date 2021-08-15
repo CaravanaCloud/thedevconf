@@ -89,14 +89,14 @@ jobs:
         working-directory: tdc-api
 
       - name: create eb version
-        run: >
+        run: |
           aws elasticbeanstalk create-application-version \
           --application-name "$EB_APP" \
           --version-label "$EB_VERSION" \
           --source-bundle S3Bucket="$EB_BUCKET",S3Key="$EB_VERSION_KEY/Dockerrun.aws.json"
 
       - name: update environment
-        run: >
+        run: |
           aws elasticbeanstalk update-environment \
           --application-name "$EB_APP" \
           --environment-name "$EB_ENV" \

@@ -47,7 +47,7 @@ export RDS_SECG=sg-0971d3edcd1e904e9
 export RDS_SECG_ID=sg-0971d3edcd1e904e9
 export RDS_JDBC=jdbc:mysql://telemo-mysql.ckqsehbwt8lh.us-west-2.rds.amazonaws.com:3306/thedevconf
 
-export EB_BUCKET="$UNIQ-ebbucket"
+export  ="$UNIQ-ebbucket"
 export EB_ROLE="$UNIQ-ebrole"
 export EB_POLICY="$UNIQ-ebpolicy"
 export EB_PROFILE="$UNIQ-ebprofile"

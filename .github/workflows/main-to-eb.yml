@@ -6,11 +6,12 @@ on:
       - 'main'
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: tdc-devenv-20200814
     env:
       AWS_REGION: "us-west-2"
-
 
     steps:
       - uses: actions/checkout@v2
@@ -79,9 +80,8 @@ jobs:
         working-directory: tdc-api
 
       - name: upload dd to s3
-        run: aws s3 cp target/Dockerrun.aws.json "s3://$EB_BUCKET/$EB_VERSION_KEY/Dockerrun.aws.json"
+        run: echo aws s3 cp target/Dockerrun.aws.json "s3://$EB_BUCKET/$EB_VERSION_KEY/Dockerrun.aws.json"
         working-directory: tdc-api
         env:
           EB_BUCKET: ${{secrets.EB_BUCKET}}
           EB_VERSION_KEY: ${{github.sha}}
-      

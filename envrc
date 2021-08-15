@@ -49,18 +49,14 @@ export RDS_JDBC=jdbc:mysql://telemo-mysql.ckqsehbwt8lh.us-west-2.rds.amazonaws.c
 
 export EB_BUCKET="$UNIQ-ebbucket"
 export EB_ROLE="$UNIQ-ebrole"
-export EB_POLICY="InstancePolicy"
+export EB_POLICY="$UNIQ-ebpolicy"
 export EB_PROFILE="$UNIQ-ebprofile"
 export EB_APP="$UNIQ-tdc-api-app"
 export EB_TEMPLATE="$UNIQ-tdc-api-config-template"
-export EB_INSTANCE_TYPES="t3.small"
+export EB_INSTANCE_TYPES="t3.nano"
 export EB_SPOT="false"
 
 export EB_VERSION=tdc20200814-v122757
 export EB_CNAME=tdc20200814-v122757
-
-
-
-
-export EB_ENV="$EB_VERSION-env"
+export EB_ENV="$UNIQ-tdc-api-env"
 

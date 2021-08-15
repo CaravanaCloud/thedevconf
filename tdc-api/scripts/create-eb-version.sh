@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-export EB_VERSION="$UNIQ-v$(date +%H%M%S)"
+export EB_VERSION="$(git log -1 --pretty=%H)"
 export EB_VERSION_KEY="$EB_VERSION/Dockerrun.aws.json"
 export EB_CNAME=$EB_VERSION
 

@@ -65,8 +65,8 @@ aws ec2 modify-subnet-attribute  \
     --subnet-id "$NET_B"  \
     --map-public-ip-on-launch
 
-echo export VPC_ID="$VPC_ID"
-echo export IGW_ID="$IGW_ID"
-echo export RTB_ID="$RTB_ID"
-echo export NET_A="$NET_A"
-echo export NET_B="$NET_B"
+export VPC_ID="$VPC_ID"
+export IGW_ID="$IGW_ID"
+export RTB_ID="$RTB_ID"
+export NET_A="$NET_A"
+export NET_B="$NET_B"

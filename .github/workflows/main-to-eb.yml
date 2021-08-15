@@ -65,9 +65,23 @@ jobs:
       - name: Check AWS authentication
         run: aws sts get-caller-identity
 
-      - name: Pegar o ID do commit
+      - name: Get last commit id
         run: echo "${{github.sha}}"
 
+      - name: Genrate elastic beanstalk deployment descriptor
+        run: envsubst < src/main/eb/Dockerrun.aws.json > target/Dockerrun.aws.json
+        working-directory: tdc-api
+        env:
+          GIT_SHA: ${{github.sha}}
 
+      - name: check dd
+        run: cat target/Dockerrun.aws.json
+        working-directory: tdc-api
 
-
+      - name: upload dd to s3
+        run: aws s3 cp target/Dockerrun.aws.json "s3://$EB_BUCKET/$EB_VERSION_KEY/Dockerrun.aws.json"
+        working-directory: tdc-api
+        env:
+          EB_BUCKET: ${{secrets.EB_BUCKET}}
+          EB_VERSION_KEY: ${{github.sha}}
+      

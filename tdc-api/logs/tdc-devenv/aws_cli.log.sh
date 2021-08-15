@@ -269,13 +269,18 @@ export DATASOURCE_PASSWORD=cpu4ArEWFkg2bZPDna9Skx3Lw6AyY8PK
 export DATASOURCE_KIND="mysql"
 export HIBERNATE_ORM_DATABASE_GENERATION="none"
 
+export CERTIFICATE_ARN=arn:aws:acm:us-west-2:823519934482:certificate/f8052147-3ab4-43e4-a4af-f46971a36030
+
+
+export EB_VERSION=b3a999b14892020b87fb3f854c9c4f27674605f2
+export EB_CNAME="$UNIQ-tdc-api-env8"
+export EB_ENV="$UNIQ-tdc-api-env8"
+export EB_INSTANCE_TYPES="t3.small"
+
+
 rm options.txt
 envsubst < options.txt.env > options.txt
 cat options.txt
-
-export EB_VERSION=0abbcf747bd0538bb422772599fec0a59be26ca9
-export EB_CNAME=0abbcf747bd0538bb422772599fec0a59be26ca9
-export EB_ENV="$UNIQ-tdc-api-env2"
 
 echo aws elasticbeanstalk create-environment \
     --cname-prefix "$EB_CNAME" \

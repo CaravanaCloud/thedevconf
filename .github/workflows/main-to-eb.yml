@@ -80,8 +80,31 @@ jobs:
         working-directory: tdc-api
 
       - name: upload dd to s3
-        run: echo aws s3 cp target/Dockerrun.aws.json "s3://$EB_BUCKET/$EB_VERSION_KEY/Dockerrun.aws.json"
+        run: aws s3 cp target/Dockerrun.aws.json "s3://$EB_BUCKET/$EB_VERSION_KEY/Dockerrun.aws.json"
         working-directory: tdc-api
         env:
           EB_BUCKET: ${{secrets.EB_BUCKET}}
           EB_VERSION_KEY: ${{github.sha}}
+
+      - name: create eb version
+        run: >
+          aws elasticbeanstalk create-application-version \
+          --application-name "$EB_APP" \
+          --version-label "$EB_VERSION" \
+          --source-bundle S3Bucket="$EB_BUCKET",S3Key="$EB_VERSION_KEY/Dockerrun.aws.json"
+        env:
+          EB_APP: tdc-devenv-20200814-tdc-api-app
+          EB_VERSION: ${{github.sha}}
+          EB_BUCKET: ${{secrets.EB_BUCKET}}
+          EB_VERSION_KEY: ${{github.sha}}
+
+      - name: update environment
+        run: >
+          aws elasticbeanstalk update-environment \
+          --application-name "$EB_APP" \
+          [--environment-name "$EB_ENV"
+          --version-label "$EB_VERSION"
+        env:
+          EB_APP: tdc-devenv-20200814-tdc-api-app
+          EB_ENV: tdc-devenv-20200814-tdc-api-env2
+          EB_VERSION: ${{github.sha}}

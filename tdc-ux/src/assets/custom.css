@@ -1,7 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,700);
 
+* {
+  font-family: 'Titillium Web', Helvetica Neue, Ubuntu, Segoe UI, sans-serif !important;
+}
+
 body {
-  font-family: 'Titillium Web', Helvetica Neue, Ubuntu, Segoe UI, sans-serif;
   padding-top: 50px;
   font-size  : 15px;
   line-height: 1.5

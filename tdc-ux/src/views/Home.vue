@@ -371,18 +371,7 @@
       </div>
 
       <hr class="featurette-divider" />
-
-      <!-- /END THE FEATURETTES -->
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import "@/assets/carousel.css";
-
-@Options({
-  components: {},
-})
-export default class Home extends Vue {}
-</script>

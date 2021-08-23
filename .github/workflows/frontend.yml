@@ -1,0 +1,33 @@
+name: thedevconf:test of frontend
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: install all dependencies
+        run: yarn --cwd tdc-ux install
+
+      - name: run integration tests
+        run: yarn --cwd tdc-ux test:e2e
+
+      - name: run unit tests
+        run: yarn --cwd tdc-ux test:unit

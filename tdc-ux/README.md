@@ -2,22 +2,27 @@
 
 ## Project setup
 ```
-npm install
+yarn install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+yarn serve
 ```
 
 ### Compiles and minifies for production
 ```
-npm run build
+yarn build
 ```
 
-### Lints and fixes files
+### Run your unit tests
 ```
-npm run lint
+yarn test:unit
+```
+
+### Run your end-to-end tests
+```
+yarn test:e2e
 ```
 
 ### Customize configuration

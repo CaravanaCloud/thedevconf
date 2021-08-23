@@ -5,7 +5,7 @@ describe('Visitors visit home and', () => {
     cy.request('/').should('have.property', 'status', 200)
   })
 
-  it('view title and subtitle', () => {
+  it('view basic pass form', () => {
     cy.visit('/')
 
     cy.request('/').should('have.property', 'status', 200)

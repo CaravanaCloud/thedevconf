@@ -38,8 +38,6 @@ target/
 /tdc.iml
 /tdc-commons/tdc-commons.iml
 .DS_Store
-tdc-ux/package-lock.json
-tdc-ux/package.json
 
 envrc.mysql
 .envrc

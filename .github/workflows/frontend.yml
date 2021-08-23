@@ -17,17 +17,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
 
       - name: install all dependencies
-        run: yarn --cwd tdc-ux install
+        working-directory: ./tdc-ux
+        run: yarn install
 
       - name: run integration tests
-        run: yarn --cwd tdc-ux test:e2e
+        working-directory: ./tdc-ux
+        run: yarn test:e2e
 
       - name: run unit tests
-        run: yarn --cwd tdc-ux test:unit
+        working-directory: ./tdc-ux
+        run: yarn test:unit

@@ -9,6 +9,8 @@
     "test:e2e": "vue-cli-service test:e2e --headless"
   },
   "dependencies": {
+    "bootstrap": "^5.1.0",
+    "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",

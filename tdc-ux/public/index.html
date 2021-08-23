@@ -5,13 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <script defer src="https://apis.google.com/js/platform.js?onload=loadGoogleAuth2" async defer></script>
+
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
-  <body>
+  <body class="Site">
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="app"></div>
+    <main id="app" class="Site-Container"></main>
     <!-- built files will be auto injected -->
   </body>
 </html>
+
+

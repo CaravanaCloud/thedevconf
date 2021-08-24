@@ -7,6 +7,7 @@ Applications, services and utilities supporting [The Developers Conference](http
 Backend:
     * Quarkus + JAX-RS
     * AWS Elastic Beanstalk, RDS, Cognito & more
+    
 Frontend: 
     * Vue
 
@@ -137,3 +138,6 @@ mvn
 ```
 
 *Remember to re-install the commons package and reload IDE project when entities are changed.*
+
+
+Salve TDC!!!

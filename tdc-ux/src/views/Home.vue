@@ -109,74 +109,67 @@
             seus dados. Aproveite!
           </p>
         </div>
-        <form class="row g-3 needs-validation" novalidate>
-          <div class="form-floating col-md-12">
-            <input
-              id="vo_name_basic_pass_contact_request"
-              type="text"
-              class="form-control h-auto"
-              aria-label="Nome"
-              required
-            />
-            <label class="ms-2" for="vo_name_basic_pass_contact_request"
-              >Nome</label
-            >
-          </div>
+        <FormulateForm #default="{ isValid }" class="row g-3">
+          <FormulateInput
+            type="text"
+            name="name"
+            input-class="form-control h-auto"
+            validation="required|max:80|min:5"
+            label="Nome"
+            label-class="ms-2"
+            :element-class="(_, classes) => ['form-floating'].concat(classes)"
+          />
+
           <div class="form-floating col-md-6">
-            <input
-              id="vo_email_basic_pass_contact_request"
+            <FormulateInput
               type="email"
-              class="form-control h-auto"
-              aria-label="Email"
-              onkeyup="mustBeEquals(event,'vo_email_basic_pass_contact_request','vo_email_confirmation_basic_pass_contact_request')"
-              required
+              name="email"
+              input-class="form-control h-auto"
+              validation="required|email|max:80|min:5"
+              label="Email"
+              label-class="ms-2"
+              :element-class="(_, classes) => ['form-floating'].concat(classes)"
             />
-            <label class="ms-2" for="vo_email_basic_pass_contact_request"
-              >Email</label
-            >
           </div>
+
           <div class="form-floating col-md-6">
-            <input
-              id="vo_email_confirmation_basic_pass_contact_request"
+            <FormulateInput
               type="email"
-              class="form-control h-auto"
-              aria-label="Confirme o email"
-              onkeyup="mustBeEquals(event,'vo_email_basic_pass_contact_request','vo_email_confirmation_basic_pass_contact_request')"
-              required
+              name="email_confirm"
+              input-class="form-control h-auto"
+              validation="required|email|max:80|min:5"
+              label="Confirme o email"
+              label-class="ms-2"
+              :element-class="
+                (context, classes) => ['form-floating'].concat(classes)
+              "
             />
-            <label
-              class="ms-2"
-              for="vo_email_confirmation_basic_pass_contact_request"
-              >Confirme o email</label
-            >
           </div>
+
           <div class="form-check ms-2">
-            <input
-              id="vo_accepted_terms_basic_pass_contact_request"
-              class="form-check-input"
+            <FormulateInput
               type="checkbox"
+              label="Eu li e concordo com os termos de uso de dados. Entenda como seus
+              dados estão sendo utilizados clicando"
+              label-class="form-check-label"
+              name="terms"
+              input-class="form-check-input"
+              validation="accepted"
+              :element-class="
+                (context, classes) => ['form-floating'].concat(classes)
+              "
             />
-            <label
-              class="form-check-label"
-              for="vo_accepted_terms_basic_pass_contact_request"
-            >
-              Eu li e concordo com os termos de uso de dados. Entenda como seus
-              dados estão sendo utilizados clicando
-              <a href="https://thedevconf.com/tdc/2021/connections/privacidade"
-                >aqui</a
-              >.
-            </label>
           </div>
+
           <div class="col-md-12 text-end">
-            <button
+            <FormulateInput
               type="submit"
-              class="btn btn-primary primary-button"
-              onclick="handleFormSubmit('basic-pass-contact-request-form')"
-            >
-              GARANTIR
-            </button>
+              input-class="btn btn-primary primary-button"
+              name="GARANTIR"
+              :disabled="!isValid"
+            />
           </div>
-        </form>
+        </FormulateForm>
       </div>
       <hr class="featurette-divider" />
     </div>
@@ -375,3 +368,11 @@
   </div>
 </template>
 
+<style>
+ul.formulate-input-error {
+  margin-top: 30px;
+}
+li.formulate-input-error {
+  color: red;
+}
+</style>

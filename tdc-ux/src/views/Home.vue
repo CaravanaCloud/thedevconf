@@ -109,7 +109,7 @@
             seus dados. Aproveite!
           </p>
         </div>
-        <FormulateForm #default="{ isValid }" class="row g-3">
+        <FormulateForm class="row g-3">
           <FormulateInput
             type="text"
             name="name"
@@ -125,7 +125,7 @@
               type="email"
               name="email"
               input-class="form-control h-auto"
-              validation="required|email|max:80|min:5"
+              validation="required|email|max:80|min:7"
               label="Email"
               label-class="ms-2"
               :element-class="(_, classes) => ['form-floating'].concat(classes)"
@@ -137,7 +137,7 @@
               type="email"
               name="email_confirm"
               input-class="form-control h-auto"
-              validation="required|email|max:80|min:5"
+              validation="required|email|max:80|min:7"
               label="Confirme o email"
               label-class="ms-2"
               :element-class="
@@ -166,7 +166,6 @@
               type="submit"
               input-class="btn btn-primary primary-button"
               name="GARANTIR"
-              :disabled="!isValid"
             />
           </div>
         </FormulateForm>

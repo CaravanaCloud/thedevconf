@@ -5,7 +5,7 @@ Applications, services and utilities supporting [The Developers Conference](http
 # Technologies
 
 Backend: Quarkus / JAX-RS
-Frontend: Vaadin
+Frontend: Nuxt
 
 # Running the projects locally
 
@@ -220,14 +220,26 @@ http://localhost:8181.
 .
 .
 .
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
+
+### Frontend
+
+We usage Nuxt as frontend founded in `tdc-vue` directory. To run do you need execute:
+
+- To Development:
+
+```bash
+  yarn dev
+```
+
+- To Production:
+
+```bash
+  yarn build
+  yarn start
+```
+
+- To Test:
+
+```bash
+  yarn test
+```

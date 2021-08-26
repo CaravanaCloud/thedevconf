@@ -1,31 +1,55 @@
-name: thedevconf:test of frontend
+name: ci
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - master
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+      - master
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
+  ci:
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x]
+        os: [ubuntu-latest]
+        node: [14]
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout 🛎
+        uses: actions/checkout@master
 
-      - name: install all dependencies
-        working-directory: ./tdc-ux
-        run: yarn install
+      - name: Setup node env 🏗
+        uses: actions/setup-node@v2.1.5
+        with:
+          working-directory: ./tdc-vue
+          node-version: ${{ matrix.node }}
+          check-latest: true
 
-      - name: run integration tests
-        working-directory: ./tdc-ux
-        run: yarn test:e2e
+      - name: Get yarn cache directory path 🛠
+        working-directory: ./tdc-vue
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - name: run unit tests
-        working-directory: ./tdc-ux
-        run: yarn test:unit
+      - name: Cache node_modules 📦
+        uses: actions/cache@v2.1.4
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          working-directory: ./tdc-vue
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies 👨🏻‍💻
+        working-directory: ./tdc-vue
+        run: yarn
+
+
+      - name: Run tests 🧪
+        working-directory: ./tdc-vue
+        run: yarn test

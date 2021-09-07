@@ -8,3 +8,8 @@ docker run --rm \
   -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD \
   -e MYSQL_DATABASE=$MYSQL_DB \
   -d mysql:$MYSQL_VERSION
+
+echo "Connect to mysql:"
+echo mysql --host=$MYSQL_HOST --port=$MYSQL_PORT -uroot -p$MYSQL_ROOT_PASSWORD $MYSQL_DB
+
+

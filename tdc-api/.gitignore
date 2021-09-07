@@ -64,6 +64,7 @@ tmp/
 *~.nib
 local.properties
 .settings/
+.project
 .loadpath
 .recommenders
 
@@ -112,6 +113,9 @@ local.properties
 .scala_dependencies
 .worksheet
 
+.classpath
+.project
+
 # Uncomment this line if you wish to ignore the project description file.
 # Typically, this file would be tracked if it contains build/dependency configurations:
 #.project
@@ -127,6 +131,7 @@ local.properties
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
+!.env
 
 # Local History for Visual Studio Code
 .history/

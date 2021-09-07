@@ -40,12 +40,6 @@ sdk install java 21.2.0.r16-grl
 ```shell
 sdk install maven
 ```
-## Compile and install ```tdc-commons```
-
-This module constains data transfer classes (value objects) and utility classes shared across modules.
-```shell
-mvn -f tdc-commons/pom.xml
-```
 
 ## Start a MySQL database
 

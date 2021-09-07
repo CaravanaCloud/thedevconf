@@ -126,16 +126,6 @@ Now, you'll need to import the "checkstyle.xml" file configuration at **Editor -
 
 It's done! On the IntelliJ footer, you will be able to find out the ***CheckSyle*** plugin tab. There you will be able to run the code checking process (on the project or module levels or in the opened file).
 
-## Compile everything
-```
-mvn
-```
-
-*Remember to re-install the commons package and reload IDE project when entities are changed.*
-
-
-Salve TDC!!!
-
 ## Frontend
 
 We usage Nuxt as frontend founded in `tdc-vue` directory. To run do you need execute:

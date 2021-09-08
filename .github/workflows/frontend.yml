@@ -26,12 +26,12 @@ jobs:
       - name: Setup node env 🏗
         uses: actions/setup-node@v2.1.5
         with:
-          working-directory: ./tdc-vue
+          working-directory: ./frontend
           node-version: ${{ matrix.node }}
           check-latest: true
 
       - name: Get yarn cache directory path 🛠
-        working-directory: ./tdc-vue
+        working-directory: ./frontend
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
@@ -39,17 +39,16 @@ jobs:
         uses: actions/cache@v2.1.4
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
-          working-directory: ./tdc-vue
+          working-directory: ./frontend
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies 👨🏻‍💻
-        working-directory: ./tdc-vue
+        working-directory: ./frontend
         run: yarn
 
-
       - name: Run tests 🧪
-        working-directory: ./tdc-vue
-        run: yarn test
+        working-directory: ./frontend
+        run: make test

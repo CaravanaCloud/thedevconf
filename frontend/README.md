@@ -1,29 +1,42 @@
-# tdc-ux
+# Introduction
 
-## Project setup
-```
-yarn install
-```
+This is a getting started guide to using the tdc frontend.
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## Requirements:
 
-### Compiles and minifies for production
-```
-yarn build
-```
+- Nodejs 14+
+- Npm or Yarn
 
-### Run your unit tests
-```
-yarn test:unit
+## Setup
+
+To installation the dependencies use:
+
+```shell
+$ yarn install
 ```
 
-### Run your end-to-end tests
-```
-yarn test:e2e
+### Development mode
+
+Run the `frontend` using:
+
+```shell
+$ yarn serve
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Compile
+
+To compile the frontend for distribuite in production, run:
+
+```shell
+$ yarn build
+```
+
+### Run tests
+
+To run test, you must use `make` command:
+
+```
+make test
+```
+
+This will be run both the `unit test` and `integration test`

@@ -38,13 +38,7 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Compile all modules
-        run: mvn --batch-mode --update-snapshots clean install
-        working-directory: tdc-commons
-        env:
-          MAVEN_OPTS: "-DskipTests=true -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn"
-
-      - name: Push API container image
+      - name: Compile and push API container image
         run: mvn --batch-mode --update-snapshots package
         working-directory: tdc-api
         env:

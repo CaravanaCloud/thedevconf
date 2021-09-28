@@ -4,7 +4,7 @@ Tudo no Powershell
 
 # Install chocolatey
 
-@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
+https://chocolatey.org/install
 
 # Install chrome
 
@@ -18,7 +18,6 @@ choco install graalvm
 
 choco install maven
 
-
 # Install Git
 
 choco install git
@@ -27,15 +26,35 @@ choco install git
 
 choco install github-desktop
 
-# Install Docker Desktop
-
-choco install docker-desktop
-
 # Install VS Code
 
 choco install vscode
 
-# Install 
+# Install Docker Desktop
+
+https://www.docker.com/products/docker-desktop
+
+# Run MySQL 
+
+docker run --rm  --name thedevconf-mysql -p 0.0.0.0:3307:3306 -e MYSQL_ROOT_PASSWORD=Masterkey123 -e MYSQL_DATABASE=thedevconf -d mysql:5.6
+
+# Set Environment Variables
+
+setx DATASOURCE_URL "jdbc:mysql://127.0.0.1:3307/thedevconf" -m
+setx DATASOURCE_USERNAME "root" -m
+setx DATASOURCE_PASSWORD "Masterkey123" -m
+setx DATASOURCE_KIND "mysql" -m
+setx HIBERNATE_ORM_DATABASE_GENERATION "none" -m
+
+# Restart Powershell
+
+# Run API module
+
+
+
+
+
+
 
 
 

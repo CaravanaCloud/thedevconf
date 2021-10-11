@@ -23,7 +23,7 @@
     "@cypress/webpack-dev-server": "^1.5.0",
     "@vue/test-utils": "^1.2.1",
     "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "^27.0.5",
+    "babel-jest": "^27.2.5",
     "cypress": "^8.3.1",
     "html-webpack-plugin": "^4.5.2",
     "jest": "^27.0.5",

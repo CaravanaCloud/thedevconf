@@ -25,7 +25,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^27.0.5",
     "cypress": "^8.3.1",
-    "html-webpack-plugin": "^4.5.2",
+    "html-webpack-plugin": "^5.5.0",
     "jest": "^27.0.5",
     "start-server-and-test": "^1.14.0",
     "vue-jest": "^3.0.4"

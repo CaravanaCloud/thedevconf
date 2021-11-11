@@ -71,6 +71,10 @@ hr {
   border: 5px solid var(--primary-color);
 }
 
+#colored { 
+  color: var(--primary-color);
+}
+
 .btn-rounded {
   border-radius: 500px !important;
 }

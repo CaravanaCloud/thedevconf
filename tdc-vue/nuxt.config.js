@@ -23,6 +23,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+     '@/plugins/basicpass-api'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -46,5 +47,33 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  router: {
+    trailingSlash: false,
+    extendRoutes(routes, resolve) {
+      routes.push({
+        name: 'basicpass',
+        path: '/basic-pass/:id',
+        components: {
+          default: resolve(__dirname, 'pages/basic-pass/_id.vue'), // or routes[index].component
+        },
+      });
+      routes.push({
+        name: 'notfound',
+        path: '/not-found',
+        component: resolve(__dirname, 'pages/404.vue')
+      });
+      routes.push({
+        name: 'notsupported',
+        path: '*',
+        redirect: '/not-found'
+      });
+    }
+  },
+  service: {
+    teste() { 
+      console.log("teste");
+    }
   }
 }

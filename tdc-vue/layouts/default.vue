@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Menu />
     <main class="Site-Container">
       <Nuxt />
     </main>

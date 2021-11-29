@@ -1,4 +1,4 @@
-package thedevconf.jaxrs;
+package thedevconf.jaxrs.api.rs;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -9,9 +9,9 @@ import org.eclipse.microprofile.openapi.annotations.info.Info;
 @OpenAPIDefinition(
         info = @Info(
                 title = "TDC API",
-                version = "0.0.1")
+                version = "1.0")
 )
-@ApplicationPath("")
+@ApplicationPath("/api")
 public class JAXRSApplication extends Application {
 
 }

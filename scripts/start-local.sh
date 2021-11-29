@@ -4,7 +4,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 RDIR=$(dirname $DIR)
 
 JDK="21.3.0.r17-grl"
-
+AWS_PAGER=""
 
 echo "Using the GraalVM JDK"
 source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -18,7 +18,6 @@ echo "Loading environment"
 get_parameter () {
     aws ssm get-parameter --name $1 --query 'Parameter.Value' --output 'text'
 }
-
 
 export TDC_DB_HOST="$(get_parameter 'TDC_DEVENV_DB_HOST')"
 export TDC_DB_PASSWORD="$(get_parameter 'TDC_DEVENV_DB_PASSWORD')"

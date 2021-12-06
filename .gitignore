@@ -119,6 +119,7 @@ local.properties
 .sts4-cache/
 
 ### VisualStudioCode ###
+.vscode/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json

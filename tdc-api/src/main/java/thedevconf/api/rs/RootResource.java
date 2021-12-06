@@ -1,4 +1,4 @@
-package thedevconf.jaxrs.api.rs;
+package thedevconf.api.rs;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.GET;

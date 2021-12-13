@@ -5,7 +5,9 @@ import static javax.ws.rs.core.MediaType.TEXT_HTML;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import java.util.logging.Logger;
 
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -14,10 +16,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.UriInfo;
 
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
@@ -25,11 +24,14 @@ import thedevconf.api.data.PageTemplate;
 
 @Path("/pages")
 public class PageResource {
-    
+    @Inject
+    Logger logger;
+
     @GET
     @Path("/{pageCode}")
     @Produces(TEXT_HTML)
     public String getPage(@PathParam("pageCode") String pageCode) {
+        logger.info("GET /pages/" + pageCode);
         var pages =  PageTemplate.list("code", pageCode);
         if (pages.isEmpty()) {
             return "Page not found";

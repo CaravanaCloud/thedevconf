@@ -5,6 +5,7 @@ import static javax.ws.rs.core.MediaType.TEXT_HTML;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
@@ -18,8 +19,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.jboss.resteasy.annotations.Form;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
+import io.quarkus.logging.Log;
+import thedevconf.api.data.FormData;
 import thedevconf.api.data.PageTemplate;
 
 @Path("/pages")
@@ -42,6 +46,8 @@ public class PageResource {
         }
     }
 
+    //curl -v -X PUT --form file='@./tdc-api/templates/future-basic-2020/form.html' http://localhost:8181/pages/basic-future-2020
+    //curl -v -X PUT --form file='@./tdc-api/templates/future-basic-2020/success.html' http://localhost:8181/pages/basic-future-2020-success
     @PUT
     @Path("/{pageCode}")
     @Produces(TEXT_HTML)
@@ -55,18 +61,32 @@ public class PageResource {
             return "No file received";
         }
         String text = new String(input.readAllBytes(), StandardCharsets.UTF_8);
-        System.out.println(text);
-        var pages =  PageTemplate.list("code", pageCode);
-        if (pages.isEmpty()) {
+        System.out.println("Received %s %d".formatted(pageCode,text.length()));
+        var pages =  findPage(pageCode);
+        if (pages.isPresent()) {
+            logger.info("Creating updating existing page %s".formatted(pageCode));
+            pages.get().setContent(text);
+        }else {
+            logger.info("Creating new page %s".formatted(pageCode));
             var page = new PageTemplate();
             page.setContent(text);
             page.setCode(pageCode);
             page.persist();
-        }else {
-            var page = (PageTemplate) pages.get(0);
-            page.setContent(text);
         }
         return text;
+    }
+
+    private Optional<PageTemplate> findPage(String pageCode) {
+        var pages = PageTemplate.list("code", pageCode);
+        if (pages.isEmpty()) 
+            return Optional.empty();
+        else 
+            return Optional.of((PageTemplate) pages.get(0));
+    }
+
+
+    private Optional<PageTemplate> findSuccesPage(String pageCode) {
+        return findPage( pageCode + "-success");
     }
 
     @POST
@@ -74,9 +94,18 @@ public class PageResource {
     @Produces(TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Transactional
-    public String receiveForm(Map<String, String> data, @PathParam("pageCode") String pageCode) {
-        StringBuilder result = new StringBuilder();
-        
-        return "Map received (%s)".formatted(data.size());
+    public String receiveForm(String body, @PathParam("pageCode") String pageCode) {
+        logger.info("POST received for page %s".formatted(pageCode));
+        logger.info(body);
+        var formData = FormData.of(pageCode, body);
+        formData.persist();
+        var page = findSuccesPage(pageCode).or( () -> findPage(pageCode));
+        if (page.isPresent()) {
+            logger.info("redirecting to %s".formatted(page.get().getCode()));
+            return page.get().getContent();
+        }
+        else
+            return "Page not found";
     }
+
 }

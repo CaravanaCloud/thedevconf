@@ -22,7 +22,12 @@ public class PageTemplate extends PanacheEntity {
         this.content = text;
     }
 
-    public void setCode(String pageCode) {
-        this.code = pageCode;
+
+    public String getCode() {
+        return this.code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

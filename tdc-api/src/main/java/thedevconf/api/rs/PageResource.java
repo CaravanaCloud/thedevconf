@@ -19,10 +19,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.jboss.resteasy.annotations.Form;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
-
-import io.quarkus.logging.Log;
 import thedevconf.api.data.FormData;
 import thedevconf.api.data.PageTemplate;
 
@@ -46,8 +43,8 @@ public class PageResource {
         }
     }
 
-    //curl -v -X PUT --form file='@./tdc-api/templates/future-basic-2020/form.html' http://localhost:8181/pages/basic-future-2020
-    //curl -v -X PUT --form file='@./tdc-api/templates/future-basic-2020/success.html' http://localhost:8181/pages/basic-future-2020-success
+    //curl -v -X PUT --form file='@./tdc-api/templates/future-basic-2020/form.html' http://localhost:8181/pages/demo-future-2021
+    //curl -v -X PUT --form file='@./tdc-api/templates/future-basic-2020/success.html' http://localhost:8181/pages/demo-future-2021-success
     @PUT
     @Path("/{pageCode}")
     @Produces(TEXT_HTML)
@@ -76,19 +73,6 @@ public class PageResource {
         return text;
     }
 
-    private Optional<PageTemplate> findPage(String pageCode) {
-        var pages = PageTemplate.list("code", pageCode);
-        if (pages.isEmpty()) 
-            return Optional.empty();
-        else 
-            return Optional.of((PageTemplate) pages.get(0));
-    }
-
-
-    private Optional<PageTemplate> findSuccesPage(String pageCode) {
-        return findPage( pageCode + "-success");
-    }
-
     @POST
     @Path("/{pageCode}")
     @Produces(TEXT_HTML)
@@ -107,5 +91,17 @@ public class PageResource {
         else
             return "Page not found";
     }
+    
+    private Optional<PageTemplate> findPage(String pageCode) {
+        var pages = PageTemplate.list("code", pageCode);
+        if (pages.isEmpty()) 
+            return Optional.empty();
+        else 
+            return Optional.of((PageTemplate) pages.get(0));
+    }
 
+
+    private Optional<PageTemplate> findSuccesPage(String pageCode) {
+        return findPage( pageCode + "-success");
+    }
 }

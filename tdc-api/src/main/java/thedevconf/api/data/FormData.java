@@ -3,7 +3,7 @@ package thedevconf.api.data;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import static java.lang.Boolean.parseBoolean;;
+import static java.lang.Boolean.parseBoolean;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 @Entity

@@ -1,5 +1,6 @@
 package thedevconf.api.rs;
 
+import static java.lang.String.format;
 import static javax.ws.rs.core.MediaType.MULTIPART_FORM_DATA;
 import static javax.ws.rs.core.MediaType.TEXT_HTML;
 
@@ -58,13 +59,13 @@ public class PageResource {
             return "No file received";
         }
         String text = new String(input.readAllBytes(), StandardCharsets.UTF_8);
-        System.out.println("Received %s %d".formatted(pageCode,text.length()));
+        System.out.println(format("Received %s %d",pageCode,text.length()));
         var pages =  findPage(pageCode);
         if (pages.isPresent()) {
-            logger.info("Creating updating existing page %s".formatted(pageCode));
+            logger.info(format("Creating updating existing page %s",pageCode));
             pages.get().setContent(text);
         }else {
-            logger.info("Creating new page %s".formatted(pageCode));
+            logger.info(format("Creating new page %s",pageCode));
             var page = new PageTemplate();
             page.setContent(text);
             page.setCode(pageCode);
@@ -79,6 +80,7 @@ public class PageResource {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Transactional
     public String receiveForm(String body, @PathParam("pageCode") String pageCode) {
+        
         logger.info("POST received for page %s".formatted(pageCode));
         logger.info(body);
         var formData = FormData.of(pageCode, body);

@@ -3,7 +3,7 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 RDIR=$(dirname $DIR)
 
-JDK="21.3.0.r17-grl"
+JDK=${JDK:-"21.3.0.r17-grl"}
 AWS_PAGER=""
 
 echo "Using the GraalVM JDK"

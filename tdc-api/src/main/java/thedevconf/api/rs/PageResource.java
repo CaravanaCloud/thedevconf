@@ -81,13 +81,13 @@ public class PageResource {
     @Transactional
     public String receiveForm(String body, @PathParam("pageCode") String pageCode) {
         
-        logger.info("POST received for page %s".formatted(pageCode));
+        logger.info(format("POST received for page %s", pageCode));
         logger.info(body);
         var formData = FormData.of(pageCode, body);
         formData.persist();
         var page = findSuccesPage(pageCode).or( () -> findPage(pageCode));
         if (page.isPresent()) {
-            logger.info("redirecting to %s".formatted(page.get().getCode()));
+            logger.info(format("redirecting to %s", page.get().getCode()));
             return page.get().getContent();
         }
         else

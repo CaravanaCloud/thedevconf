@@ -1,8 +1,13 @@
 package thedevconf.api.data;
 
+import javax.management.RuntimeErrorException;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import static java.lang.Boolean.parseBoolean;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
@@ -311,6 +316,18 @@ public class FormData extends PanacheEntity{
                         .replaceAll("%2B55", "(")
                         .replaceAll("%2866", ")");
         return result;
+    }
+
+    static final ObjectMapper mapper = new ObjectMapper();
+    @Override
+    public String toString() {
+        try {
+            return mapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
     

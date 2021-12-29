@@ -62,7 +62,7 @@ public class PageResource {
         System.out.println(format("Received %s %d",pageCode,text.length()));
         var pages =  findPage(pageCode);
         if (pages.isPresent()) {
-            logger.info(format("Creating updating existing page %s",pageCode));
+            logger.info(format("OK Creating updating existing page %s",pageCode));
             pages.get().setContent(text);
         }else {
             logger.info(format("Creating new page %s",pageCode));

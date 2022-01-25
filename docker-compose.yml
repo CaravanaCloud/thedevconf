@@ -1,0 +1,80 @@
+services:
+  dbmysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'thedevconf'
+      MYSQL_ROOT_PASSWORD: 'Masterkey123'
+
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3337:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+      # Where our data will be persisted
+    volumes:
+      - new-db:/var/lib/mysql
+  
+  authkeycloak:
+    image: quay.io/keycloak/keycloak:latest
+    restart: always
+    environment:
+      KEYCLOAK_USER: 'root'
+      KEYCLOAK_PASSWORD: 'Masterkey123'
+      KEYCLOAK_IMPORT: '/tmp/keycloak/quarkus-realm.json'
+#       DB_DATABASE: 'thedevconf'
+#       DB_USER: 'tdc-app-user'
+#       DB_PASSWORD: 'Masterkey321'
+#       DB_ADDR: 'dbmysql'
+#       DB_VENDOR: 'mysql'
+    volumes:
+      - ./keycloak:/tmp/keycloak
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '8081:8080'
+    expose:
+      # Opens port 3306 on the container
+      - '8080'
+  
+  tdcapi:
+    build: ./tdc-api
+    restart: always
+    ports:
+      - "8182:8181"
+    depends_on:
+        - dbmysql
+        - authkeycloak
+    environment:
+      QUARKUS_DATASOURCE_JDBC_URL: 'jdbc:mysql://dbmysql:3306/thedevconf'
+      QUARKUS_DATASOURCE_DB_KIND: 'mysql'
+      QUARKUS_DATASOURCE_USERNAME: 'root'
+      QUARKUS_DATASOURCE_PASSWORD: 'Masterkey123'
+      QUARKUS_HIBERNATE_ORM_DATABASE_GENERATION: 'none'
+      QUARKUS_FLYWAY_MIGRATE_AT_START: 'true'
+      QUARKUS_FLYWAY_CLEAN_AT_START: 'true'
+      QUARKUS_OIDC_CLIENT_ID: 'bacckend-service'
+      QUARKUS_OIDC_CREDENTIALS_SECRET: 'secret'
+      QUARKUS_OIDC_TLS_VERIFICATION: 'none'
+      QUARKUS_OIDC_APPLICATION_TYPE: 'service'
+      QUARKUS_OIDC_AUTH_SERVER_URL: 'http://authkeycloak:8080/auth/realms/quarkus'
+  
+  cfpapp:
+    build: ./cfp-app
+    restart: always
+    ports:
+      - "8183:8080"
+    depends_on:
+        - tdcapi
+    environment:
+      QUARKUS_OIDC_CLIENT_ID: 'backend-service'
+      QUARKUS_OIDC_CREDENTIALS_SECRET: 'secret'
+      QUARKUS_OIDC_TLS_VERIFICATION: 'none'
+      QUARKUS_OIDC_APPLICATION_TYPE: 'web-app'
+      QUARKUS_OIDC_ROLES_SOURCE: 'accesstoken'
+      QUARKUS_OIDC_AUTH_SERVER_URL: 'http://authkeycloak:8080/auth/realms/quarkus'
+
+
+# Names our volume
+volumes:
+  new-db:

@@ -1,4 +1,4 @@
-package thedevconf.cfp;
+package thedevconf.cfp.ux;
 
 import com.vaadin.flow.component.orderedlayout.*;
 

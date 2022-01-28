@@ -4,17 +4,22 @@ import com.vaadin.flow.component.orderedlayout.*;
 
 import org.keycloak.authorization.client.AuthzClient;
 
+import thedevconf.cfp.UserSession;
+
 import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
 
 import com.vaadin.flow.component.html.*;
 
 @Dependent
 public class LoginComponent extends VerticalLayout {
+   
 
     public LoginComponent() {
-        var label = new Label("Login Here");
+        var label = new Label("Login Here " );
+                /*
+
         var authz = AuthzClient.create();
-        /*
         authzClient.init(
             "http://localhost:8080/auth",
             "thedevconf-cfp",

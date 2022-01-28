@@ -21,39 +21,44 @@ public class TokenFilter extends HttpFilter {
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
             throws IOException, ServletException {
         var buf = new StringBuilder();
-        buf.append("<h1>Params</h1>");
+        buf.append(req.getRequestURI());
+        buf.append("\n<h1>Params</h1>");
         Enumeration<String> params = req.getParameterNames(); 
         while(params.hasMoreElements()){
              String paramName = params.nextElement();
-             buf.append(" - "+paramName+", = "+req.getParameter(paramName));
-            buf.append("<br/>");
+             buf.append("\n - "+paramName+", = "+req.getParameter(paramName));
+            buf.append("\n<br/>");
         }
-        buf.append("<h1>Headers</h1>");
+        buf.append("\n<h1>Headers</h1>");
         Enumeration<String> headerNames = req.getHeaderNames();
         while (headerNames.hasMoreElements()) {
             String headerName = headerNames.nextElement();
-            buf.append("- " + headerName + " = " + req.getHeader(headerName));
-            buf.append("<br/>");
+            buf.append("\n- " + headerName + " = " + req.getHeader(headerName));
+            buf.append("\n<br/>");
         }
-        buf.append("<h1>Cookies</h1>");
+        buf.append("\n<h1>Cookies</h1>");
         Cookie[] cookies = req.getCookies();
         if(cookies!=null) {
           for (Cookie cookie : cookies) {
-            buf.append("- " + cookie.getName() + " = " + cookie.getValue());
-            buf.append("<br/>");
+            buf.append("\n- " + cookie.getName() + " = " + cookie.getValue());
+            buf.append("\n<br/>");
           }
         }
-        buf.append("<h1>Session</h1>");
+        buf.append("\n<h1>Session</h1>");
         Enumeration<String> attributes = req.getSession().getAttributeNames();
         while (attributes.hasMoreElements()) {
             String attribute = (String) attributes.nextElement();
             buf.append(attribute+" : "+req.getSession().getAttribute(attribute));
-            buf.append("<br/>");
+            buf.append("\n<br/>");
         }
-        buf.append("<br/>");
+        buf.append("\n<br/>");
+        buf.append("\n<h1>Body</h1>");
         buf.append(getBody(req));
-        res.setHeader("content-type", "text/html");
-        res.getWriter().println(buf.toString());
+        //res.setHeader("content-type", "text/html");
+        //res.getWriter().println(buf.toString());
+        buf.append("\n</br>");
+        System.out.println(buf.toString());
+        chain.doFilter(req, res);	
     }
 
     public static String getBody(HttpServletRequest request) throws IOException {

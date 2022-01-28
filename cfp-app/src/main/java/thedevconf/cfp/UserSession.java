@@ -2,18 +2,47 @@ package thedevconf.cfp;
 
 import java.util.UUID;
 
-import javax.enterprise.inject.Default;
-
-import com.vaadin.quarkus.annotation.VaadinSessionScoped;
-
-@VaadinSessionScoped
-@Default
 public class UserSession {
-    public UserSession(){
-        System.out.println("Creating session "+UUID.randomUUID().toString());
+    String uuid = UUID.randomUUID().toString();
+    String username;
+    String email;
+    String name;
+
+    public String getUsername() {
+        return this.username;
     }
 
-    public boolean isAuthenticated() {
-        return false;
+    public void setUsername(String username) {
+        this.username = username;
     }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public UserSession(){
+    }
+
+    //TODO: proper session management
+    public boolean isAuthenticated() {
+        return username != null;
+    }
+
+    @Override
+    public String toString() {
+        return uuid;
+    }
+
 }

@@ -6,6 +6,37 @@
 	},
 	"item": [
 		{
+			"name": "get-users-me",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8181/api/users/me",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"api",
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "oidc-token",
 			"event": [
 				{
@@ -54,12 +85,12 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8180/auth/realms/quarkus/protocol/openid-connect/token",
+					"raw": "http://localhost:9190/auth/realms/quarkus/protocol/openid-connect/token",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8180",
+					"port": "9190",
 					"path": [
 						"auth",
 						"realms",
@@ -67,37 +98,6 @@
 						"protocol",
 						"openid-connect",
 						"token"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get-users-me",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8181/api/users/me",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8181",
-					"path": [
-						"api",
-						"users",
-						"me"
 					]
 				}
 			},

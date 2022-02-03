@@ -11,7 +11,6 @@ import org.eclipse.microprofile.openapi.annotations.info.Info;
                 title = "TDC API",
                 version = "1.0")
 )
-@ApplicationPath("/")
 public class JAXRSApplication extends Application {
 
 }

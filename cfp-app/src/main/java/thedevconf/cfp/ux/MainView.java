@@ -12,7 +12,7 @@ import thedevconf.cfp.UserSession;
 /**
  * The main view contains a button and a click listener.
  */
-@Route("")
+@Route("oldmain")
 public class MainView extends VerticalLayout {
 
     @Inject

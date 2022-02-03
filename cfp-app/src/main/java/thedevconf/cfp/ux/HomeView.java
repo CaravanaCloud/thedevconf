@@ -14,7 +14,7 @@ import io.quarkus.oidc.IdToken;
 import io.quarkus.oidc.RefreshToken;
 
 
-@Route("user/home")
+@Route("user/homeold")
 public class HomeView extends VerticalLayout {
         /**
      * Injection point for the ID Token issued by the OpenID Connect Provider

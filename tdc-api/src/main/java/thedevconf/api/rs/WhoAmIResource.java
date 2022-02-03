@@ -1,4 +1,4 @@
-package cloud.caravana.openshift.provider.rs;
+package thedevconf.api.rs;
 
 
 import javax.annotation.security.RolesAllowed;

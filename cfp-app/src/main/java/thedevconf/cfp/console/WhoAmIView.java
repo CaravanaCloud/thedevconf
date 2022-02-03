@@ -13,10 +13,7 @@ import thedevconf.cfp.service.WhoAmIService;
 @Dependent
 public class WhoAmIView extends VerticalLayout {
     @Inject
-    @RestClient
-    WhoAmIService whoAmIService;
-
-    public WhoAmIView() {
+    public WhoAmIView(@RestClient WhoAmIService whoAmIService) {
         add(new Label(whoAmIService.whoami()));
     }
     

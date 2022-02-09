@@ -78,6 +78,11 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-rest-client-jackson</artifactId>
     </dependency>
+    <dependency>
+      <groupId>thedevconf</groupId>
+      <artifactId>tdc-model</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
   </dependencies>
   <repositories>
     <repository>

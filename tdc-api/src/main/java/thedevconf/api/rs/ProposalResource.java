@@ -1,20 +1,18 @@
 package thedevconf.api.rs;
 
+import thedevconf.api.entity.ProposalEntity;
 import thedevconf.model.cfp.Proposal;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.UUID;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-@Path("proposal")
+@Path("/user/proposal")
 public class ProposalResource {
     @Inject
     EntityManager em;
@@ -29,7 +27,7 @@ public class ProposalResource {
     @GET
     @Transactional
     public Proposal getCreate(){
-        var proposal = new Proposal();
+        var proposal = new ProposalEntity();
         em.persist(proposal);
         return proposal;
     }
@@ -39,7 +37,16 @@ public class ProposalResource {
     @GET
     @Produces(APPLICATION_JSON)
     public Proposal getByUUID(@PathParam("uuid") String uuid){
-        return em.find(Proposal.class, uuid);
+        return em.find(ProposalEntity.class, uuid);
     }
+
+    @POST
+    @Consumes(APPLICATION_JSON)
+    @Transactional
+    public void postProposal(Proposal proposal){
+        var entity = ProposalEntity.of(proposal);
+        em.persist(entity);
+    }
+
 
 }

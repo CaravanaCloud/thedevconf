@@ -1,6 +1,7 @@
 package thedevconf.cfp.console;
 
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.inject.Inject;
 
@@ -19,7 +20,8 @@ import cloud.caravana.auth.ClientSession;
 import thedevconf.cfp.ux.ProposalForm;
 
 @Route("/user/home")
-public class HomeView extends AppLayout {   
+public class HomeView extends AppLayout {
+    private ResourceBundle cfpMsg;
     Locale locale = Locale.ENGLISH;
     
     @Inject
@@ -29,7 +31,7 @@ public class HomeView extends AppLayout {
             ProposalForm proposalForm) {
         DrawerToggle toggle = new DrawerToggle();
 
-        var cfpMsg = session.getCFPMessages();
+        this.cfpMsg = session.getCFPMessages();
 
         H1 title = new H1(cfpMsg.getString("cfp.title"));
         title.getStyle()
@@ -46,7 +48,7 @@ public class HomeView extends AppLayout {
         var tabs = new Tabs();
         
         
-        var tabPres = createTab(VaadinIcon.PRESENTATION, "TalkSubmit", null);
+        var tabPres = createTab(VaadinIcon.PRESENTATION, cfpMsg.getString("cfp.nav.submitProposal"), null);
         tabPres.getElement().addEventListener("click", e -> {
           setContent(proposalForm);
         });

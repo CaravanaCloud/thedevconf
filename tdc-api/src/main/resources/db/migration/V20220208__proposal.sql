@@ -1,5 +1,5 @@
-create table Proposal (
-    DTYPE varchar(31) not null,
+create table cfp_proposal (
+    DTYPE varchar(31) not null default 'Proposal',
     uuid varchar(255) not null,
     audienceLevel varchar(255),
     authorUUID varchar(255),

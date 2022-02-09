@@ -1,4 +1,4 @@
-insert into Proposal(
+insert into cfp_proposal(
 DTYPE,
 uuid,
 title) values(

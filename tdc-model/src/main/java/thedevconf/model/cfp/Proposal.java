@@ -2,15 +2,14 @@ package thedevconf.model.cfp;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.UUID;
+import javax.persistence.MappedSuperclass;
 
-@Entity
+@MappedSuperclass
 public class Proposal {
-    @Id @GeneratedValue(generator = "uuid2")
+    @Id
+    @GeneratedValue(generator = "uuid2")
     @GenericGenerator( name = "uuid2", strategy = "uuid2" )
     String uuid;
     String eventCode;

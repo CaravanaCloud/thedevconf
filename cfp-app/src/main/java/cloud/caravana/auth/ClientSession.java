@@ -1,5 +1,8 @@
 package cloud.caravana.auth;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public interface ClientSession {
     boolean isLoggedIn();
     String getIdToken();
@@ -7,5 +10,8 @@ public interface ClientSession {
     String getRefreshToken();
     String getUserInfo();
     String ping();
-    String whoami();
+
+    String getUserDisplayName();
+    Locale getLocale();
+    ResourceBundle getCFPMessages();
 }

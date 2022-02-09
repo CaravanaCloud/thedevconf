@@ -22,12 +22,12 @@ public class MainView extends VerticalLayout {
         
         if (session != null 
             && session.isLoggedIn()){
-            add(new Label("Hello " + session.getUserInfo()));
+            add(new Label("Hello! Welcome back, " + session.getUserDisplayName()));
         }else {
             add(new Label("Hello stranger ;)"));
         }
 
-        add(new Label("Ping (rest client)? " + session.ping()) );
+        add(new Label("Ping API? " + session.ping()) );
 
 
         // Use TextField for standard text input

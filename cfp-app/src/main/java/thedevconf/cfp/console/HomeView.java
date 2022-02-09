@@ -1,8 +1,6 @@
 package thedevconf.cfp.console;
 
-import java.io.Console;
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 import javax.inject.Inject;
 
@@ -18,6 +16,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 
 import cloud.caravana.auth.ClientSession;
+import thedevconf.cfp.ux.ProposalForm;
 
 @Route("/user/home")
 public class HomeView extends AppLayout {   
@@ -25,38 +24,31 @@ public class HomeView extends AppLayout {
     
     @Inject
     public HomeView(
-              ClientSession session,
-              WhoAmIView whoAmIView) {
+            ClientSession session,
+            WhoAmIView whoAmIView,
+            ProposalForm proposalForm) {
         DrawerToggle toggle = new DrawerToggle();
 
-        H1 title = new H1("app-name");
+        var cfpMsg = session.getCFPMessages();
+
+        H1 title = new H1(cfpMsg.getString("cfp.title"));
         title.getStyle()
                 .set("font-size", "var(--lumo-font-size-l)")
                 .set("margin", "0");
 
-        Tabs tabs = getTabs(whoAmIView);
+        Tabs tabs = getTabs(whoAmIView, proposalForm);
 
         addToDrawer(tabs);
         addToNavbar(toggle, title);
-        /*
-         * add(new Label("WhoAmI (rest client auth)? " + session.whoami()));
-         * 
-         * if (session != null && session.isLoggedIn()) {
-         * add(new Label("Welcome home " + session.getUserInfo()));
-         * } else {
-         * add(new Label("You should be authenticated to be here :/"));
-         * }
-         */
-        
     }
 
-    private Tabs getTabs(Component whoAmIView) {
+    private Tabs getTabs(Component whoAmIView, ProposalForm proposalForm) {
         var tabs = new Tabs();
         
         
         var tabPres = createTab(VaadinIcon.PRESENTATION, "TalkSubmit", null);
         tabPres.getElement().addEventListener("click", e -> {
-          setContent(new ProposalSubmit());
+          setContent(proposalForm);
         });
 
         var tabDash = createTab(VaadinIcon.DASHBOARD, "Dashboard", null);

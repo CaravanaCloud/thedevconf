@@ -7,7 +7,7 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
-import thedevconf.cfp.UserSession;
+import thedevconf.cfp.console.HomeView;
 
 /**
  * The main view contains a button and a click listener.
@@ -17,13 +17,13 @@ public class MainView extends VerticalLayout {
 
     @Inject
     public MainView(
-        //UserSession session,
+        Instance<HomeView> homeView,
         Instance<LoginComponent> loginView) {
        // Use custom CSS classes to apply styling. This is defined in shared-styles.css.
        addClassName("centered-content");
        var view = (Component) null;
        if (false){//session.isAuthenticated()){
-        view = new HomeView();
+        view = homeView.get();
        }else {
         view = loginView.get();
        }

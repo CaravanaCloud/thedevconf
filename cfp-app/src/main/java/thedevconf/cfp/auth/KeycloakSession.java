@@ -3,6 +3,7 @@ package thedevconf.cfp.auth;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
+import io.quarkus.security.identity.SecurityIdentity;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
@@ -11,6 +12,9 @@ import io.quarkus.oidc.IdToken;
 import io.quarkus.oidc.RefreshToken;
 import thedevconf.cfp.service.PingService;
 import thedevconf.cfp.service.WhoAmIService;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 @Dependent
 public class KeycloakSession 
@@ -41,8 +45,7 @@ public class KeycloakSession
     }
 
     public boolean isLoggedIn() {
-        return accessToken != null 
-            && idToken != null;
+        return ! securityIdentity.isAnonymous();
     }
 
     @Override
@@ -65,9 +68,31 @@ public class KeycloakSession
         return pingService.ping().toString() ;
     }
 
+    @Inject
+    SecurityIdentity securityIdentity;
+
     @Override
-    public String whoami() {
-        return whoamiService.whoami();
+    public String getUserDisplayName() {
+        System.out.println(securityIdentity);
+        System.out.println(Tokens.toString(idToken, accessToken, refreshToken));
+
+        if(securityIdentity.isAnonymous()) {
+            return "NOT LOGGED IN";
+        }else {
+            return securityIdentity.getPrincipal().getName();
+        }
     }
-    
+
+    static final Locale pt = new Locale("pt");
+
+    @Override
+    public Locale getLocale() {
+        return pt;
+    }
+
+    @Override
+    public ResourceBundle getCFPMessages() {
+        return ResourceBundle.getBundle("cfp_app", getLocale());
+    }
+
 }

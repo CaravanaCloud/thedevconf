@@ -2,12 +2,7 @@ package thedevconf.cfp.ux;
 
 import com.vaadin.flow.component.orderedlayout.*;
 
-import org.keycloak.authorization.client.AuthzClient;
-
-import thedevconf.cfp.UserSession;
-
 import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
 
 import com.vaadin.flow.component.html.*;
 

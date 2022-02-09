@@ -1,10 +1,18 @@
 package thedevconf.model.cfp;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.UUID;
 
+@Entity
 public class Proposal {
-
-    UUID uuid;
+    @Id @GeneratedValue(generator = "uuid2")
+    @GenericGenerator( name = "uuid2", strategy = "uuid2" )
+    String uuid;
     String eventCode;
     String proposalCode;
     String authorUUID;
@@ -49,11 +57,11 @@ public class Proposal {
         return uuid != null ? uuid.hashCode() : 0;
     }
 
-    public UUID getUuid() {
+    public String getUuid() {
         return uuid;
     }
 
-    public void setUuid(UUID uuid) {
+    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 

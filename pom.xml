@@ -11,4 +11,7 @@
     <module>tdc-api</module>
     <module>cfp-app</module>
   </modules>
+  <build>
+    <defaultGoal>clean install</defaultGoal>
+  </build>
 </project>

@@ -31,13 +31,14 @@ echo "Build and start cfp"
 mvn -f $RDIR/cfp-app/pom.xml -Ddebug=5152 clean quarkus:dev &
 sleep 30
 
-echo "done! try this:"
-echo "[API] curl http://localhost:8181/api"
-echo "[CFP] curl http://localhost:8182/"
-
+echo "done. Try this to test:"
 API_PID=$(jps | grep tdc-api | cut -d' ' -f 1)
 CFP_PID=$(jps | grep cfp-app | cut -d' ' -f 1)
+
+echo "[API_PID $API_PID] curl http://localhost:8181/api"
+echo "[CFP_PID $CFP_PID] curl http://localhost:8182/"
+
 echo "To stop:"
-echo "kill $(jps | grep tdc-api | cut -d' ' -f 1) $(jps | grep cfp-app | cut -d' ' -f 1)"
-echo "kill $API_PID $CFP_PID"
-echo "kill -9 $API_PID $CFP_PID #force"
+echo 'kill $(jps | grep tdc-api | cut -d' ' -f 1) $(jps | grep cfp-app | cut -d' ' -f 1)'
+
+echo "Enjoy!"

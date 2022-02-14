@@ -4,6 +4,10 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 source "$DIR/utilities.sh"
 
 KEYCLOAK_VERSION=16.1.1
+#KEYCLOAK_IMAGE=quay.io/keycloak/keycloak
+KEYCLOAK_IMAGE=jboss/keycloak
+KEYCLOAK_TAG=KEYCLOAK_IMAGE:KEYCLOAK_VERSION
+
 
 docker run -ti --rm -p 0.0.0.0:8080:8080 \
     -e KEYCLOAK_ADMIN="$(get_param TDC_DEVENV_KEYCLOAK_ADMIN)" \
@@ -14,5 +18,5 @@ docker run -ti --rm -p 0.0.0.0:8080:8080 \
     -e DB_DATABASE="keycloak?useSSL=false" \
     -e DB_USER="$(get_param TDC_DEVENV_DB_USERNAME)" \
     -e DB_PASSWORD="$(get_param TDC_DEVENV_DB_PASSWORD)" \
-    quay.io/keycloak/keycloak:$KEYCLOAK_VERSION 
+    $KEYCLOAK_IMAGE
 # end_script

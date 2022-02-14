@@ -4,7 +4,8 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 source "$DIR/utilities.sh"
 
 KEYCLOAK_VERSION=16.1.1
-docker run -ti --rm -p 0.0.0.0:8080:8080 \
+
+echo docker run -ti --rm -p 0.0.0.0:8080:8080 \
     -e KEYCLOAK_ADMIN="$(get_param TDC_DEVENV_KEYCLOAK_ADMIN)" \
     -e KEYCLOAK_ADMIN_PASSWORD="$(get_param TDC_DEVENV_KEYCLOAK_ADMIN_PASSWORD)" \
     -e DB_VENDOR="mysql" \

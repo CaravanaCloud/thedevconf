@@ -1,1 +1,0 @@
-it("opens the website", () => cy.visit("/"))
